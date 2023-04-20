@@ -1,31 +1,28 @@
 import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
+import babel from '@rollup/plugin-babel';
+import eslint from '@rollup/plugin-eslint';
 import terser from '@rollup/plugin-terser';
 import external from 'rollup-plugin-peer-deps-external';
+import packageJson from './package.json' assert { type: "json" };
 
-const packageJson = require('./package.json');
-
-export default {
-  input: 'src.index.ts',
-  output: [
-    {
-      file: packageJson.main,
-      format: 'cjs',
-      sourcemap: true,
-      name: 'datepicker',
-    },
-    {
-      file: packageJson.module,
-      format: 'esm',
-      sourcemap: true,
-    }
-  ],
-  plugins: [
-    external(),
-    resolve(),
-    commonjs(),
-    typescript({tsconfig: './tsconfig.json'}),
-    terser(),
-  ]
-}
+export default [
+  {
+    input: 'src/index.ts',
+    output: [
+      {
+        file: packageJson.module,
+        format: 'esm',
+        sourcemap: true,
+      } 
+    ],
+    plugins: [
+      external(),
+      resolve(),
+      eslint(),
+      babel({ babelHelpers: 'bundled', exclude: 'node_modules/**' }),
+      typescript({ tsconfig: './tsconfig.json' }),
+      terser(),
+    ],
+  },
+]
