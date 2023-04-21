@@ -4,7 +4,7 @@ import babel from '@rollup/plugin-babel';
 import eslint from '@rollup/plugin-eslint';
 import terser from '@rollup/plugin-terser';
 import external from 'rollup-plugin-peer-deps-external';
-import packageJson from './package.json' assert { type: "json" };
+import packageJson from './package.json' assert { type: 'json' };
 
 export default [
   {
@@ -14,7 +14,7 @@ export default [
         file: packageJson.module,
         format: 'esm',
         sourcemap: true,
-      } 
+      },
     ],
     plugins: [
       external(),
@@ -25,4 +25,4 @@ export default [
       terser(),
     ],
   },
-]
+];

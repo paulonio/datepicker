@@ -11,7 +11,14 @@
   ],
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rollup --config"
+    "build": "rollup --config",
+    "lint": "eslint src/ --fix",
+    "prettier": "prettier --write src/**/*.tsx"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint"
+    }
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",
@@ -31,14 +38,17 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "2.25.3",
     "eslint-plugin-jsx-a11y": "6.5.1",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "7.28.0",
     "eslint-plugin-react-hooks": "4.3.0",
+    "husky": "^8.0.3",
     "prettier": "^2.8.7",
     "react": "^18.2.0",
     "rollup": "^3.20.6",
     "rollup-plugin-dts": "^5.3.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-prettier": "^3.0.0",
+    "styled-components": "^5.3.9",
     "tslib": "^2.5.0",
     "typescript": "^5.0.4"
   },
