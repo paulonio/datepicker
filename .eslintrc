@@ -2,10 +2,13 @@
   "extends": ["airbnb", "airbnb-typescript", "eslint-config-prettier"],
   "plugins": ["eslint-plugin-prettier"],
   "rules": { 
-    "linebreak-style":"off",
+    "linebreak-style": [0],
     "react/jsx-filename-extension": [0], 
-    "react/function-component-definition": [0], 
+    "react/function-component-definition": [0],
+    "react/require-default-props": [0],
+    "arrow-body-style": [0],
     "import/no-unresolved": [0], 
+    "import/prefer-default-export": [0], 
     "class-methods-use-this": [0], 
     "prettier/prettier": ["error"] 
   },
@@ -14,6 +17,7 @@
     "node": true,
     "es6": true
   },
+  // "exclude": ["./dist"],
   "parserOptions": {
     "project": "./tsconfig.json"
   }
