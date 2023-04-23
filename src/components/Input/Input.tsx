@@ -1,18 +1,36 @@
-import React, { FC } from 'react';
-import { Field, InputIcon, Label, Wrapper } from './styled';
+import React, { ChangeEvent, FC, useState } from 'react';
+import { CalendarIcon, CloseIcon, Field, FieldWrapper, Icon, Label, Wrapper } from './styled';
 
 interface InputProps {
-  date?: string;
   label: string;
 }
 
-const Input: FC<InputProps> = ({ date, label }) => {
+const Input: FC<InputProps> = ({ label }) => {
+  const [date, setDate] = useState<string>('');
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setDate(value);
+  };
+
+  const resetInput = () => {
+    setDate('');
+  };
+
   return (
     <Wrapper>
       <Label>{label}</Label>
-      <InputIcon>
-        <Field value={date} />
-      </InputIcon>
+      <FieldWrapper>
+        <CalendarIcon>
+          <Icon src="./assets/icons/Calendar.svg" />
+        </CalendarIcon>
+        <Field value={date} onChange={handleChange} placeholder="Choose Date" />
+        {date && (
+          <CloseIcon onClick={resetInput}>
+            <Icon src="./assets/icons/Clear.svg" />
+          </CloseIcon>
+        )}
+      </FieldWrapper>
     </Wrapper>
   );
 };
