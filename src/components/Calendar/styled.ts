@@ -1,0 +1,81 @@
+import styled from 'styled-components';
+
+export const Wrapper = styled.div`
+  width: 100%;
+  padding: 10px 10px 0;
+  max-width: 252px;
+  border: solid 1px #e1e1e1;
+  border-radius: 8px;
+`;
+
+export const MonthWrapper = styled.div`
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const Month = styled.div`
+  color: #333333;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 19px;
+`;
+
+export const PrevIcon = styled.img.attrs({ src: './assets/icons/Prev.svg' })`
+  display: block;
+  width: 16px;
+  height: 16px;
+`;
+
+export const NextIcon = styled.img.attrs({ src: './assets/icons/Next.svg' })`
+  display: block;
+  width: 16px;
+  height: 16px;
+`;
+
+export const WeekWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 19px;
+`;
+
+export const WeekDay = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+`;
+
+export const Week = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  color: #333333;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+`;
+
+export const ClearButton = styled.button`
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  border: none;
+  border-top: solid 1px #e1e1e1;
+  color: #333333;
+  background-color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
