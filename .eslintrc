@@ -6,10 +6,12 @@
     "react/jsx-filename-extension": [0], 
     "react/function-component-definition": [0],
     "react/require-default-props": [0],
+    "react/no-array-index-key": [0],
     "arrow-body-style": [0],
     "import/no-unresolved": [0], 
     "import/prefer-default-export": [0], 
-    "class-methods-use-this": [0], 
+    "class-methods-use-this": [0],
+    "no-plusplus": [0],
     "prettier/prettier": ["error"] 
   },
   "env": {

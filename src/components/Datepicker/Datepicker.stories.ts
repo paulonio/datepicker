@@ -13,5 +13,6 @@ export const Primary: Story = {
   args: {
     from: '2013-01-08',
     to: '2013-01-10',
+    start: 'Su',
   },
 };
