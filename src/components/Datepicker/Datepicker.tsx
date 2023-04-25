@@ -14,7 +14,7 @@ const Datepicker = () => {
     <>
       <Global />
       <DatepickerWrapper>
-        <Input label="From" />
+        <Input label="From" dateFrom={date} onDateChange={setDate} />
         <Input label="To" />
         <Calendar date={date} onDateChange={setDate} />
       </DatepickerWrapper>

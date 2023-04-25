@@ -1,6 +1,6 @@
 import React from 'react';
 import { SUNDAY_STARTS } from '../../constants/constants';
-import { WeekDay, WeekWrapper } from '../Calendar/styled';
+import { WeekDay, WeekWrapper } from './styled';
 
 const WeekDayRow = () => {
   return (

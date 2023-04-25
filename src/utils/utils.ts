@@ -11,7 +11,11 @@ export const getAllDaysInMonth = (currentMonth: number, currentYear: number) => 
   const amount = [];
 
   for (let i = 1; i <= daysAmount; i++) {
-    amount.push(i);
+    amount.push({
+      currentYear,
+      currentMonth,
+      currentDate: i,
+    });
   }
 
   return amount;
@@ -24,18 +28,28 @@ export const getPreviousMonthDates = (currentMonth: number, currentYear: number)
   const amount = [];
 
   for (let i = firstDayInCurrentMonth - 1; i >= 0; i--) {
-    amount.push(amountPreviosMonthDays - i);
+    amount.push({
+      currentYear,
+      currentMonth: currentMonth - 1,
+      currentDate: amountPreviosMonthDays - i,
+    });
   }
 
   return amount;
 };
 
-export const getNextMonthDates = (previousDatesAmount: number, currentDatesAmount: number) => {
+export const getNextMonthDates = (currentMonth: number, currentYear: number) => {
+  const currentDatesAmount = getAmountDaysInMonth(currentMonth, currentYear);
+  const previousDatesAmount = getPreviousMonthDates(currentMonth, currentYear).length;
   const daysAmount = CELLS_AMOUNT - currentDatesAmount - previousDatesAmount;
   const amount = [];
 
   for (let i = 1; i <= daysAmount; i++) {
-    amount.push(i);
+    amount.push({
+      currentYear,
+      currentMonth: currentMonth + 1,
+      currentDate: i,
+    });
   }
 
   return amount;

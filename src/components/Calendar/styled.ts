@@ -18,25 +18,6 @@ export const WeekWrapper = styled.div`
   line-height: 19px;
 `;
 
-export const WeekDay = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-`;
-
-export const Week = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  color: #333333;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 18px;
-`;
-
 export const ClearButton = styled.button`
   width: 100%;
   padding: 10px 0;
