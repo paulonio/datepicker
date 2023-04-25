@@ -1,25 +1,17 @@
 import React from 'react';
-import {
-  ClearButton,
-  Month,
-  MonthWrapper,
-  NextIcon,
-  PrevIcon,
-  Week,
-  WeekDay,
-  Wrapper,
-} from './styled';
 import WeekDayRow from '../WeekDayRow/WeekDayRow';
+import MonthRow from '../MonthRow/MonthRow';
 import ClassCalendar from '../../utils/ClassCalendar';
 import { getAllDaysInMonth, getNextMonthDates, getPreviousMonthDates } from '../../utils/utils';
+import { ClearButton, Week, WeekDay, Wrapper } from './styled';
+
+const calendar = new ClassCalendar(
+  new Date(2023, 3, 24),
+  new Date(2023, 3, 25),
+  new Date(2023, 3, 24)
+);
 
 const Calendar = () => {
-  const calendar = new ClassCalendar(
-    new Date(2023, 3, 24),
-    new Date(2023, 3, 25),
-    new Date(2023, 3, 24)
-  );
-
   const daysInCurrentMonth = getAllDaysInMonth(calendar.getAmountCurrentMonthDays());
   const daysInPreviousMonth = getPreviousMonthDates(
     calendar.getAmountPreviosMonthDays(),
@@ -27,18 +19,10 @@ const Calendar = () => {
   );
   const daysInNextMonth = getNextMonthDates(daysInCurrentMonth.length, daysInPreviousMonth.length);
   const allDays = [...daysInPreviousMonth, ...daysInCurrentMonth, ...daysInNextMonth];
-  const currentMonth = calendar.getCurrentMonth();
-  const currentYear = calendar.getCurrentYear();
 
   return (
     <Wrapper>
-      <MonthWrapper>
-        <PrevIcon />
-        <Month>
-          {currentMonth} {currentYear}
-        </Month>
-        <NextIcon />
-      </MonthWrapper>
+      <MonthRow calendar={calendar} />
       <WeekDayRow />
       <Week>
         {allDays.map((date, idx) => (

@@ -14,8 +14,12 @@ class ClassCalendar {
     this.currentDate = currentDate;
   }
 
+  getCurrentMonthIdx() {
+    return this.currentDate.getMonth();
+  }
+
   getCurrentMonth() {
-    const monthIdx = this.currentDate.getMonth();
+    const monthIdx = this.getCurrentMonthIdx();
     return MONTHS[monthIdx];
   }
 
@@ -40,6 +44,16 @@ class ClassCalendar {
     const currentYear = this.currentDate.getFullYear();
     const currentMonthFirstDay = new Date(currentYear, currentMonth, 1);
     return currentMonthFirstDay.getDay();
+  }
+
+  setPreviousMonth() {
+    const currentMonth = this.currentDate.getMonth();
+    this.currentDate.setMonth(currentMonth - 1);
+  }
+
+  setNextMonth() {
+    const currentMonth = this.currentDate.getMonth();
+    this.currentDate.setMonth(currentMonth + 1);
   }
 }
 
