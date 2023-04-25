@@ -12,7 +12,8 @@
     "import/prefer-default-export": [0], 
     "class-methods-use-this": [0],
     "no-plusplus": [0],
-    "prettier/prettier": ["error"] 
+    "prettier/prettier": ["error"],
+    "@typescript-eslint/no-unused-vars": [0]
   },
   "env": {
     "browser": true,

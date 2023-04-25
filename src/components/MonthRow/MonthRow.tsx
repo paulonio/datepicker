@@ -1,26 +1,31 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { Month, MonthWrapper, NextIcon, PrevIcon } from './styled';
-import ClassCalendar from '../../utils/ClassCalendar';
 import { MONTHS } from '../../constants/constants';
 
 interface MonthRowProps {
-  calendar: ClassCalendar;
+  month: number;
+  year: number;
+  handleMonthChange: (month: number) => void;
+  handleYearChange: (year: number) => void;
 }
 
-const MonthRow: FC<MonthRowProps> = ({ calendar }) => {
-  const [month, setMonth] = useState<number>(() => calendar.getCurrentMonthIdx());
-  const [year, setYear] = useState<number>(() => calendar.getCurrentYear());
-
+const MonthRow: FC<MonthRowProps> = ({ month, year, handleMonthChange, handleYearChange }) => {
   const handlePreviousClick = () => {
-    calendar.setPreviousMonth();
-    setMonth(calendar.getCurrentMonthIdx());
-    setYear(calendar.getCurrentYear());
+    if (month === 0) {
+      handleMonthChange(11);
+      handleYearChange(year - 1);
+    } else {
+      handleMonthChange(month - 1);
+    }
   };
 
   const handleNextClick = () => {
-    calendar.setNextMonth();
-    setMonth(calendar.getCurrentMonthIdx());
-    setYear(calendar.getCurrentYear());
+    if (month === 11) {
+      handleMonthChange(0);
+      handleYearChange(year + 1);
+    } else {
+      handleMonthChange(month + 1);
+    }
   };
 
   return (

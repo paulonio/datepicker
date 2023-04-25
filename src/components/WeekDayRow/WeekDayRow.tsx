@@ -1,11 +1,11 @@
 import React from 'react';
-import { SundayStarts } from '../../constants/constants';
+import { SUNDAY_STARTS } from '../../constants/constants';
 import { WeekDay, WeekWrapper } from '../Calendar/styled';
 
 const WeekDayRow = () => {
   return (
     <WeekWrapper>
-      {SundayStarts.map((day) => (
+      {SUNDAY_STARTS.map((day) => (
         <WeekDay key={day}>{day}</WeekDay>
       ))}
     </WeekWrapper>

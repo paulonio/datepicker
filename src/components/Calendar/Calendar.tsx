@@ -1,32 +1,26 @@
-import React from 'react';
+import React, { FC, useState } from 'react';
 import WeekDayRow from '../WeekDayRow/WeekDayRow';
 import MonthRow from '../MonthRow/MonthRow';
-import ClassCalendar from '../../utils/ClassCalendar';
-import { getAllDaysInMonth, getNextMonthDates, getPreviousMonthDates } from '../../utils/utils';
 import { ClearButton, Week, WeekDay, Wrapper } from './styled';
+import { useDisplayDates } from '../../hooks/useDisplayDates';
 
-const calendar = new ClassCalendar(
-  new Date(2023, 3, 24),
-  new Date(2023, 3, 25),
-  new Date(2023, 3, 24)
-);
+interface CalendarProps {
+  date: Date;
+  onDateChange: (date: Date) => void;
+}
 
-const Calendar = () => {
-  const daysInCurrentMonth = getAllDaysInMonth(calendar.getAmountCurrentMonthDays());
-  const daysInPreviousMonth = getPreviousMonthDates(
-    calendar.getAmountPreviosMonthDays(),
-    calendar.getFirstDayInMonth()
-  );
-  const daysInNextMonth = getNextMonthDates(daysInCurrentMonth.length, daysInPreviousMonth.length);
-  const allDays = [...daysInPreviousMonth, ...daysInCurrentMonth, ...daysInNextMonth];
+const Calendar: FC<CalendarProps> = ({ date, onDateChange }) => {
+  const [month, setMonth] = useState<number>(() => date.getMonth());
+  const [year, setYear] = useState<number>(() => date.getFullYear());
+  const allDays = useDisplayDates(month, year);
 
   return (
     <Wrapper>
-      <MonthRow calendar={calendar} />
+      <MonthRow month={month} year={year} handleMonthChange={setMonth} handleYearChange={setYear} />
       <WeekDayRow />
       <Week>
-        {allDays.map((date, idx) => (
-          <WeekDay key={idx}>{date}</WeekDay>
+        {allDays.map((data, idx) => (
+          <WeekDay key={idx}>{data}</WeekDay>
         ))}
       </Week>
       <ClearButton>Clear</ClearButton>

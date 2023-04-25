@@ -2,15 +2,9 @@ import { MONTHS } from '../constants/constants';
 import { getAmountDaysInMonth } from './utils';
 
 class ClassCalendar {
-  dateFrom: Date;
-
-  dateTo: Date;
-
   currentDate: Date;
 
-  constructor(dateFrom: Date, dateTo: Date, currentDate: Date) {
-    this.dateFrom = dateFrom;
-    this.dateTo = dateTo;
+  constructor(currentDate: Date) {
     this.currentDate = currentDate;
   }
 
