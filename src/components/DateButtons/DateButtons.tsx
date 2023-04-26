@@ -1,26 +1,35 @@
 import React, { FC } from 'react';
 import { Week, WeekDay } from './styled';
-import { useDisplayDates } from '../../hooks/useDisplayDates';
 
-interface DateButtonsProps {
-  day: number;
-  month: number;
-  year: number;
-  onChange: (date: Date) => void;
+interface AllDays {
+  currentYear: number;
+  currentMonth: number;
+  currentDate: number;
 }
 
-const DateButtons: FC<DateButtonsProps> = ({ day, month, year, onChange }) => {
-  const allDays = useDisplayDates(month, year);
+interface DateButtonsProps {
+  dateFrom: Date;
+  dateTo: Date;
+  allDays: Array<AllDays>;
+  onDateChange: (date: Date) => void;
+}
 
-  const isSelected = (date: Date) => {
-    if (date.getDate() === day && date.getMonth() === month && date.getFullYear() === year) {
-      return true;
+const DateButtons: FC<DateButtonsProps> = ({ dateFrom, dateTo, allDays, onDateChange }) => {
+  const getMode = (date: Date) => {
+    if (dateFrom.getTime() === date.getTime()) {
+      return 'selectedFrom';
     }
-    return false;
+    if (dateTo.getTime() === date.getTime()) {
+      return 'selectedTo';
+    }
+    if (date > dateFrom && date < dateTo) {
+      return 'inRange';
+    }
+    return '';
   };
 
   const handleButtonClick = (date: Date) => {
-    onChange(date);
+    onDateChange(date);
   };
 
   return (
@@ -31,7 +40,7 @@ const DateButtons: FC<DateButtonsProps> = ({ day, month, year, onChange }) => {
           <WeekDay
             key={`${currentYear}-${currentMonth}-${currentDate}`}
             onClick={() => handleButtonClick(date)}
-            selected={isSelected(date)}
+            mode={getMode(date)}
           >
             {currentDate}
           </WeekDay>

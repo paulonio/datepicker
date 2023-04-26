@@ -8,15 +8,33 @@ import ClassCalendar from '../../utils/ClassCalendar';
 const calendarInstance = new ClassCalendar(new Date(2023, 3, 24));
 
 const Datepicker = () => {
-  const [date, setDate] = useState<Date>(calendarInstance.currentDate);
+  const [dateFrom, setDateFrom] = useState<Date>(calendarInstance.currentDate);
+  const [dateTo, setDateTo] = useState<Date>(calendarInstance.currentDate);
+  const [currentCalendar, setCurrentCalendar] = useState<'From' | 'To'>('From');
 
   return (
     <>
       <Global />
       <DatepickerWrapper>
-        <Input label="From" dateFrom={date} onDateChange={setDate} />
-        <Input label="To" />
-        <Calendar date={date} onDateChange={setDate} />
+        <Input
+          label="From"
+          date={dateFrom}
+          onDateChange={setDateFrom}
+          setCurrentCalendar={setCurrentCalendar}
+        />
+        <Input
+          label="To"
+          date={dateTo}
+          onDateChange={setDateTo}
+          setCurrentCalendar={setCurrentCalendar}
+        />
+        <Calendar
+          fromTo={currentCalendar}
+          dateFrom={dateFrom}
+          dateTo={dateTo}
+          onDateFromChange={setDateFrom}
+          onDateToChange={setDateTo}
+        />
       </DatepickerWrapper>
     </>
   );
