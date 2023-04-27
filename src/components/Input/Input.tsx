@@ -3,12 +3,14 @@ import { CalendarIcon, CloseIcon, Field, FieldWrapper, Icon, Label, Wrapper } fr
 
 interface InputProps {
   label: 'From' | 'To';
-  date?: Date;
-  onDateChange?: (date: Date) => void;
+  date: Date | null;
+  onDateChange: (date: Date | null) => void;
   setCurrentCalendar: (value: 'From' | 'To') => void;
+  // TODO fix
+  toggleCalendar: (bool: boolean) => void;
 }
 
-export const updateInput = (date?: Date) => {
+export const updateInput = (date: Date | null) => {
   if (!date) {
     return '';
   }
@@ -17,10 +19,16 @@ export const updateInput = (date?: Date) => {
   const month = date.getMonth();
   const day = date.getDate();
 
-  return `${day}-${month + 1}-${year}`;
+  return `${day}/${month + 1}/${year}`;
 };
 
-const Input: FC<InputProps> = ({ label, date, onDateChange, setCurrentCalendar }) => {
+const Input: FC<InputProps> = ({
+  label,
+  date,
+  onDateChange,
+  setCurrentCalendar,
+  toggleCalendar,
+}) => {
   const [inputDate, setInputDate] = useState<string>('');
 
   useEffect(() => {
@@ -33,15 +41,20 @@ const Input: FC<InputProps> = ({ label, date, onDateChange, setCurrentCalendar }
       return;
     }
 
+    if (inputDate === '') {
+      return;
+    }
+
     const [day, month, year] = inputDate
       .trim()
-      .split('-')
+      .split('/')
       .map((item) => Number(item));
 
     onDateChange(new Date(year, month - 1, day));
   };
 
   const handleFocus = () => {
+    toggleCalendar(true);
     setCurrentCalendar(label);
   };
 
@@ -52,6 +65,7 @@ const Input: FC<InputProps> = ({ label, date, onDateChange, setCurrentCalendar }
 
   const resetInput = () => {
     setInputDate('');
+    onDateChange(null);
   };
 
   return (

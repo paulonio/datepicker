@@ -3,29 +3,36 @@ import { Week, WeekDay } from './styled';
 import { DisplayDate } from '../../utils/utils';
 
 interface DateButtonsProps {
-  dateFrom: Date;
-  dateTo: Date;
+  dateFrom: Date | null;
+  dateTo: Date | null;
   allDays: Array<DisplayDate>;
   onDateChange: (date: Date) => void;
+  toggleCalendar: (bool: boolean) => void;
 }
 
-const getToday = (): Date => {
+export const getToday = (): Date => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   return today;
 };
 
-const DateButtons: FC<DateButtonsProps> = ({ dateFrom, dateTo, allDays, onDateChange }) => {
+const DateButtons: FC<DateButtonsProps> = ({
+  dateFrom,
+  dateTo,
+  allDays,
+  onDateChange,
+  toggleCalendar,
+}) => {
   const today = getToday();
 
   const getMode = (date: Date) => {
-    if (dateFrom.getTime() === date.getTime()) {
+    if (dateFrom && dateFrom.getTime() === date.getTime()) {
       return 'selectedFrom';
     }
-    if (dateTo.getTime() === date.getTime()) {
+    if (dateTo && dateTo.getTime() === date.getTime()) {
       return 'selectedTo';
     }
-    if (date > dateFrom && date < dateTo) {
+    if (dateFrom && dateTo && date > dateFrom && date < dateTo) {
       return 'inRange';
     }
     return '';
@@ -33,6 +40,7 @@ const DateButtons: FC<DateButtonsProps> = ({ dateFrom, dateTo, allDays, onDateCh
 
   const handleButtonClick = (date: Date) => {
     onDateChange(date);
+    toggleCalendar(false);
   };
 
   return (

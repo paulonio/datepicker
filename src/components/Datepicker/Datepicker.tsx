@@ -8,9 +8,10 @@ import ClassCalendar from '../../utils/ClassCalendar';
 const calendarInstance = new ClassCalendar(new Date(2023, 3, 24));
 
 const Datepicker = () => {
-  const [dateFrom, setDateFrom] = useState<Date>(calendarInstance.currentDate);
-  const [dateTo, setDateTo] = useState<Date>(calendarInstance.currentDate);
+  const [dateFrom, setDateFrom] = useState<Date | null>(calendarInstance.currentDate);
+  const [dateTo, setDateTo] = useState<Date | null>(calendarInstance.currentDate);
   const [currentCalendar, setCurrentCalendar] = useState<'From' | 'To'>('From');
+  const [showCalendar, setShowCalendar] = useState<boolean>(false);
 
   return (
     <>
@@ -21,20 +22,25 @@ const Datepicker = () => {
           date={dateFrom}
           onDateChange={setDateFrom}
           setCurrentCalendar={setCurrentCalendar}
+          toggleCalendar={setShowCalendar}
         />
         <Input
           label="To"
           date={dateTo}
           onDateChange={setDateTo}
           setCurrentCalendar={setCurrentCalendar}
+          toggleCalendar={setShowCalendar}
         />
-        <Calendar
-          fromTo={currentCalendar}
-          dateFrom={dateFrom}
-          dateTo={dateTo}
-          onDateFromChange={setDateFrom}
-          onDateToChange={setDateTo}
-        />
+        {showCalendar && (
+          <Calendar
+            fromTo={currentCalendar}
+            dateFrom={dateFrom}
+            dateTo={dateTo}
+            onDateFromChange={setDateFrom}
+            onDateToChange={setDateTo}
+            toggleCalendar={setShowCalendar}
+          />
+        )}
       </DatepickerWrapper>
     </>
   );

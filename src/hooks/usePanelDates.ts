@@ -1,14 +1,24 @@
 import { useState, useEffect } from 'react';
+import { getToday } from '../components/DateButtons/DateButtons';
 
-export const usePanelDates = (fromTo: 'From' | 'To', dateFrom: Date, dateTo: Date) => {
+export const usePanelDates = (
+  fromTo: 'From' | 'To',
+  dateFrom: Date | null,
+  dateTo: Date | null
+) => {
+  // TODO fix
+  const today = getToday();
+  const [month, setMonth] = useState<number>(() => today.getMonth());
+  const [year, setYear] = useState<number>(() => today.getFullYear());
+  const day = today.getDate();
+
   const date = fromTo === 'From' ? dateFrom : dateTo;
-  const [month, setMonth] = useState<number>(date.getMonth());
-  const [year, setYear] = useState<number>(date.getFullYear());
-  const day = date.getDate();
 
   useEffect(() => {
-    setMonth(date.getMonth());
-    setYear(date.getFullYear());
+    if (date) {
+      setMonth(date.getMonth());
+      setYear(date.getFullYear());
+    }
   }, [date]);
 
   return { day, month, year, setMonth, setYear };

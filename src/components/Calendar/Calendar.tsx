@@ -8,10 +8,12 @@ import { useDisplayDates } from '../../hooks/useDisplayDates';
 
 export interface CalendarProps {
   fromTo: 'From' | 'To';
-  dateFrom: Date;
-  dateTo: Date;
-  onDateFromChange: (date: Date) => void;
-  onDateToChange: (date: Date) => void;
+  dateFrom: Date | null;
+  dateTo: Date | null;
+  onDateFromChange: (date: Date | null) => void;
+  onDateToChange: (date: Date | null) => void;
+  // TODO fix
+  toggleCalendar: (bool: boolean) => void;
 }
 
 const Calendar: FC<CalendarProps> = ({
@@ -20,6 +22,7 @@ const Calendar: FC<CalendarProps> = ({
   dateTo,
   onDateFromChange,
   onDateToChange,
+  toggleCalendar,
 }) => {
   const { month, year, setMonth, setYear } = usePanelDates(fromTo, dateFrom, dateTo);
   const allDays = useDisplayDates(month, year);
@@ -33,6 +36,7 @@ const Calendar: FC<CalendarProps> = ({
         dateTo={dateTo}
         allDays={allDays}
         onDateChange={fromTo === 'From' ? onDateFromChange : onDateToChange}
+        toggleCalendar={toggleCalendar}
       />
       <ClearButton>Clear</ClearButton>
     </Wrapper>
