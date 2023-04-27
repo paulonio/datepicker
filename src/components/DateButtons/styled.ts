@@ -13,20 +13,25 @@ export const Week = styled.div`
 
 interface WeekDayProps {
   mode: 'selectedFrom' | 'selectedTo' | 'inRange' | '';
+  isCurrentMonth: boolean;
+  isToday: boolean;
 }
 
-export const WeekDay = styled.div<WeekDayProps>`
+export const WeekDay = styled.button<WeekDayProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
+  width: 32.85px;
   height: 32px;
+  border: none;
+  background-color: #ffffff;
   cursor: pointer;
-  transition: background-color 0.3s;
-  transition: border-radius 0.3s;
+  color: ${({ isCurrentMonth }) => !isCurrentMonth && '#aaaaaa'};
+  transition: background-color 0.3s, border-radius 0.3s, color 0.3s;
   &:hover {
     background-color: #f1f1f1;
     border-radius: 8px;
+    color: #333333;
   }
   ${(props) => {
     switch (props.mode) {
@@ -41,7 +46,6 @@ export const WeekDay = styled.div<WeekDayProps>`
           background-color: #2f80ed;
           color: #ffffff;
           border-radius: 0px 8px 8px 0px;
-          z-index: 1;
         `;
       case 'inRange':
         return css`
@@ -49,9 +53,8 @@ export const WeekDay = styled.div<WeekDayProps>`
           color: #2f80ed;
         `;
       default:
-        return css`
-          color: #333333;
-        `;
+        return css``;
     }
   }}
+  color: ${({ isToday }) => isToday && 'red'};
 `;

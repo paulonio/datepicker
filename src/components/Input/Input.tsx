@@ -8,23 +8,23 @@ interface InputProps {
   setCurrentCalendar: (value: 'From' | 'To') => void;
 }
 
+export const updateInput = (date?: Date) => {
+  if (!date) {
+    return '';
+  }
+
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const day = date.getDate();
+
+  return `${day}-${month + 1}-${year}`;
+};
+
 const Input: FC<InputProps> = ({ label, date, onDateChange, setCurrentCalendar }) => {
   const [inputDate, setInputDate] = useState<string>('');
 
-  const updateInput = () => {
-    if (!date) {
-      return '';
-    }
-
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const day = date.getDate();
-
-    return `${day}-${month + 1}-${year}`;
-  };
-
   useEffect(() => {
-    const dateToUpdate = updateInput();
+    const dateToUpdate = updateInput(date);
     setInputDate(dateToUpdate);
   }, [date]);
 

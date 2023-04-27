@@ -1,20 +1,23 @@
 import React, { FC } from 'react';
 import { Week, WeekDay } from './styled';
-
-interface AllDays {
-  currentYear: number;
-  currentMonth: number;
-  currentDate: number;
-}
+import { DisplayDate } from '../../utils/utils';
 
 interface DateButtonsProps {
   dateFrom: Date;
   dateTo: Date;
-  allDays: Array<AllDays>;
+  allDays: Array<DisplayDate>;
   onDateChange: (date: Date) => void;
 }
 
+const getToday = (): Date => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return today;
+};
+
 const DateButtons: FC<DateButtonsProps> = ({ dateFrom, dateTo, allDays, onDateChange }) => {
+  const today = getToday();
+
   const getMode = (date: Date) => {
     if (dateFrom.getTime() === date.getTime()) {
       return 'selectedFrom';
@@ -34,13 +37,16 @@ const DateButtons: FC<DateButtonsProps> = ({ dateFrom, dateTo, allDays, onDateCh
 
   return (
     <Week>
-      {allDays.map(({ currentYear, currentMonth, currentDate }) => {
+      {allDays.map(({ currentYear, currentMonth, currentDate, isCurrentMonth }) => {
         const date = new Date(currentYear, currentMonth, currentDate);
+        const mode = getMode(date);
         return (
           <WeekDay
             key={`${currentYear}-${currentMonth}-${currentDate}`}
             onClick={() => handleButtonClick(date)}
-            mode={getMode(date)}
+            mode={mode}
+            isCurrentMonth={isCurrentMonth}
+            isToday={today.getTime() === date.getTime()}
           >
             {currentDate}
           </WeekDay>

@@ -18,10 +18,12 @@ export const PrevIcon = styled.img.attrs({ src: './assets/icons/Prev.svg' })`
   display: block;
   width: 16px;
   height: 16px;
+  cursor: pointer;
 `;
 
 export const NextIcon = styled.img.attrs({ src: './assets/icons/Next.svg' })`
   display: block;
   width: 16px;
   height: 16px;
+  cursor: pointer;
 `;

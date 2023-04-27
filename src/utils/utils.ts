@@ -1,5 +1,12 @@
 import { CELLS_AMOUNT } from '../constants/constants';
 
+export interface DisplayDate {
+  currentYear: number;
+  currentMonth: number;
+  currentDate: number;
+  isCurrentMonth: boolean;
+}
+
 export const getAmountDaysInMonth = (month: number, year: number) => {
   const date = new Date(year, month + 1, 1);
   date.setMinutes(-1);
@@ -8,13 +15,14 @@ export const getAmountDaysInMonth = (month: number, year: number) => {
 
 export const getAllDaysInMonth = (currentMonth: number, currentYear: number) => {
   const daysAmount = getAmountDaysInMonth(currentMonth, currentYear);
-  const amount = [];
+  const amount: Array<DisplayDate> = [];
 
   for (let i = 1; i <= daysAmount; i++) {
     amount.push({
       currentYear,
       currentMonth,
       currentDate: i,
+      isCurrentMonth: true,
     });
   }
 
@@ -25,13 +33,14 @@ export const getPreviousMonthDates = (currentMonth: number, currentYear: number)
   const amountPreviosMonthDays = getAmountDaysInMonth(currentMonth - 1, currentYear);
   const firstDayInCurrentMonth = new Date(currentYear, currentMonth, 1).getDay();
 
-  const amount = [];
+  const amount: Array<DisplayDate> = [];
 
   for (let i = firstDayInCurrentMonth - 1; i >= 0; i--) {
     amount.push({
       currentYear,
       currentMonth: currentMonth - 1,
       currentDate: amountPreviosMonthDays - i,
+      isCurrentMonth: false,
     });
   }
 
@@ -42,13 +51,14 @@ export const getNextMonthDates = (currentMonth: number, currentYear: number) => 
   const currentDatesAmount = getAmountDaysInMonth(currentMonth, currentYear);
   const previousDatesAmount = getPreviousMonthDates(currentMonth, currentYear).length;
   const daysAmount = CELLS_AMOUNT - currentDatesAmount - previousDatesAmount;
-  const amount = [];
+  const amount: Array<DisplayDate> = [];
 
   for (let i = 1; i <= daysAmount; i++) {
     amount.push({
       currentYear,
       currentMonth: currentMonth + 1,
       currentDate: i,
+      isCurrentMonth: false,
     });
   }
 
