@@ -28,7 +28,7 @@ export const WeekDay = styled.button<WeekDayProps>`
   cursor: pointer;
   color: ${({ isCurrentMonth }) => !isCurrentMonth && '#aaaaaa'};
   transition: background-color 0.3s, border-radius 0.3s, color 0.3s;
-  &:hover {
+  &:enabled:hover {
     background-color: #f1f1f1;
     border-radius: 8px;
     color: #333333;
@@ -57,4 +57,7 @@ export const WeekDay = styled.button<WeekDayProps>`
     }
   }}
   color: ${({ isToday }) => isToday && 'red'};
+  &:disabled {
+    cursor: default;
+  }
 `;

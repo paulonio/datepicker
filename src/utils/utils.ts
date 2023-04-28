@@ -64,3 +64,22 @@ export const getNextMonthDates = (currentMonth: number, currentYear: number) => 
 
   return amount;
 };
+
+export const getWeekDates = (currentDate: number, currentMonth: number, currentYear: number) => {
+  const date = new Date(currentYear, currentMonth, currentDate);
+  const dateOffset = date.getDay();
+  const weekStart = date.getDate() - dateOffset;
+  const weekEnd = weekStart + 6;
+  const amount: Array<DisplayDate> = [];
+
+  for (let i = weekStart; i <= weekEnd; i++) {
+    amount.push({
+      currentYear,
+      currentMonth: currentMonth + 1,
+      currentDate: i,
+      isCurrentMonth: true,
+    });
+  }
+
+  return amount;
+};

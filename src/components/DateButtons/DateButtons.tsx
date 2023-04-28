@@ -8,6 +8,8 @@ interface DateButtonsProps {
   allDays: Array<DisplayDate>;
   onDateChange: (date: Date) => void;
   toggleCalendar: (bool: boolean) => void;
+  minDate?: Date;
+  maxDate?: Date;
 }
 
 export const getToday = (): Date => {
@@ -16,12 +18,30 @@ export const getToday = (): Date => {
   return today;
 };
 
+const isValidDate = (date: Date, minDate?: Date, maxDate?: Date) => {
+  if (!minDate && !maxDate) {
+    return false;
+  }
+  if (!minDate && maxDate && date >= maxDate) {
+    return true;
+  }
+  if (!maxDate && minDate && date <= minDate) {
+    return true;
+  }
+  if ((minDate && date <= minDate) || (maxDate && date >= maxDate)) {
+    return true;
+  }
+  return false;
+};
+
 const DateButtons: FC<DateButtonsProps> = ({
   dateFrom,
   dateTo,
   allDays,
   onDateChange,
   toggleCalendar,
+  minDate,
+  maxDate,
 }) => {
   const today = getToday();
 
@@ -48,6 +68,7 @@ const DateButtons: FC<DateButtonsProps> = ({
       {allDays.map(({ currentYear, currentMonth, currentDate, isCurrentMonth }) => {
         const date = new Date(currentYear, currentMonth, currentDate);
         const mode = getMode(date);
+        const isDisabled = isValidDate(date, minDate, maxDate);
         return (
           <WeekDay
             key={`${currentYear}-${currentMonth}-${currentDate}`}
@@ -55,6 +76,7 @@ const DateButtons: FC<DateButtonsProps> = ({
             mode={mode}
             isCurrentMonth={isCurrentMonth}
             isToday={today.getTime() === date.getTime()}
+            disabled={isDisabled}
           >
             {currentDate}
           </WeekDay>

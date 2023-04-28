@@ -10,6 +10,8 @@ const calendarInstance = new ClassCalendar(new Date(2023, 3, 24));
 const Datepicker = () => {
   const [dateFrom, setDateFrom] = useState<Date | null>(calendarInstance.currentDate);
   const [dateTo, setDateTo] = useState<Date | null>(calendarInstance.currentDate);
+  const [minDate] = useState<Date>(new Date(2023, 3, 2));
+  const [maxDate] = useState<Date>(new Date(2023, 4, 25));
   const [currentCalendar, setCurrentCalendar] = useState<'From' | 'To'>('From');
   const [showCalendar, setShowCalendar] = useState<boolean>(false);
 
@@ -39,6 +41,8 @@ const Datepicker = () => {
             onDateFromChange={setDateFrom}
             onDateToChange={setDateTo}
             toggleCalendar={setShowCalendar}
+            minDate={minDate}
+            maxDate={maxDate}
           />
         )}
       </DatepickerWrapper>

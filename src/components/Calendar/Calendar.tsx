@@ -14,6 +14,8 @@ export interface CalendarProps {
   onDateToChange: (date: Date | null) => void;
   // TODO fix
   toggleCalendar: (bool: boolean) => void;
+  minDate?: Date;
+  maxDate?: Date;
 }
 
 const Calendar: FC<CalendarProps> = ({
@@ -23,13 +25,49 @@ const Calendar: FC<CalendarProps> = ({
   onDateFromChange,
   onDateToChange,
   toggleCalendar,
+  minDate,
+  maxDate,
 }) => {
-  const { month, year, setMonth, setYear } = usePanelDates(fromTo, dateFrom, dateTo);
-  const allDays = useDisplayDates(month, year);
+  const type = 'week';
+  const { day, month, year, setMonth, setYear } = usePanelDates(fromTo, dateFrom, dateTo);
+
+  if (type === 'week') {
+    const allDays = useDisplayDates('week', day, month, year);
+    return (
+      <Wrapper>
+        <MonthRow
+          day={day}
+          month={month}
+          year={year}
+          handleMonthChange={setMonth}
+          handleYearChange={setYear}
+        />
+        <WeekDayRow />
+        <DateButtons
+          dateFrom={dateFrom}
+          dateTo={dateTo}
+          allDays={allDays}
+          onDateChange={fromTo === 'From' ? onDateFromChange : onDateToChange}
+          toggleCalendar={toggleCalendar}
+          minDate={minDate}
+          maxDate={maxDate}
+        />
+        <ClearButton>Clear</ClearButton>
+      </Wrapper>
+    );
+  }
+
+  const allDays = useDisplayDates('', day, month, year);
 
   return (
     <Wrapper>
-      <MonthRow month={month} year={year} handleMonthChange={setMonth} handleYearChange={setYear} />
+      <MonthRow
+        day={day}
+        month={month}
+        year={year}
+        handleMonthChange={setMonth}
+        handleYearChange={setYear}
+      />
       <WeekDayRow />
       <DateButtons
         dateFrom={dateFrom}
@@ -37,6 +75,8 @@ const Calendar: FC<CalendarProps> = ({
         allDays={allDays}
         onDateChange={fromTo === 'From' ? onDateFromChange : onDateToChange}
         toggleCalendar={toggleCalendar}
+        minDate={minDate}
+        maxDate={maxDate}
       />
       <ClearButton>Clear</ClearButton>
     </Wrapper>
