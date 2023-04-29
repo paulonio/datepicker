@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 import WeekDayRow from '../WeekDayRow/WeekDayRow';
-import MonthRow from '../MonthRow/MonthRow';
+import MonthRow, { getWeekNumber } from '../MonthRow/MonthRow';
 import { ClearButton, Wrapper } from './styled';
 import DateButtons from '../DateButtons/DateButtons';
 import { usePanelDates } from '../../hooks/usePanelDates';
 import { useDisplayDates } from '../../hooks/useDisplayDates';
+import { MONTHS } from '../../constants/constants';
 
 export interface CalendarProps {
   fromTo: 'From' | 'To';
@@ -29,19 +30,25 @@ const Calendar: FC<CalendarProps> = ({
   maxDate,
 }) => {
   const type = 'week';
-  const { day, month, year, setMonth, setYear } = usePanelDates(fromTo, dateFrom, dateTo);
+  const { day, month, year, setDay, setMonth, setYear } = usePanelDates(fromTo, dateFrom, dateTo);
 
   if (type === 'week') {
     const allDays = useDisplayDates('week', day, month, year);
+    const week = getWeekNumber(day, month, year);
     return (
       <Wrapper>
         <MonthRow
+          week={week}
           day={day}
+          type={type}
           month={month}
           year={year}
+          handleDayChange={setDay}
           handleMonthChange={setMonth}
           handleYearChange={setYear}
-        />
+        >
+          {week.toString()}
+        </MonthRow>
         <WeekDayRow />
         <DateButtons
           dateFrom={dateFrom}
@@ -62,12 +69,16 @@ const Calendar: FC<CalendarProps> = ({
   return (
     <Wrapper>
       <MonthRow
+        type=""
         day={day}
         month={month}
         year={year}
+        handleDayChange={setDay}
         handleMonthChange={setMonth}
         handleYearChange={setYear}
-      />
+      >
+        {MONTHS[month]} {year.toString()}
+      </MonthRow>
       <WeekDayRow />
       <DateButtons
         dateFrom={dateFrom}

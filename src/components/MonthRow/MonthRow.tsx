@@ -1,11 +1,14 @@
 import React, { FC } from 'react';
 import { Month, MonthWrapper, NextIcon, PrevIcon } from './styled';
-import { MONTHS } from '../../constants/constants';
 
 interface MonthRowProps {
+  week: number;
   day: number;
+  type: string;
   month: number;
   year: number;
+  children: JSX.Element | string | string[];
+  handleDayChange: (day: number) => void;
   handleMonthChange: (month: number) => void;
   handleYearChange: (year: number) => void;
 }
@@ -19,11 +22,26 @@ export const getWeekNumber = (day: number, month: number, year: number) => {
   return weekNumber;
 };
 
-const MonthRow: FC<MonthRowProps> = ({ day, month, year, handleMonthChange, handleYearChange }) => {
-  const weekNumber = getWeekNumber(day, month, year);
-
+const MonthRow: FC<MonthRowProps> = ({
+  week,
+  day,
+  type,
+  month,
+  year,
+  handleDayChange,
+  handleMonthChange,
+  handleYearChange,
+  children,
+}) => {
   const handlePreviousClick = () => {
-    if (month === 0) {
+    if (type === 'week') {
+      if (week === 1) {
+        handleDayChange(day - 7);
+        handleYearChange(year - 1);
+      } else {
+        handleDayChange(day - 7);
+      }
+    } else if (month === 0) {
       handleMonthChange(11);
       handleYearChange(year - 1);
     } else {
@@ -43,9 +61,7 @@ const MonthRow: FC<MonthRowProps> = ({ day, month, year, handleMonthChange, hand
   return (
     <MonthWrapper>
       <PrevIcon onClick={handlePreviousClick} />
-      <Month>
-        {weekNumber} {MONTHS[month]} {year}
-      </Month>
+      <Month>{children}</Month>
       <NextIcon onClick={handleNextClick} />
     </MonthWrapper>
   );

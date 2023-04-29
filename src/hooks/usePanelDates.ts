@@ -10,7 +10,7 @@ export const usePanelDates = (
   const today = getToday();
   const [month, setMonth] = useState<number>(() => today.getMonth());
   const [year, setYear] = useState<number>(() => today.getFullYear());
-  const day = today.getDate();
+  const [day, setDay] = useState<number>(() => today.getDate());
 
   const date = fromTo === 'From' ? dateFrom : dateTo;
 
@@ -21,5 +21,5 @@ export const usePanelDates = (
     }
   }, [date]);
 
-  return { day, month, year, setMonth, setYear };
+  return { day, month, year, setDay, setMonth, setYear };
 };
