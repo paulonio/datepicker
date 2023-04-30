@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Month, MonthWrapper, NextIcon, PrevIcon } from './styled';
+import { getAmountDaysInMonth } from '../../utils/utils';
 
 interface MonthRowProps {
   week: number;
@@ -35,7 +36,19 @@ const MonthRow: FC<MonthRowProps> = ({
 }) => {
   const handlePreviousClick = () => {
     if (type === 'week') {
-      if (week === 1) {
+      if (day === 7) {
+        const date = new Date(year, month, 1);
+        date.setMinutes(-1);
+        handleDayChange(date.getDate());
+        handleMonthChange(date.getMonth());
+        handleYearChange(date.getFullYear());
+      } else if (day < 7) {
+        const date = new Date(year, month, day);
+        date.setDate(day - 7);
+        handleDayChange(date.getDate());
+        handleMonthChange(date.getMonth());
+        handleYearChange(date.getFullYear());
+      } else if (week === 1) {
         handleDayChange(day - 7);
         handleYearChange(year - 1);
       } else {
@@ -50,7 +63,18 @@ const MonthRow: FC<MonthRowProps> = ({
   };
 
   const handleNextClick = () => {
-    if (month === 11) {
+    if (type === 'week') {
+      const daysInMonth = getAmountDaysInMonth(month, year);
+      if (day + 7 > daysInMonth) {
+        const date = new Date(year, month, day);
+        date.setDate(day + 7);
+        handleDayChange(date.getDate());
+        handleMonthChange(date.getMonth());
+        handleYearChange(date.getFullYear());
+      } else {
+        handleDayChange(day + 7);
+      }
+    } else if (month === 11) {
       handleMonthChange(0);
       handleYearChange(year + 1);
     } else {

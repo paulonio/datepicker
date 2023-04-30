@@ -65,21 +65,22 @@ export const getNextMonthDates = (currentMonth: number, currentYear: number) => 
   return amount;
 };
 
+export const getAllDays = (month: number, year: number) => {
+  const daysInCurrentMonth = getAllDaysInMonth(month, year);
+  const daysInPreviousMonth = getPreviousMonthDates(month, year);
+  const daysInNextMonth = getNextMonthDates(month, year);
+  const allDays = [...daysInPreviousMonth, ...daysInCurrentMonth, ...daysInNextMonth];
+
+  return allDays;
+};
+
 export const getWeekDates = (currentDate: number, currentMonth: number, currentYear: number) => {
-  const date = new Date(currentYear, currentMonth, currentDate);
-  const dateOffset = date.getDay();
-  const weekStart = date.getDate() - dateOffset;
-  const weekEnd = weekStart + 6;
-  const amount: Array<DisplayDate> = [];
-
-  for (let i = weekStart; i <= weekEnd; i++) {
-    amount.push({
-      currentYear,
-      currentMonth: currentMonth + 1,
-      currentDate: i,
-      isCurrentMonth: true,
-    });
+  const allDays = getAllDays(currentMonth, currentYear);
+  const dayIdx = allDays.find((date) => date.currentDate === currentDate)?.currentDate;
+  if (!dayIdx) {
+    return [];
   }
-
-  return amount;
+  const firstDayInWeekIdx = Math.trunc(dayIdx / 7) * 7;
+  const allWeekDays = allDays.slice(firstDayInWeekIdx, firstDayInWeekIdx + 7);
+  return allWeekDays;
 };

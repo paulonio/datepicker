@@ -6,6 +6,7 @@ import DateButtons from '../DateButtons/DateButtons';
 import { usePanelDates } from '../../hooks/usePanelDates';
 import { useDisplayDates } from '../../hooks/useDisplayDates';
 import { MONTHS } from '../../constants/constants';
+import { getWeekDates } from '../../utils/utils';
 
 export interface CalendarProps {
   fromTo: 'From' | 'To';
@@ -33,7 +34,7 @@ const Calendar: FC<CalendarProps> = ({
   const { day, month, year, setDay, setMonth, setYear } = usePanelDates(fromTo, dateFrom, dateTo);
 
   if (type === 'week') {
-    const allDays = useDisplayDates('week', day, month, year);
+    const allWeekDays = getWeekDates(day, month, year);
     const week = getWeekNumber(day, month, year);
     return (
       <Wrapper>
@@ -53,7 +54,7 @@ const Calendar: FC<CalendarProps> = ({
         <DateButtons
           dateFrom={dateFrom}
           dateTo={dateTo}
-          allDays={allDays}
+          allDays={allWeekDays}
           onDateChange={fromTo === 'From' ? onDateFromChange : onDateToChange}
           toggleCalendar={toggleCalendar}
           minDate={minDate}
@@ -64,7 +65,7 @@ const Calendar: FC<CalendarProps> = ({
     );
   }
 
-  const allDays = useDisplayDates('', day, month, year);
+  const allDays = useDisplayDates(month, year);
 
   return (
     <Wrapper>
