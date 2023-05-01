@@ -48,7 +48,7 @@ const Calendar: FC<CalendarProps> = ({
           handleMonthChange={setMonth}
           handleYearChange={setYear}
         >
-          {week.toString()}
+          {MONTHS[month]} {year.toString()}
         </MonthRow>
         <WeekDayRow />
         <DateButtons

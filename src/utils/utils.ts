@@ -76,7 +76,9 @@ export const getAllDays = (month: number, year: number) => {
 
 export const getWeekDates = (currentDate: number, currentMonth: number, currentYear: number) => {
   const allDays = getAllDays(currentMonth, currentYear);
-  const dayIdx = allDays.find((date) => date.currentDate === currentDate)?.currentDate;
+  const dayIdx = allDays.findIndex(
+    (date) => date.currentDate === currentDate && date.currentMonth === currentMonth
+  );
   if (!dayIdx) {
     return [];
   }

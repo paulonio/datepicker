@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import { Month, MonthWrapper, NextIcon, PrevIcon } from './styled';
+import { Month, MonthWrapper, NextIcon, PrevIcon, PrevYearIcon, NextYearIcon } from './styled';
 import { getAmountDaysInMonth } from '../../utils/utils';
 
 interface MonthRowProps {
-  week: number;
+  week?: number;
   day: number;
   type: string;
   month: number;
@@ -82,11 +82,21 @@ const MonthRow: FC<MonthRowProps> = ({
     }
   };
 
+  const handleNextYearClick = () => {
+    handleYearChange(year + 1);
+  };
+
+  const handlePrevYearClick = () => {
+    handleYearChange(year - 1);
+  };
+
   return (
     <MonthWrapper>
+      <PrevYearIcon onClick={handlePrevYearClick} />
       <PrevIcon onClick={handlePreviousClick} />
       <Month>{children}</Month>
       <NextIcon onClick={handleNextClick} />
+      <NextYearIcon onClick={handleNextYearClick} />
     </MonthWrapper>
   );
 };

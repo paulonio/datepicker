@@ -16,6 +16,7 @@ export const usePanelDates = (
 
   useEffect(() => {
     if (date) {
+      setDay(date.getDate());
       setMonth(date.getMonth());
       setYear(date.getFullYear());
     }

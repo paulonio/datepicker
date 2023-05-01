@@ -27,3 +27,17 @@ export const NextIcon = styled.img.attrs({ src: './assets/icons/Next.svg' })`
   height: 16px;
   cursor: pointer;
 `;
+
+export const PrevYearIcon = styled.img.attrs({ src: './assets/icons/Prev-year.svg' })`
+  display: block;
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+`;
+
+export const NextYearIcon = styled.img.attrs({ src: './assets/icons/Next-year.svg' })`
+  display: block;
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+`;
