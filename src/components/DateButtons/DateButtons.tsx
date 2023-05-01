@@ -10,6 +10,8 @@ interface DateButtonsProps {
   toggleCalendar: (bool: boolean) => void;
   minDate?: Date;
   maxDate?: Date;
+  selectDate: (date: Date) => void;
+  toggleModal: (value: boolean) => void;
 }
 
 export const getToday = (): Date => {
@@ -42,6 +44,8 @@ const DateButtons: FC<DateButtonsProps> = ({
   toggleCalendar,
   minDate,
   maxDate,
+  selectDate,
+  toggleModal,
 }) => {
   const today = getToday();
 
@@ -63,6 +67,11 @@ const DateButtons: FC<DateButtonsProps> = ({
     toggleCalendar(false);
   };
 
+  const handleToggleModal = (date: Date) => {
+    selectDate(date);
+    toggleModal(true);
+  };
+
   return (
     <Week>
       {allDays.map(({ currentYear, currentMonth, currentDate, isCurrentMonth }) => {
@@ -72,7 +81,8 @@ const DateButtons: FC<DateButtonsProps> = ({
         return (
           <WeekDay
             key={`${currentYear}-${currentMonth}-${currentDate}`}
-            onClick={() => handleButtonClick(date)}
+            // onClick={() => handleButtonClick(date)}
+            onDoubleClick={() => handleToggleModal(date)}
             mode={mode}
             isCurrentMonth={isCurrentMonth}
             isToday={today.getTime() === date.getTime()}

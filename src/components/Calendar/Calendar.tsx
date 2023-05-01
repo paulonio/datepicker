@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import WeekDayRow from '../WeekDayRow/WeekDayRow';
 import MonthRow, { getWeekNumber } from '../MonthRow/MonthRow';
 import { ClearButton, Wrapper } from './styled';
@@ -7,6 +7,7 @@ import { usePanelDates } from '../../hooks/usePanelDates';
 import { useDisplayDates } from '../../hooks/useDisplayDates';
 import { MONTHS } from '../../constants/constants';
 import { getWeekDates } from '../../utils/utils';
+import Modal from '../Modal/Modal';
 
 export interface CalendarProps {
   fromTo: 'From' | 'To';
@@ -32,36 +33,43 @@ const Calendar: FC<CalendarProps> = ({
 }) => {
   const type = 'week';
   const { day, month, year, setDay, setMonth, setYear } = usePanelDates(fromTo, dateFrom, dateTo);
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date(2023, 4, 1));
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   if (type === 'week') {
     const allWeekDays = getWeekDates(day, month, year);
     const week = getWeekNumber(day, month, year);
     return (
-      <Wrapper>
-        <MonthRow
-          week={week}
-          day={day}
-          type={type}
-          month={month}
-          year={year}
-          handleDayChange={setDay}
-          handleMonthChange={setMonth}
-          handleYearChange={setYear}
-        >
-          {MONTHS[month]} {year.toString()}
-        </MonthRow>
-        <WeekDayRow />
-        <DateButtons
-          dateFrom={dateFrom}
-          dateTo={dateTo}
-          allDays={allWeekDays}
-          onDateChange={fromTo === 'From' ? onDateFromChange : onDateToChange}
-          toggleCalendar={toggleCalendar}
-          minDate={minDate}
-          maxDate={maxDate}
-        />
-        <ClearButton>Clear</ClearButton>
-      </Wrapper>
+      <>
+        <Wrapper>
+          <MonthRow
+            week={week}
+            day={day}
+            type={type}
+            month={month}
+            year={year}
+            handleDayChange={setDay}
+            handleMonthChange={setMonth}
+            handleYearChange={setYear}
+          >
+            {MONTHS[month]} {year.toString()}
+          </MonthRow>
+          <WeekDayRow />
+          <DateButtons
+            dateFrom={dateFrom}
+            dateTo={dateTo}
+            allDays={allWeekDays}
+            onDateChange={fromTo === 'From' ? onDateFromChange : onDateToChange}
+            toggleCalendar={toggleCalendar}
+            minDate={minDate}
+            maxDate={maxDate}
+            selectDate={setSelectedDate}
+            toggleModal={setShowModal}
+          />
+          <ClearButton>Clear</ClearButton>
+        </Wrapper>
+        {showModal && <Modal date={selectedDate} handleCloseModal={setShowModal} />}
+      </>
     );
   }
 
@@ -89,6 +97,8 @@ const Calendar: FC<CalendarProps> = ({
         toggleCalendar={toggleCalendar}
         minDate={minDate}
         maxDate={maxDate}
+        selectDate={setSelectedDate}
+        toggleModal={setShowModal}
       />
       <ClearButton>Clear</ClearButton>
     </Wrapper>
