@@ -15,6 +15,7 @@ interface WeekDayProps {
   mode: 'selectedFrom' | 'selectedTo' | 'inRange' | '';
   isCurrentMonth: boolean;
   isToday: boolean;
+  isWeekend: boolean;
 }
 
 export const WeekDay = styled.button<WeekDayProps>`
@@ -24,6 +25,7 @@ export const WeekDay = styled.button<WeekDayProps>`
   width: 32.85px;
   height: 32px;
   border: none;
+  border-radius: 4px;
   background-color: #ffffff;
   cursor: pointer;
   color: ${({ isCurrentMonth }) => !isCurrentMonth && '#aaaaaa'};
@@ -56,6 +58,7 @@ export const WeekDay = styled.button<WeekDayProps>`
         return css``;
     }
   }}
+  border: ${({ isWeekend }) => isWeekend && 'solid 1px blue'};
   color: ${({ isToday }) => isToday && 'red'};
   &:disabled {
     cursor: default;

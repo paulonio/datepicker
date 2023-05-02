@@ -36,6 +36,15 @@ const isValidDate = (date: Date, minDate?: Date, maxDate?: Date) => {
   return false;
 };
 
+export const setWeekendStatus = (date: Date) => {
+  const day = date.getDay();
+  if (day === 6 || day === 0) {
+    return true;
+  }
+
+  return false;
+};
+
 const DateButtons: FC<DateButtonsProps> = ({
   dateFrom,
   dateTo,
@@ -77,15 +86,17 @@ const DateButtons: FC<DateButtonsProps> = ({
       {allDays.map(({ currentYear, currentMonth, currentDate, isCurrentMonth }) => {
         const date = new Date(currentYear, currentMonth, currentDate);
         const mode = getMode(date);
+        const isWeekend = setWeekendStatus(date);
         const isDisabled = isValidDate(date, minDate, maxDate);
         return (
           <WeekDay
             key={`${currentYear}-${currentMonth}-${currentDate}`}
-            // onClick={() => handleButtonClick(date)}
+            onClick={() => handleButtonClick(date)}
             onDoubleClick={() => handleToggleModal(date)}
             mode={mode}
             isCurrentMonth={isCurrentMonth}
             isToday={today.getTime() === date.getTime()}
+            isWeekend={isWeekend}
             disabled={isDisabled}
           >
             {currentDate}
