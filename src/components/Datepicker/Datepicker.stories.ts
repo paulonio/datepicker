@@ -11,8 +11,8 @@ type Story = StoryObj<typeof Datepicker>;
 
 export const Primary: Story = {
   args: {
-    from: '2013-01-08',
-    to: '2013-01-10',
-    start: 'Su',
+    from: new Date(2022, 5, 12),
+    to: new Date(2023, 7, 14),
+    start: 'su',
   },
 };

@@ -1,11 +1,18 @@
-import React from 'react';
-import { SUNDAY_STARTS } from '../../constants/constants';
+import React, { FC } from 'react';
+import { MONDAY_STARTS, SUNDAY_STARTS } from '../../constants/constants';
 import { WeekDay, WeekWrapper } from './styled';
+import { Mode } from '../../utils/utils';
 
-const WeekDayRow = () => {
+interface WeekDayRowProps {
+  mode: Mode;
+}
+
+const WeekDayRow: FC<WeekDayRowProps> = ({ mode }) => {
+  const row = mode === 'su' ? SUNDAY_STARTS : MONDAY_STARTS;
+
   return (
     <WeekWrapper>
-      {SUNDAY_STARTS.map((day) => (
+      {row.map((day) => (
         <WeekDay key={day}>{day}</WeekDay>
       ))}
     </WeekWrapper>

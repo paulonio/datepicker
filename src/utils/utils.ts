@@ -7,6 +7,16 @@ export interface DisplayDate {
   isCurrentMonth: boolean;
 }
 
+export type Mode = 'su' | 'mo';
+
+export const sundayWeekToMonday = (day: number) => {
+  if (day === 0) {
+    return 6;
+  }
+
+  return day - 1;
+};
+
 export const getAmountDaysInMonth = (month: number, year: number) => {
   const date = new Date(year, month + 1, 1);
   date.setMinutes(-1);
@@ -29,13 +39,15 @@ export const getAllDaysInMonth = (currentMonth: number, currentYear: number) => 
   return amount;
 };
 
-export const getPreviousMonthDates = (currentMonth: number, currentYear: number) => {
+export const getPreviousMonthDates = (mode: Mode, currentMonth: number, currentYear: number) => {
   const amountPreviosMonthDays = getAmountDaysInMonth(currentMonth - 1, currentYear);
   const firstDayInCurrentMonth = new Date(currentYear, currentMonth, 1).getDay();
+  const firstDay =
+    mode === 'su' ? firstDayInCurrentMonth : sundayWeekToMonday(firstDayInCurrentMonth);
 
   const amount: Array<DisplayDate> = [];
 
-  for (let i = firstDayInCurrentMonth - 1; i >= 0; i--) {
+  for (let i = firstDay - 1; i >= 0; i--) {
     amount.push({
       currentYear,
       currentMonth: currentMonth - 1,
@@ -47,9 +59,9 @@ export const getPreviousMonthDates = (currentMonth: number, currentYear: number)
   return amount;
 };
 
-export const getNextMonthDates = (currentMonth: number, currentYear: number) => {
+export const getNextMonthDates = (mode: Mode, currentMonth: number, currentYear: number) => {
   const currentDatesAmount = getAmountDaysInMonth(currentMonth, currentYear);
-  const previousDatesAmount = getPreviousMonthDates(currentMonth, currentYear).length;
+  const previousDatesAmount = getPreviousMonthDates(mode, currentMonth, currentYear).length;
   const daysAmount = CELLS_AMOUNT - currentDatesAmount - previousDatesAmount;
   const amount: Array<DisplayDate> = [];
 
@@ -65,21 +77,26 @@ export const getNextMonthDates = (currentMonth: number, currentYear: number) => 
   return amount;
 };
 
-export const getAllDays = (month: number, year: number) => {
+export const getAllDays = (mode: Mode, month: number, year: number) => {
   const daysInCurrentMonth = getAllDaysInMonth(month, year);
-  const daysInPreviousMonth = getPreviousMonthDates(month, year);
-  const daysInNextMonth = getNextMonthDates(month, year);
+  const daysInPreviousMonth = getPreviousMonthDates(mode, month, year);
+  const daysInNextMonth = getNextMonthDates(mode, month, year);
   const allDays = [...daysInPreviousMonth, ...daysInCurrentMonth, ...daysInNextMonth];
 
   return allDays;
 };
 
-export const getWeekDates = (currentDate: number, currentMonth: number, currentYear: number) => {
-  const allDays = getAllDays(currentMonth, currentYear);
+export const getWeekDates = (
+  mode: Mode,
+  currentDate: number,
+  currentMonth: number,
+  currentYear: number
+) => {
+  const allDays = getAllDays(mode, currentMonth, currentYear);
   const dayIdx = allDays.findIndex(
     (date) => date.currentDate === currentDate && date.currentMonth === currentMonth
   );
-  if (!dayIdx) {
+  if (!dayIdx && dayIdx !== 0) {
     return [];
   }
   const firstDayInWeekIdx = Math.trunc(dayIdx / 7) * 7;

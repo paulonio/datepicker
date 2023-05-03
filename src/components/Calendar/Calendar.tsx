@@ -6,10 +6,11 @@ import DateButtons from '../DateButtons/DateButtons';
 import { usePanelDates } from '../../hooks/usePanelDates';
 import { useDisplayDates } from '../../hooks/useDisplayDates';
 import { MONTHS } from '../../constants/constants';
-import { getWeekDates } from '../../utils/utils';
+import { Mode, getWeekDates } from '../../utils/utils';
 import Modal from '../Modal/Modal';
 
 export interface CalendarProps {
+  mode: Mode;
   fromTo: 'From' | 'To';
   dateFrom: Date | null;
   dateTo: Date | null;
@@ -23,6 +24,7 @@ export interface CalendarProps {
 
 const Calendar: FC<CalendarProps> = ({
   fromTo,
+  mode,
   dateFrom,
   dateTo,
   onDateFromChange,
@@ -37,7 +39,7 @@ const Calendar: FC<CalendarProps> = ({
   const [showModal, setShowModal] = useState<boolean>(false);
 
   if (type === 'week') {
-    const allWeekDays = getWeekDates(day, month, year);
+    const allWeekDays = getWeekDates(mode, day, month, year);
     const week = getWeekNumber(day, month, year);
     return (
       <>
@@ -54,7 +56,7 @@ const Calendar: FC<CalendarProps> = ({
           >
             {MONTHS[month]} {year.toString()}
           </MonthRow>
-          <WeekDayRow />
+          <WeekDayRow mode={mode} />
           <DateButtons
             dateFrom={dateFrom}
             dateTo={dateTo}
@@ -88,7 +90,7 @@ const Calendar: FC<CalendarProps> = ({
       >
         {MONTHS[month]} {year.toString()}
       </MonthRow>
-      <WeekDayRow />
+      <WeekDayRow mode={mode} />
       <DateButtons
         dateFrom={dateFrom}
         dateTo={dateTo}

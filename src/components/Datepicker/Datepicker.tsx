@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { DatepickerWrapper } from './styled';
 import Global from '../../styles/Global';
 import Input from '../Input/Input';
 import Calendar from '../Calendar/Calendar';
-import ClassCalendar from '../../utils/ClassCalendar';
+import { Mode } from '../../utils/utils';
 
-const calendarInstance = new ClassCalendar(new Date(2023, 3, 24));
+interface DatepickerProps {
+  from: Date;
+  to: Date;
+  start: Mode;
+}
 
-const Datepicker = () => {
-  const [dateFrom, setDateFrom] = useState<Date | null>(calendarInstance.currentDate);
-  const [dateTo, setDateTo] = useState<Date | null>(calendarInstance.currentDate);
+const Datepicker: FC<DatepickerProps> = ({ from, to, start }) => {
+  const [dateFrom, setDateFrom] = useState<Date | null>(from);
+  const [dateTo, setDateTo] = useState<Date | null>(to);
   const [minDate] = useState<Date>(new Date(2023, 3, 2));
   const [maxDate] = useState<Date>(new Date(2023, 4, 25));
   const [currentCalendar, setCurrentCalendar] = useState<'From' | 'To'>('From');
@@ -36,6 +40,7 @@ const Datepicker = () => {
         {showCalendar && (
           <Calendar
             fromTo={currentCalendar}
+            mode={start}
             dateFrom={dateFrom}
             dateTo={dateTo}
             onDateFromChange={setDateFrom}
