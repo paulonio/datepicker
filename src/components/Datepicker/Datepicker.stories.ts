@@ -14,5 +14,6 @@ export const Primary: Story = {
     from: new Date(2022, 5, 12),
     to: new Date(2023, 7, 14),
     start: 'su',
+    view: 'monthly',
   },
 };
