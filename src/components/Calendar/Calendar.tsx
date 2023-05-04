@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import WeekDayRow from '../WeekDayRow/WeekDayRow';
 import MonthRow from '../MonthRow/MonthRow';
 import { ClearButton, Wrapper } from './styled';
@@ -24,54 +24,61 @@ export interface CalendarProps {
   maxDate?: Date;
 }
 
-const Calendar: FC<CalendarProps> = ({
-  fromTo,
-  mode,
-  view,
-  dateFrom,
-  dateTo,
-  onDateFromChange,
-  onDateToChange,
-  toggleCalendar,
-  minDate,
-  maxDate,
-}) => {
-  const { day, month, year, setDay, setMonth, setYear } = usePanelDates(fromTo, dateFrom, dateTo);
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date(2023, 4, 1));
-  const [showModal, setShowModal] = useState<boolean>(false);
-  const allDays = useDisplayDates(mode, view, day, month, year);
+type Ref = HTMLDivElement;
 
-  return (
-    <>
-      <Wrapper>
-        <MonthRow
-          type=""
-          day={day}
-          month={month}
-          year={year}
-          handleDayChange={setDay}
-          handleMonthChange={setMonth}
-          handleYearChange={setYear}
-        >
-          {MONTHS[month]} {year.toString()}
-        </MonthRow>
-        <WeekDayRow mode={mode} />
-        <DateButtons
-          dateFrom={dateFrom}
-          dateTo={dateTo}
-          allDays={allDays}
-          onDateChange={fromTo === 'From' ? onDateFromChange : onDateToChange}
-          toggleCalendar={toggleCalendar}
-          minDate={minDate}
-          maxDate={maxDate}
-          selectDate={setSelectedDate}
-          toggleModal={setShowModal}
-        />
-        <ClearButton>Clear</ClearButton>
-      </Wrapper>
-      {showModal && <Modal date={selectedDate} handleCloseModal={setShowModal} />}
-    </>
-  );
-};
+const Calendar = forwardRef<Ref, CalendarProps>(
+  (
+    {
+      fromTo,
+      mode,
+      view,
+      dateFrom,
+      dateTo,
+      onDateFromChange,
+      onDateToChange,
+      toggleCalendar,
+      minDate,
+      maxDate,
+    },
+    ref
+  ) => {
+    const { day, month, year, setDay, setMonth, setYear } = usePanelDates(fromTo, dateFrom, dateTo);
+    const [selectedDate, setSelectedDate] = useState<Date>(new Date(2023, 4, 1));
+    const [showModal, setShowModal] = useState<boolean>(false);
+    const allDays = useDisplayDates(mode, view, day, month, year);
+
+    return (
+      <>
+        <Wrapper ref={ref}>
+          <MonthRow
+            type=""
+            day={day}
+            month={month}
+            year={year}
+            handleDayChange={setDay}
+            handleMonthChange={setMonth}
+            handleYearChange={setYear}
+          >
+            {MONTHS[month]} {year.toString()}
+          </MonthRow>
+          <WeekDayRow mode={mode} />
+          <DateButtons
+            dateFrom={dateFrom}
+            dateTo={dateTo}
+            allDays={allDays}
+            onDateChange={fromTo === 'From' ? onDateFromChange : onDateToChange}
+            toggleCalendar={toggleCalendar}
+            minDate={minDate}
+            maxDate={maxDate}
+            selectDate={setSelectedDate}
+            toggleModal={setShowModal}
+          />
+          <ClearButton>Clear</ClearButton>
+        </Wrapper>
+        {showModal && <Modal date={selectedDate} handleCloseModal={setShowModal} />}
+      </>
+    );
+  }
+);
 
 export default Calendar;

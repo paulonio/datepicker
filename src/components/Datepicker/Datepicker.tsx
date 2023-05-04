@@ -1,9 +1,10 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useRef } from 'react';
 import { DatepickerWrapper } from './styled';
 import Global from '../../styles/Global';
 import Input from '../Input/Input';
 import Calendar from '../Calendar/Calendar';
 import { Mode } from '../../utils/utils';
+import { useOutsideClick } from '../../hooks/useOutsideClick';
 
 export type View = 'weekly' | 'monthly';
 
@@ -17,10 +18,12 @@ interface DatepickerProps {
 const Datepicker: FC<DatepickerProps> = ({ from, to, start, view }) => {
   const [dateFrom, setDateFrom] = useState<Date | null>(from);
   const [dateTo, setDateTo] = useState<Date | null>(to);
-  const [minDate] = useState<Date>(new Date(2023, 3, 2));
-  const [maxDate] = useState<Date>(new Date(2023, 4, 25));
+  const [minDate] = useState<Date>(new Date(2021, 3, 2));
+  const [maxDate] = useState<Date>(new Date(2025, 4, 25));
   const [currentCalendar, setCurrentCalendar] = useState<'From' | 'To'>('From');
   const [showCalendar, setShowCalendar] = useState<boolean>(false);
+  const calendarRef = useRef<HTMLDivElement>(null);
+  useOutsideClick(calendarRef, setShowCalendar);
 
   return (
     <>
@@ -42,6 +45,7 @@ const Datepicker: FC<DatepickerProps> = ({ from, to, start, view }) => {
         />
         {showCalendar && (
           <Calendar
+            ref={calendarRef}
             fromTo={currentCalendar}
             mode={start}
             view={view}
@@ -52,6 +56,7 @@ const Datepicker: FC<DatepickerProps> = ({ from, to, start, view }) => {
             toggleCalendar={setShowCalendar}
             minDate={minDate}
             maxDate={maxDate}
+            data-component="calendar"
           />
         )}
       </DatepickerWrapper>
