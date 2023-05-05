@@ -1,5 +1,5 @@
 import type { View } from '../components/Datepicker/Datepicker';
-import { Mode, getAllDays, getWeekDates } from '../utils/utils';
+import calendar, { Mode } from '../utils/ClassCalendar';
 
 export const useDisplayDates = (
   mode: Mode,
@@ -9,7 +9,9 @@ export const useDisplayDates = (
   year: number
 ) => {
   const allDays =
-    view === 'weekly' ? getWeekDates(mode, day, month, year) : getAllDays(mode, month, year);
+    view === 'weekly'
+      ? calendar.getWeekDates(mode, day, month, year)
+      : calendar.getAllDays(mode, month, year);
 
   return allDays;
 };

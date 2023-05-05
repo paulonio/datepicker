@@ -6,7 +6,7 @@ import DateButtons from '../DateButtons/DateButtons';
 import { usePanelDates } from '../../hooks/usePanelDates';
 import { useDisplayDates } from '../../hooks/useDisplayDates';
 import { MONTHS } from '../../constants/constants';
-import { Mode } from '../../utils/utils';
+import { Mode } from '../../utils/ClassCalendar';
 import Modal from '../Modal/Modal';
 import type { View } from '../Datepicker/Datepicker';
 

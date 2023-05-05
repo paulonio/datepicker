@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import { CalendarIcon, CloseIcon, Field, FieldWrapper, Icon, Label, Wrapper } from './styled';
+import calendar from '../../utils/ClassCalendar';
 
 interface InputProps {
   label: 'From' | 'To';
@@ -10,16 +11,21 @@ interface InputProps {
   toggleCalendar: (bool: boolean) => void;
 }
 
-export const updateInput = (date: Date | null) => {
-  if (!date) {
-    return '';
+const updateSelectedDate = (inputDate: string, onDateChange: (date: Date | null) => void) => {
+  if (!onDateChange) {
+    return;
   }
 
-  const year = date.getFullYear();
-  const month = date.getMonth();
-  const day = date.getDate();
+  if (inputDate === '') {
+    return;
+  }
 
-  return `${day}/${month + 1}/${year}`;
+  const [day, month, year] = inputDate
+    .trim()
+    .split('/')
+    .map((item) => Number(item));
+
+  onDateChange(new Date(year, month - 1, day));
 };
 
 const Input: FC<InputProps> = ({
@@ -32,30 +38,17 @@ const Input: FC<InputProps> = ({
   const [inputDate, setInputDate] = useState<string>('');
 
   useEffect(() => {
-    const dateToUpdate = updateInput(date);
+    const dateToUpdate = calendar.updateInput(date);
     setInputDate(dateToUpdate);
   }, [date]);
-
-  const updateSelectedDate = () => {
-    if (!onDateChange) {
-      return;
-    }
-
-    if (inputDate === '') {
-      return;
-    }
-
-    const [day, month, year] = inputDate
-      .trim()
-      .split('/')
-      .map((item) => Number(item));
-
-    onDateChange(new Date(year, month - 1, day));
-  };
 
   const handleFocus = () => {
     toggleCalendar(true);
     setCurrentCalendar(label);
+  };
+
+  const handleBlur = () => {
+    updateSelectedDate(inputDate, onDateChange);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -78,7 +71,7 @@ const Input: FC<InputProps> = ({
         <Field
           value={inputDate}
           onChange={handleChange}
-          onBlur={updateSelectedDate}
+          onBlur={handleBlur}
           onFocus={handleFocus}
           placeholder="Choose Date"
         />

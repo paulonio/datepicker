@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Month, MonthWrapper, NextIcon, PrevIcon, PrevYearIcon, NextYearIcon } from './styled';
-import { getAmountDaysInMonth } from '../../utils/utils';
+import calendar from '../../utils/ClassCalendar';
 
 interface MonthRowProps {
   week?: number;
@@ -13,15 +13,6 @@ interface MonthRowProps {
   handleMonthChange: (month: number) => void;
   handleYearChange: (year: number) => void;
 }
-
-export const getWeekNumber = (day: number, month: number, year: number) => {
-  const oneDay: number = 24 * 60 * 60 * 1000;
-  const firstJan: Date = new Date(year, 0, 1);
-  const currentDate: Date = new Date(year, month, day);
-  const daysOffset: number = Math.floor((currentDate.getTime() - firstJan.getTime()) / oneDay);
-  const weekNumber: number = Math.ceil((currentDate.getDay() + 1 + daysOffset) / 7);
-  return weekNumber;
-};
 
 const MonthRow: FC<MonthRowProps> = ({
   week,
@@ -64,7 +55,7 @@ const MonthRow: FC<MonthRowProps> = ({
 
   const handleNextClick = () => {
     if (type === 'week') {
-      const daysInMonth = getAmountDaysInMonth(month, year);
+      const daysInMonth = calendar.getAmountDaysInMonth(month, year);
       if (day + 7 > daysInMonth) {
         const date = new Date(year, month, day);
         date.setDate(day + 7);

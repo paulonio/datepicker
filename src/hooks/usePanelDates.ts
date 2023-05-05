@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { getToday } from '../components/DateButtons/DateButtons';
 
 export const usePanelDates = (
   fromTo: 'From' | 'To',
@@ -7,12 +6,15 @@ export const usePanelDates = (
   dateTo: Date | null
 ) => {
   // TODO fix
-  const today = getToday();
-  const [month, setMonth] = useState<number>(() => today.getMonth());
-  const [year, setYear] = useState<number>(() => today.getFullYear());
-  const [day, setDay] = useState<number>(() => today.getDate());
-
   const date = fromTo === 'From' ? dateFrom : dateTo;
+
+  if (!date) {
+    throw new Error('Invalid date.');
+  }
+
+  const [month, setMonth] = useState<number>(() => date.getMonth());
+  const [year, setYear] = useState<number>(() => date.getFullYear());
+  const [day, setDay] = useState<number>(() => date.getDate());
 
   useEffect(() => {
     if (date) {

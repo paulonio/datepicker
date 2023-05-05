@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Week, WeekDay } from './styled';
-import { DisplayDate } from '../../utils/utils';
+import calendar, { DisplayDate } from '../../utils/ClassCalendar';
 
 interface DateButtonsProps {
   dateFrom: Date | null;
@@ -14,37 +14,6 @@ interface DateButtonsProps {
   toggleModal: (value: boolean) => void;
 }
 
-export const getToday = (): Date => {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  return today;
-};
-
-const isValidDate = (date: Date, minDate?: Date, maxDate?: Date) => {
-  if (!minDate && !maxDate) {
-    return false;
-  }
-  if (!minDate && maxDate && date >= maxDate) {
-    return true;
-  }
-  if (!maxDate && minDate && date <= minDate) {
-    return true;
-  }
-  if ((minDate && date <= minDate) || (maxDate && date >= maxDate)) {
-    return true;
-  }
-  return false;
-};
-
-export const setWeekendStatus = (date: Date) => {
-  const day = date.getDay();
-  if (day === 6 || day === 0) {
-    return true;
-  }
-
-  return false;
-};
-
 const DateButtons: FC<DateButtonsProps> = ({
   dateFrom,
   dateTo,
@@ -56,7 +25,7 @@ const DateButtons: FC<DateButtonsProps> = ({
   selectDate,
   toggleModal,
 }) => {
-  const today = getToday();
+  const today = calendar.getToday();
 
   const getMode = (date: Date) => {
     if (dateFrom && dateFrom.getTime() === date.getTime()) {
@@ -86,11 +55,11 @@ const DateButtons: FC<DateButtonsProps> = ({
       {allDays.map(({ currentYear, currentMonth, currentDate, isCurrentMonth }) => {
         const date = new Date(currentYear, currentMonth, currentDate);
         const mode = getMode(date);
-        const isWeekend = setWeekendStatus(date);
-        const isDisabled = isValidDate(date, minDate, maxDate);
+        const isWeekend = calendar.setWeekendStatus(date);
+        const isDisabled = calendar.isValidDate(date, minDate, maxDate);
         return (
           <WeekDay
-            key={`${currentYear}-${currentMonth}-${currentDate}`}
+            key={`${currentYear}/${currentMonth}/${currentDate}`}
             onClick={() => handleButtonClick(date)}
             onDoubleClick={() => handleToggleModal(date)}
             mode={mode}

@@ -3,7 +3,7 @@ import { DatepickerWrapper } from './styled';
 import Global from '../../styles/Global';
 import Input from '../Input/Input';
 import Calendar from '../Calendar/Calendar';
-import { Mode } from '../../utils/utils';
+import { Mode } from '../../utils/ClassCalendar';
 import { useOutsideClick } from '../../hooks/useOutsideClick';
 
 export type View = 'weekly' | 'monthly';

@@ -1,54 +1,150 @@
-import { MONTHS } from '../constants/constants';
-import { getAmountDaysInMonth } from './utils';
+import { CELLS_AMOUNT } from '../constants/constants';
+
+export interface DisplayDate {
+  currentYear: number;
+  currentMonth: number;
+  currentDate: number;
+  isCurrentMonth: boolean;
+}
+
+export type Mode = 'su' | 'mo';
 
 class ClassCalendar {
-  currentDate: Date;
+  changeSundayWeekToMonday(day: number) {
+    if (day === 0) {
+      return 6;
+    }
 
-  constructor(currentDate: Date) {
-    this.currentDate = currentDate;
+    return day - 1;
   }
 
-  getCurrentMonthIdx() {
-    return this.currentDate.getMonth();
+  getAmountDaysInMonth(month: number, year: number) {
+    const date = new Date(year, month + 1, 1);
+    date.setMinutes(-1);
+    return date.getDate();
   }
 
-  getCurrentMonth() {
-    const monthIdx = this.getCurrentMonthIdx();
-    return MONTHS[monthIdx];
+  getAllDaysInMonth(currentMonth: number, currentYear: number) {
+    const daysAmount = this.getAmountDaysInMonth(currentMonth, currentYear);
+    const amount: Array<DisplayDate> = [];
+
+    for (let i = 1; i <= daysAmount; i++) {
+      amount.push({
+        currentYear,
+        currentMonth,
+        currentDate: i,
+        isCurrentMonth: true,
+      });
+    }
+
+    return amount;
   }
 
-  getCurrentYear() {
-    return this.currentDate.getFullYear();
+  getPreviousMonthDates(mode: Mode, currentMonth: number, currentYear: number) {
+    const amountPreviosMonthDays = this.getAmountDaysInMonth(currentMonth - 1, currentYear);
+    const firstDayInCurrentMonth = new Date(currentYear, currentMonth, 1).getDay();
+    const firstDay =
+      mode === 'su'
+        ? firstDayInCurrentMonth
+        : this.changeSundayWeekToMonday(firstDayInCurrentMonth);
+
+    const amount: Array<DisplayDate> = [];
+
+    for (let i = firstDay - 1; i >= 0; i--) {
+      amount.push({
+        currentYear,
+        currentMonth: currentMonth - 1,
+        currentDate: amountPreviosMonthDays - i,
+        isCurrentMonth: false,
+      });
+    }
+
+    return amount;
   }
 
-  getAmountCurrentMonthDays() {
-    const month = this.currentDate.getMonth();
-    const year = this.getCurrentYear();
-    return getAmountDaysInMonth(month, year);
+  getNextMonthDates(mode: Mode, currentMonth: number, currentYear: number) {
+    const currentDatesAmount = this.getAmountDaysInMonth(currentMonth, currentYear);
+    const previousDatesAmount = this.getPreviousMonthDates(mode, currentMonth, currentYear).length;
+    const daysAmount = CELLS_AMOUNT - currentDatesAmount - previousDatesAmount;
+    const amount: Array<DisplayDate> = [];
+
+    for (let i = 1; i <= daysAmount; i++) {
+      amount.push({
+        currentYear,
+        currentMonth: currentMonth + 1,
+        currentDate: i,
+        isCurrentMonth: false,
+      });
+    }
+
+    return amount;
   }
 
-  getAmountPreviosMonthDays() {
-    const month = this.currentDate.getMonth() + 1;
-    const year = this.getCurrentYear();
-    return getAmountDaysInMonth(month, year);
+  getAllDays(mode: Mode, month: number, year: number) {
+    const daysInCurrentMonth = this.getAllDaysInMonth(month, year);
+    const daysInPreviousMonth = this.getPreviousMonthDates(mode, month, year);
+    const daysInNextMonth = this.getNextMonthDates(mode, month, year);
+    const allDays = [...daysInPreviousMonth, ...daysInCurrentMonth, ...daysInNextMonth];
+
+    return allDays;
   }
 
-  getFirstDayInMonth() {
-    const currentMonth = this.currentDate.getMonth();
-    const currentYear = this.currentDate.getFullYear();
-    const currentMonthFirstDay = new Date(currentYear, currentMonth, 1);
-    return currentMonthFirstDay.getDay();
+  getWeekDates(mode: Mode, currentDate: number, currentMonth: number, currentYear: number) {
+    const allDays = this.getAllDays(mode, currentMonth, currentYear);
+    const dayIdx = allDays.findIndex(
+      (date) => date.currentDate === currentDate && date.currentMonth === currentMonth
+    );
+    if (!dayIdx && dayIdx !== 0) {
+      return [];
+    }
+    const firstDayInWeekIdx = Math.trunc(dayIdx / 7) * 7;
+    const allWeekDays = allDays.slice(firstDayInWeekIdx, firstDayInWeekIdx + 7);
+    return allWeekDays;
   }
 
-  setPreviousMonth() {
-    const currentMonth = this.currentDate.getMonth();
-    this.currentDate.setMonth(currentMonth - 1);
+  getToday(): Date {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return today;
   }
 
-  setNextMonth() {
-    const currentMonth = this.currentDate.getMonth();
-    this.currentDate.setMonth(currentMonth + 1);
+  isValidDate(date: Date, minDate?: Date, maxDate?: Date) {
+    if (!minDate && !maxDate) {
+      return false;
+    }
+    if (!minDate && maxDate && date >= maxDate) {
+      return true;
+    }
+    if (!maxDate && minDate && date <= minDate) {
+      return true;
+    }
+    if ((minDate && date <= minDate) || (maxDate && date >= maxDate)) {
+      return true;
+    }
+    return false;
+  }
+
+  setWeekendStatus(date: Date) {
+    const day = date.getDay();
+    if (day === 6 || day === 0) {
+      return true;
+    }
+
+    return false;
+  }
+
+  updateInput(date: Date | null) {
+    if (!date) {
+      return '';
+    }
+
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const day = date.getDate();
+
+    return `${day}/${month + 1}/${year}`;
   }
 }
 
-export default ClassCalendar;
+const calendar = new ClassCalendar();
+export default calendar;
