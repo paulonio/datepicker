@@ -6,23 +6,20 @@ export const usePanelDates = (
   dateTo: Date | null
 ) => {
   // TODO fix
-  const date = fromTo === 'From' ? dateFrom : dateTo;
+  const currentDate = fromTo === 'From' ? dateFrom : dateTo;
 
-  if (!date) {
+  if (!currentDate) {
     throw new Error('Invalid date.');
   }
 
-  const [month, setMonth] = useState<number>(() => date.getMonth());
-  const [year, setYear] = useState<number>(() => date.getFullYear());
-  const [day, setDay] = useState<number>(() => date.getDate());
+  const [date, setDate] = useState<Date>(() => currentDate);
 
   useEffect(() => {
-    if (date) {
-      setDay(date.getDate());
-      setMonth(date.getMonth());
-      setYear(date.getFullYear());
+    if (currentDate) {
+      setDate(currentDate);
     }
-  }, [date]);
+  }, [currentDate]);
 
-  return { day, month, year, setDay, setMonth, setYear };
+  const newDate = new Date(date.toISOString());
+  return { newDate, setDate };
 };
