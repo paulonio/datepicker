@@ -1,48 +1,49 @@
 import React, { FC } from 'react';
 import { Week, WeekDay } from './styled';
-import calendar, { DisplayDate } from '../../utils/ClassCalendar';
+import calendar from '../../utils/ClassCalendar';
+import type { Action, DatepickerProps, Init } from '../Datepicker/Datepicker';
+import { useDisplayDates } from '../../hooks/useDisplayDates';
 
 interface DateButtonsProps {
-  dateFrom: Date | null;
-  dateTo: Date | null;
-  allDays: Array<DisplayDate>;
-  onDateChange: (date: Date) => void;
-  toggleCalendar: (bool: boolean) => void;
-  minDate?: Date;
-  maxDate?: Date;
+  state: Init;
+  dispatch: (action: Action) => void;
+  config: DatepickerProps;
+  newDate: Date;
   selectDate: (date: Date) => void;
   toggleModal: (value: boolean) => void;
 }
 
+const getMode = (date: Date, selectedDates: Init) => {
+  const { from, to } = selectedDates;
+  if (from && from.getTime() === date.getTime()) {
+    return 'selectedFrom';
+  }
+  if (to && to.getTime() === date.getTime()) {
+    return 'selectedTo';
+  }
+  if (from && to && date > from && date < to) {
+    return 'inRange';
+  }
+  return '';
+};
+
 const DateButtons: FC<DateButtonsProps> = ({
-  dateFrom,
-  dateTo,
-  allDays,
-  onDateChange,
-  toggleCalendar,
-  minDate,
-  maxDate,
+  state,
+  dispatch,
+  config,
+  newDate,
   selectDate,
   toggleModal,
 }) => {
   const today = calendar.getToday();
-
-  const getMode = (date: Date) => {
-    if (dateFrom && dateFrom.getTime() === date.getTime()) {
-      return 'selectedFrom';
-    }
-    if (dateTo && dateTo.getTime() === date.getTime()) {
-      return 'selectedTo';
-    }
-    if (dateFrom && dateTo && date > dateFrom && date < dateTo) {
-      return 'inRange';
-    }
-    return '';
-  };
+  const { currentCalendar } = state;
+  const { start: mode, view, minDate, maxDate } = config;
+  const allDays = useDisplayDates(mode, view, newDate);
 
   const handleButtonClick = (date: Date) => {
-    onDateChange(date);
-    toggleCalendar(false);
+    const type = currentCalendar === 'From' ? 'SET_DATE_FROM' : 'SET_DATE_TO';
+    dispatch({ type, payload: { date } });
+    dispatch({ type: 'TOGGLE_CALENDAR', payload: { showCalendar: false } });
   };
 
   const handleToggleModal = (date: Date) => {
@@ -54,7 +55,8 @@ const DateButtons: FC<DateButtonsProps> = ({
     <Week>
       {allDays.map(({ currentYear, currentMonth, currentDate, isCurrentMonth }) => {
         const date = new Date(currentYear, currentMonth, currentDate);
-        const mode = getMode(date);
+        const status = getMode(date, state);
+        const isToday = today.getTime() === date.getTime();
         const isWeekend = calendar.setWeekendStatus(date);
         const isDisabled = calendar.isValidDate(date, minDate, maxDate);
         return (
@@ -62,9 +64,9 @@ const DateButtons: FC<DateButtonsProps> = ({
             key={`${currentYear}/${currentMonth}/${currentDate}`}
             onClick={() => handleButtonClick(date)}
             onDoubleClick={() => handleToggleModal(date)}
-            mode={mode}
+            status={status}
             isCurrentMonth={isCurrentMonth}
-            isToday={today.getTime() === date.getTime()}
+            isToday={isToday}
             isWeekend={isWeekend}
             disabled={isDisabled}
           >

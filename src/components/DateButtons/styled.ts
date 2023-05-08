@@ -12,7 +12,7 @@ export const Week = styled.div`
 `;
 
 interface WeekDayProps {
-  mode: 'selectedFrom' | 'selectedTo' | 'inRange' | '';
+  status: 'selectedFrom' | 'selectedTo' | 'inRange' | '';
   isCurrentMonth: boolean;
   isToday: boolean;
   isWeekend: boolean;
@@ -36,7 +36,7 @@ export const WeekDay = styled.button<WeekDayProps>`
     color: #333333;
   }
   ${(props) => {
-    switch (props.mode) {
+    switch (props.status) {
       case 'selectedFrom':
         return css`
           background-color: rgba(47, 128, 237, 0.6);

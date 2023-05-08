@@ -1,18 +1,12 @@
 import { useState, useEffect } from 'react';
 
 export const usePanelDates = (
-  fromTo: 'From' | 'To',
+  currentCalendar: 'From' | 'To',
   dateFrom: Date | null,
   dateTo: Date | null
 ) => {
-  // TODO fix
-  const currentDate = fromTo === 'From' ? dateFrom : dateTo;
-
-  if (!currentDate) {
-    throw new Error('Invalid date.');
-  }
-
-  const [date, setDate] = useState<Date>(() => currentDate);
+  const currentDate = currentCalendar === 'From' ? dateFrom : dateTo;
+  const [date, setDate] = useState<Date | null>(() => currentDate);
 
   useEffect(() => {
     if (currentDate) {
@@ -20,6 +14,6 @@ export const usePanelDates = (
     }
   }, [currentDate]);
 
-  const newDate = new Date(date.toISOString());
+  const newDate = date ? new Date(date.toISOString()) : new Date();
   return { newDate, setDate };
 };

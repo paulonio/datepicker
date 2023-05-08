@@ -14,7 +14,7 @@ const updateSelectedDate = (
   label: 'From' | 'To',
   dispatch: (action: Action) => void
 ) => {
-  if (inputDate === '') {
+  if (!inputDate) {
     return;
   }
 
