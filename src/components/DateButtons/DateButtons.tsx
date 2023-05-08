@@ -9,11 +9,16 @@ interface DateButtonsProps {
   dispatch: (action: Action) => void;
   config: DatepickerProps;
   newDate: Date;
+  selectOneDate: boolean;
+  selectedDate: Date;
+  setSelectOneDate: (value: boolean) => void;
   selectDate: (date: Date) => void;
-  toggleModal: (value: boolean) => void;
 }
 
-const getMode = (date: Date, selectedDates: Init) => {
+const getMode = (date: Date, selectedDates: Init, selectOneDate: boolean, selectedDate: Date) => {
+  if (selectOneDate && selectedDate.getTime() === date.getTime()) {
+    return 'selectedDate';
+  }
   const { from, to } = selectedDates;
   if (from && from.getTime() === date.getTime()) {
     return 'selectedFrom';
@@ -32,8 +37,10 @@ const DateButtons: FC<DateButtonsProps> = ({
   dispatch,
   config,
   newDate,
+  selectOneDate,
+  selectedDate,
   selectDate,
-  toggleModal,
+  setSelectOneDate,
 }) => {
   const today = calendar.getToday();
   const { currentCalendar } = state;
@@ -41,21 +48,21 @@ const DateButtons: FC<DateButtonsProps> = ({
   const allDays = useDisplayDates(mode, view, newDate);
 
   const handleButtonClick = (date: Date) => {
-    const type = currentCalendar === 'From' ? 'SET_DATE_FROM' : 'SET_DATE_TO';
-    dispatch({ type, payload: { date } });
-    dispatch({ type: 'TOGGLE_CALENDAR', payload: { showCalendar: false } });
-  };
-
-  const handleToggleModal = (date: Date) => {
-    selectDate(date);
-    toggleModal(true);
+    if (selectOneDate) {
+      selectDate(date);
+      setSelectOneDate(true);
+    } else {
+      const type = currentCalendar === 'From' ? 'SET_DATE_FROM' : 'SET_DATE_TO';
+      dispatch({ type, payload: { date } });
+      dispatch({ type: 'TOGGLE_CALENDAR', payload: { showCalendar: false } });
+    }
   };
 
   return (
     <Week>
       {allDays.map(({ currentYear, currentMonth, currentDate, isCurrentMonth }) => {
         const date = new Date(currentYear, currentMonth, currentDate);
-        const status = getMode(date, state);
+        const status = getMode(date, state, selectOneDate, selectedDate);
         const isToday = today.getTime() === date.getTime();
         const isWeekend = calendar.setWeekendStatus(date);
         const isDisabled = calendar.isValidDate(date, minDate, maxDate);
@@ -63,7 +70,6 @@ const DateButtons: FC<DateButtonsProps> = ({
           <WeekDay
             key={`${currentYear}/${currentMonth}/${currentDate}`}
             onClick={() => handleButtonClick(date)}
-            onDoubleClick={() => handleToggleModal(date)}
             status={status}
             isCurrentMonth={isCurrentMonth}
             isToday={isToday}

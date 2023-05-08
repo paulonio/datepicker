@@ -18,6 +18,16 @@ export const WeekWrapper = styled.div`
   line-height: 19px;
 `;
 
+export const Label = styled.label`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 13px;
+`;
+
+export const Checkbox = styled.input.attrs({ type: 'checkbox' })``;
+
 export const ClearButton = styled.button`
   width: 100%;
   padding: 10px 0;
