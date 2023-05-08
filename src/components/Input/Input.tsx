@@ -1,21 +1,19 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import { CalendarIcon, CloseIcon, Field, FieldWrapper, Icon, Label, Wrapper } from './styled';
 import calendar from '../../utils/ClassCalendar';
+import type { Action } from '../Datepicker/Datepicker';
 
 interface InputProps {
   label: 'From' | 'To';
   date: Date | null;
-  onDateChange: (date: Date | null) => void;
-  setCurrentCalendar: (value: 'From' | 'To') => void;
-  // TODO fix
-  toggleCalendar: (bool: boolean) => void;
+  dispatch: (action: Action) => void;
 }
 
-const updateSelectedDate = (inputDate: string, onDateChange: (date: Date | null) => void) => {
-  if (!onDateChange) {
-    return;
-  }
-
+const updateSelectedDate = (
+  inputDate: string,
+  label: 'From' | 'To',
+  dispatch: (action: Action) => void
+) => {
   if (inputDate === '') {
     return;
   }
@@ -25,16 +23,12 @@ const updateSelectedDate = (inputDate: string, onDateChange: (date: Date | null)
     .split('/')
     .map((item) => Number(item));
 
-  onDateChange(new Date(year, month - 1, day));
+  const type = label === 'From' ? 'SET_DATE_FROM' : 'SET_DATE_TO';
+  const action: Action = { type, payload: { date: new Date(year, month - 1, day) } };
+  dispatch(action);
 };
 
-const Input: FC<InputProps> = ({
-  label,
-  date,
-  onDateChange,
-  setCurrentCalendar,
-  toggleCalendar,
-}) => {
+const Input: FC<InputProps> = ({ label, date, dispatch }) => {
   const [inputDate, setInputDate] = useState<string>('');
 
   useEffect(() => {
@@ -43,12 +37,12 @@ const Input: FC<InputProps> = ({
   }, [date]);
 
   const handleFocus = () => {
-    toggleCalendar(true);
-    setCurrentCalendar(label);
+    dispatch({ type: 'SET_CURRENT_CALENDAR', payload: { calendar: label } });
+    dispatch({ type: 'TOGGLE_CALENDAR', payload: { showCalendar: true } });
   };
 
   const handleBlur = () => {
-    updateSelectedDate(inputDate, onDateChange);
+    updateSelectedDate(inputDate, label, dispatch);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -58,7 +52,11 @@ const Input: FC<InputProps> = ({
 
   const resetInput = () => {
     setInputDate('');
-    onDateChange(null);
+    const action: Action = {
+      type: label === 'From' ? 'SET_DATE_FROM' : 'SET_DATE_TO',
+      payload: { date: null },
+    };
+    dispatch(action);
   };
 
   return (

@@ -5,69 +5,57 @@ import { ClearButton, Wrapper } from './styled';
 import DateButtons from '../DateButtons/DateButtons';
 import { usePanelDates } from '../../hooks/usePanelDates';
 import { useDisplayDates } from '../../hooks/useDisplayDates';
-import { Mode } from '../../utils/ClassCalendar';
 import Modal from '../Modal/Modal';
-import type { View } from '../Datepicker/Datepicker';
+import type { Action, DatepickerProps, Init } from '../Datepicker/Datepicker';
 
 export interface CalendarProps {
-  mode: Mode;
-  view: View;
-  fromTo: 'From' | 'To';
-  dateFrom: Date | null;
-  dateTo: Date | null;
-  onDateFromChange: (date: Date | null) => void;
-  onDateToChange: (date: Date | null) => void;
-  // TODO fix
-  toggleCalendar: (bool: boolean) => void;
-  minDate?: Date;
-  maxDate?: Date;
+  config: DatepickerProps;
+  state: Init;
+  dispatch: (action: Action) => void;
 }
 
 type Ref = HTMLDivElement;
 
-const Calendar = forwardRef<Ref, CalendarProps>(
-  (
-    {
-      fromTo,
-      mode,
-      view,
-      dateFrom,
-      dateTo,
-      onDateFromChange,
-      onDateToChange,
-      toggleCalendar,
-      minDate,
-      maxDate,
-    },
-    ref
-  ) => {
-    const { newDate, setDate } = usePanelDates(fromTo, dateFrom, dateTo);
-    const [selectedDate, setSelectedDate] = useState<Date>(new Date(2023, 4, 1));
-    const [showModal, setShowModal] = useState<boolean>(false);
-    const allDays = useDisplayDates(mode, view, newDate);
+const Calendar = forwardRef<Ref, CalendarProps>(({ config, state, dispatch }, ref) => {
+  const { currentCalendar: fromTo, from: dateFrom, to: dateTo } = state;
+  const { start: mode, view, minDate, maxDate } = config;
+  const { newDate, setDate } = usePanelDates(fromTo, dateFrom, dateTo);
+  const allDays = useDisplayDates(mode, view, newDate);
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date(2023, 4, 1));
+  const [showModal, setShowModal] = useState<boolean>(false);
 
-    return (
-      <>
-        <Wrapper ref={ref}>
-          <MonthRow type={view} date={newDate} setDate={setDate} />
-          <WeekDayRow mode={mode} />
-          <DateButtons
-            dateFrom={dateFrom}
-            dateTo={dateTo}
-            allDays={allDays}
-            onDateChange={fromTo === 'From' ? onDateFromChange : onDateToChange}
-            toggleCalendar={toggleCalendar}
-            minDate={minDate}
-            maxDate={maxDate}
-            selectDate={setSelectedDate}
-            toggleModal={setShowModal}
-          />
-          <ClearButton>Clear</ClearButton>
-        </Wrapper>
-        {showModal && <Modal date={selectedDate} handleCloseModal={setShowModal} />}
-      </>
-    );
-  }
-);
+  const handleChangeDate = (date: Date) => {
+    const type = fromTo === 'From' ? 'SET_DATE_FROM' : 'SET_DATE_TO';
+    const action: Action = { type, payload: { date } };
+    dispatch(action);
+  };
+
+  const toggleCalendar = (showCalendar: boolean) => {
+    const action: Action = { type: 'TOGGLE_CALENDAR', payload: { showCalendar } };
+    dispatch(action);
+  };
+
+  return (
+    <>
+      <Wrapper ref={ref}>
+        <MonthRow type={view} date={newDate} setDate={setDate} />
+        <WeekDayRow mode={mode} />
+        <DateButtons
+          dateFrom={dateFrom}
+          dateTo={dateTo}
+          allDays={allDays}
+          onDateChange={handleChangeDate}
+          toggleCalendar={toggleCalendar}
+          minDate={minDate}
+          maxDate={maxDate}
+          selectDate={setSelectedDate}
+          toggleModal={setShowModal}
+        />
+        <ClearButton>Clear</ClearButton>
+      </Wrapper>
+      {showModal && <Modal date={selectedDate} handleCloseModal={setShowModal} />}
+    </>
+  );
+});
 
 export default Calendar;
