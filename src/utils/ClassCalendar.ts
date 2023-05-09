@@ -24,7 +24,7 @@ export interface Calendar {
   getToday: () => Date;
   isValidDate: (date: Date, minDate?: Date, maxDate?: Date) => boolean;
   setWeekendStatus: (date: Date) => boolean;
-  updateInput: (date: Date | null) => string;
+  parseDateToString: (date: Date | null) => string;
   parseDate: (date: Date) => { day: number; month: number; year: number };
 }
 
@@ -154,7 +154,7 @@ class ClassCalendar implements Calendar {
     return false;
   }
 
-  updateInput(date: Date | null) {
+  parseDateToString(date: Date | null) {
     if (!date) {
       return '';
     }

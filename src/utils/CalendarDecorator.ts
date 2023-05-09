@@ -1,8 +1,8 @@
 import Decorator from './Decorator';
 
 class CalendarDecorator extends Decorator {
-  updateInput(date: Date | null): string {
-    const dateString = super.updateInput(date);
+  parseDateToString(date: Date | null): string {
+    const dateString = super.parseDateToString(date);
 
     if (!dateString) {
       return '';

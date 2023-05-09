@@ -11,7 +11,7 @@ export const Title = styled.h3`
   line-height: 19px;
 `;
 
-export const Task = styled.div`
+export const TaskElement = styled.div`
   color: #333333;
   font-size: 13px;
   font-weight: 400;

@@ -16,6 +16,7 @@ interface WeekDayProps {
   isCurrentMonth: boolean;
   isToday: boolean;
   isWeekend: boolean;
+  showWeekend: boolean;
 }
 
 export const WeekDay = styled.button<WeekDayProps>`
@@ -69,4 +70,6 @@ export const WeekDay = styled.button<WeekDayProps>`
   &:disabled {
     cursor: default;
   }
+  opacity: ${({ showWeekend }) => showWeekend && '0'};
+  pointer-events: ${({ showWeekend }) => showWeekend && 'none'};
 `;

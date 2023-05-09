@@ -7,6 +7,11 @@ interface ModalProps {
   handleCloseModal: (value: boolean) => void;
 }
 
+export interface Task {
+  id: string;
+  title: string;
+}
+
 const getTasks = (date: Date) => {
   const tasks = JSON.parse(localStorage.getItem(`${date}`) as string);
   return tasks;
@@ -14,7 +19,7 @@ const getTasks = (date: Date) => {
 
 const Modal: FC<ModalProps> = ({ date, handleCloseModal }) => {
   const [value, setValue] = useState<string>('');
-  const [tasks, setTasks] = useState<string[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
     const receivedTasks = getTasks(date);
@@ -32,11 +37,11 @@ const Modal: FC<ModalProps> = ({ date, handleCloseModal }) => {
 
   const handleAddTask = () => {
     if (!localStorage.getItem(`${date}`)) {
-      localStorage.setItem(`${date}`, JSON.stringify([value]));
+      localStorage.setItem(`${date}`, JSON.stringify([{ id: '0', title: value }]));
     } else {
-      localStorage.getItem(`${date}`);
-      const prevValues: Array<string> = JSON.parse(localStorage.getItem(`${date}`) as string);
-      const data = [...prevValues, value];
+      const prevValues: Array<Task> = JSON.parse(localStorage.getItem(`${date}`) as string);
+      const newTask: Task = { id: `${prevValues.length}`, title: value };
+      const data = [...prevValues, newTask];
       localStorage.setItem(`${date}`, JSON.stringify(data));
     }
     setValue('');

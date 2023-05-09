@@ -33,7 +33,7 @@ const Input: FC<InputProps> = ({ label, date, dispatch }) => {
   const [inputDate, setInputDate] = useState<string>('');
 
   useEffect(() => {
-    const dateToUpdate = calendar.updateInput(date);
+    const dateToUpdate = calendar.parseDateToString(date);
     setInputDate(dateToUpdate);
   }, [date]);
 
@@ -44,7 +44,7 @@ const Input: FC<InputProps> = ({ label, date, dispatch }) => {
 
   const handleBlur = () => {
     if (!inputDate.match(DATE_REGEX)) {
-      const dateString = calendar.updateInput(date);
+      const dateString = calendar.parseDateToString(date);
       setInputDate(dateString);
       return;
     }

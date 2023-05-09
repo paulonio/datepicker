@@ -7,8 +7,8 @@ class Decorator implements Calendar {
     this.component = component;
   }
 
-  updateInput(date: Date | null) {
-    return this.component.updateInput(date);
+  parseDateToString(date: Date | null) {
+    return this.component.parseDateToString(date);
   }
 
   changeSundayWeekToMonday(day: number) {

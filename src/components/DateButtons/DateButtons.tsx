@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Week, WeekDay } from './styled';
 import calendar from '../../utils/ClassCalendar';
-import type { Action, DatepickerProps, Init } from '../Datepicker/Datepicker';
+import type { Action, DatepickerProps, Init, WeekendStatus } from '../Datepicker/Datepicker';
 import { useDisplayDates } from '../../hooks/useDisplayDates';
 
 interface DateButtonsProps {
@@ -14,6 +14,16 @@ interface DateButtonsProps {
   setSelectOneDate: (value: boolean) => void;
   selectDate: (date: Date) => void;
 }
+
+const setWeekendStatus = (isWeekend: boolean, weekendStatus: WeekendStatus) => {
+  if (!isWeekend) {
+    return false;
+  }
+  if (weekendStatus === 'show') {
+    return false;
+  }
+  return true;
+};
 
 const getMode = (date: Date, selectedDates: Init, selectOneDate: boolean, selectedDate: Date) => {
   if (selectOneDate && selectedDate.getTime() === date.getTime()) {
@@ -44,7 +54,7 @@ const DateButtons: FC<DateButtonsProps> = ({
 }) => {
   const today = calendar.getToday();
   const { currentCalendar } = state;
-  const { start: mode, view, minDate, maxDate } = config;
+  const { start: mode, view, weekend, minDate, maxDate } = config;
   const allDays = useDisplayDates(mode, view, newDate);
 
   const handleButtonClick = (date: Date) => {
@@ -66,6 +76,7 @@ const DateButtons: FC<DateButtonsProps> = ({
         const isToday = today.getTime() === date.getTime();
         const isWeekend = calendar.setWeekendStatus(date);
         const isDisabled = calendar.isValidDate(date, minDate, maxDate);
+        const showWeekend = setWeekendStatus(isWeekend, weekend);
         return (
           <WeekDay
             key={`${currentYear}/${currentMonth}/${currentDate}`}
@@ -74,6 +85,7 @@ const DateButtons: FC<DateButtonsProps> = ({
             isCurrentMonth={isCurrentMonth}
             isToday={isToday}
             isWeekend={isWeekend}
+            showWeekend={showWeekend}
             disabled={isDisabled}
           >
             {currentDate}

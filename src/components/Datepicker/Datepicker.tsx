@@ -8,9 +8,12 @@ import { useOutsideClick } from '../../hooks/useOutsideClick';
 
 export type View = 'weekly' | 'monthly';
 
+export type WeekendStatus = 'show' | 'hide';
+
 export interface DatepickerProps {
   start: Mode;
   view: View;
+  weekend: WeekendStatus;
   maxDate: Date;
   minDate: Date;
 }
@@ -18,6 +21,7 @@ export interface DatepickerProps {
 export const init: DatepickerProps = {
   start: 'mo',
   view: 'monthly',
+  weekend: 'show',
   minDate: new Date(2021, 3, 2),
   maxDate: new Date(2025, 4, 25),
 };
