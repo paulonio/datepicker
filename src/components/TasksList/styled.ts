@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  margin-top: 8px;
-  width: 250px;
-  padding: 10px;
-  border: 1px solid #333333;
-  border-radius: 4px;
+  width: 100%;
 `;
 
 export const Title = styled.h3`
@@ -15,6 +11,9 @@ export const Title = styled.h3`
   line-height: 19px;
 `;
 
-export const Input = styled.input``;
-
-export const Button = styled.button``;
+export const Task = styled.div`
+  color: #333333;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 17px;
+`;

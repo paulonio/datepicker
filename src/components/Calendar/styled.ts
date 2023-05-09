@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div.attrs({ 'data-component': 'calendar' })`
+export const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const CalendarWrapper = styled.div.attrs({ 'data-component': 'calendar' })`
   width: 100%;
   padding: 10px 10px 0;
   max-width: 252px;

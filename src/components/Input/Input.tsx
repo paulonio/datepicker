@@ -2,6 +2,7 @@ import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import { CalendarIcon, CloseIcon, Field, FieldWrapper, Icon, Label, Wrapper } from './styled';
 import calendar from '../../utils/ClassCalendar';
 import type { Action } from '../Datepicker/Datepicker';
+import { DATE_REGEX } from '../../constants/constants';
 
 interface InputProps {
   label: 'From' | 'To';
@@ -42,6 +43,12 @@ const Input: FC<InputProps> = ({ label, date, dispatch }) => {
   };
 
   const handleBlur = () => {
+    if (!inputDate.match(DATE_REGEX)) {
+      const dateString = calendar.updateInput(date);
+      setInputDate(dateString);
+      return;
+    }
+
     updateSelectedDate(inputDate, label, dispatch);
   };
 

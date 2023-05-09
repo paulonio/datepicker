@@ -1,7 +1,7 @@
 import React, { ChangeEvent, forwardRef, useState } from 'react';
 import WeekDayRow from '../WeekDayRow/WeekDayRow';
 import MonthRow from '../MonthRow/MonthRow';
-import { Checkbox, ClearButton, Label, Wrapper } from './styled';
+import { CalendarWrapper, Checkbox, ClearButton, Label, Wrapper } from './styled';
 import DateButtons from '../DateButtons/DateButtons';
 import { usePanelDates } from '../../hooks/usePanelDates';
 import Modal from '../Modal/Modal';
@@ -28,8 +28,8 @@ const Calendar = forwardRef<Ref, CalendarProps>(({ config, state, dispatch }, re
   };
 
   return (
-    <>
-      <Wrapper ref={ref}>
+    <Wrapper ref={ref}>
+      <CalendarWrapper>
         <Label>
           <Checkbox onChange={handleModeChange} />
           Select one date
@@ -47,9 +47,9 @@ const Calendar = forwardRef<Ref, CalendarProps>(({ config, state, dispatch }, re
           selectDate={setSelectedDate}
         />
         <ClearButton>Clear</ClearButton>
-      </Wrapper>
+      </CalendarWrapper>
       {selectOneDate && <Modal date={selectedDate} handleCloseModal={setSelectOneDate} />}
-    </>
+    </Wrapper>
   );
 });
 
