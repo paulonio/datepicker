@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import { CalendarIcon, CloseIcon, Field, FieldWrapper, Icon, Label, Wrapper } from './styled';
 import calendar from '../../utils/ClassCalendar';
-import type { Action } from '../Datepicker/Datepicker';
+import type { Action } from '../../types/types';
 import { DATE_REGEX } from '../../constants/constants';
 
 interface InputProps {

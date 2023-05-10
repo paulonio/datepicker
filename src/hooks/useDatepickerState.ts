@@ -3,8 +3,8 @@ import type { Action, Init } from '../types/types';
 
 export const useDatepickerState = () => {
   const initialValue: Init = {
-    from: new Date(2022, 5, 17),
-    to: new Date(2023, 7, 17),
+    from: null,
+    to: null,
     currentCalendar: 'From',
     showCalendar: false,
   };
@@ -12,8 +12,14 @@ export const useDatepickerState = () => {
   const reducer = (state: Init, action: Action) => {
     switch (action.type) {
       case 'SET_DATE_FROM':
+        if (action.payload.date && state.to && action.payload.date > state.to) {
+          return state;
+        }
         return { ...state, from: action.payload.date };
       case 'SET_DATE_TO':
+        if (action.payload.date && state.from && action.payload.date < state.from) {
+          return state;
+        }
         return { ...state, to: action.payload.date };
       case 'SET_CURRENT_CALENDAR':
         return { ...state, currentCalendar: action.payload.calendar };

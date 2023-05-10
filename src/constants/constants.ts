@@ -22,7 +22,7 @@ export const MONTHS: Array<string> = [
 export const CELLS_AMOUNT: number = 42;
 
 export const DATE_REGEX: RegExp =
-  /^(3[01]|[12][0-9]|0[1-9])\/(1[0-2]|0[1-9])\/[2][0][0-4][0-9]|[1][9][7-9][0-9]$/gm;
+  /^(3[01]|[12][0-9]|0[1-9])\/(1[0-2]|0[1-9])\/[2][0][0-4][0-9]{1}$|[1][9][7-9][0-9]{1}$/gm;
 
 export const init: DatepickerProps = {
   start: 'mo',

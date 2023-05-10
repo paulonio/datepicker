@@ -6,6 +6,8 @@ import Calendar from '../Calendar/Calendar';
 import { useOutsideClick } from '../../hooks/useOutsideClick';
 import { useDatepickerState } from '../../hooks/useDatepickerState';
 import type { Mode, View, WeekendStatus } from '../../types/types';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import Fallback from '../Fallback/Fallback';
 
 export interface DatepickerProps {
   start: Mode;
@@ -28,17 +30,19 @@ const Datepicker: FC<DatepickerProps> = ({ ...initial }) => {
     <>
       <Global />
       <DatepickerWrapper>
-        <Input label="From" date={state.from} dispatch={dispatch} />
-        <Input label="To" date={state.to} dispatch={dispatch} />
-        {state.showCalendar && (
-          <Calendar
-            ref={calendarRef}
-            config={initial}
-            state={state}
-            dispatch={dispatch}
-            data-component="calendar"
-          />
-        )}
+        <ErrorBoundary fallback={<Fallback />}>
+          <Input label="From" date={state.from} dispatch={dispatch} />
+          <Input label="To" date={state.to} dispatch={dispatch} />
+          {state.showCalendar && (
+            <Calendar
+              ref={calendarRef}
+              config={initial}
+              state={state}
+              dispatch={dispatch}
+              data-component="calendar"
+            />
+          )}
+        </ErrorBoundary>
       </DatepickerWrapper>
     </>
   );
