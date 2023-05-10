@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input should render input 1`] = `
+<div>
+  <div
+    class="sc-beqWaB eiKLBH"
+  >
+    <div
+      class="sc-gueYoa kEZcTP"
+    >
+      From
+    </div>
+    <label
+      class="sc-dmqHEX gTVuuB"
+    >
+      <div
+        class="sc-hLseeU hJBuPB"
+      >
+        <img
+          class="sc-jTrPJq cfnNIk"
+          src="./assets/icons/Calendar.svg"
+        />
+      </div>
+      <input
+        class="sc-gLDzan bZWVsH"
+        data-testid="input"
+        placeholder="Choose Date"
+        value="07/05/2023"
+      />
+      <div
+        class="sc-eDDNvR eeFhds"
+        data-testid="close-icon"
+      >
+        <img
+          class="sc-jTrPJq cfnNIk"
+          src="./assets/icons/Clear.svg"
+        />
+      </div>
+    </label>
+  </div>
+</div>
+`;

@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Datepicker should render datepicker component 1`] = `
+<div>
+  <div
+    class="sc-beqWaB ettSNG"
+  >
+    <div
+      class="sc-gueYoa eiXeJt"
+    >
+      <div
+        class="sc-dmqHEX btCDpK"
+      >
+        From
+      </div>
+      <label
+        class="sc-hLseeU hiFQXq"
+      >
+        <div
+          class="sc-eDDNvR fmEVhg"
+        >
+          <img
+            class="sc-gLDzan cXjavB"
+            src="./assets/icons/Calendar.svg"
+          />
+        </div>
+        <input
+          class="sc-iAEyYk vvzef"
+          data-testid="input"
+          placeholder="Choose Date"
+          value=""
+        />
+      </label>
+    </div>
+    <div
+      class="sc-gueYoa eiXeJt"
+    >
+      <div
+        class="sc-dmqHEX btCDpK"
+      >
+        To
+      </div>
+      <label
+        class="sc-hLseeU hiFQXq"
+      >
+        <div
+          class="sc-eDDNvR fmEVhg"
+        >
+          <img
+            class="sc-gLDzan cXjavB"
+            src="./assets/icons/Calendar.svg"
+          />
+        </div>
+        <input
+          class="sc-iAEyYk vvzef"
+          data-testid="input"
+          placeholder="Choose Date"
+          value=""
+        />
+      </label>
+    </div>
+  </div>
+</div>
+`;

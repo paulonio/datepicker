@@ -79,9 +79,10 @@ const Input: FC<InputProps> = ({ label, date, dispatch }) => {
           onBlur={handleBlur}
           onFocus={handleFocus}
           placeholder="Choose Date"
+          data-testid="input"
         />
         {inputDate && (
-          <CloseIcon onClick={resetInput}>
+          <CloseIcon onClick={resetInput} data-testid="close-icon">
             <Icon src="./assets/icons/Clear.svg" />
           </CloseIcon>
         )}
