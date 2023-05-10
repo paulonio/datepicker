@@ -5,7 +5,8 @@ import { CalendarWrapper, Checkbox, ClearButton, Label, Wrapper } from './styled
 import DateButtons from '../DateButtons/DateButtons';
 import { usePanelDates } from '../../hooks/usePanelDates';
 import Modal from '../Modal/Modal';
-import type { Action, DatepickerProps, Init } from '../Datepicker/Datepicker';
+import type { DatepickerProps } from '../Datepicker/Datepicker';
+import type { Action, Init } from '../../types/types';
 
 export interface CalendarProps {
   config: DatepickerProps;

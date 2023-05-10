@@ -1,34 +1,6 @@
 import { CELLS_AMOUNT } from '../constants/constants';
 import CalendarDecorator from './CalendarDecorator';
-
-export interface DisplayDate {
-  currentYear: number;
-  currentMonth: number;
-  currentDate: number;
-  isCurrentMonth: boolean;
-}
-
-export interface Calendar {
-  changeSundayWeekToMonday: (day: number) => number;
-  getAmountDaysInMonth: (month: number, year: number) => number;
-  getAllDaysInMonth: (currentMonth: number, currentYear: number) => DisplayDate[];
-  getPreviousMonthDates: (mode: Mode, currentMonth: number, currentYear: number) => DisplayDate[];
-  getNextMonthDates: (mode: Mode, currentMonth: number, currentYear: number) => DisplayDate[];
-  getAllDays: (mode: Mode, month: number, year: number) => DisplayDate[];
-  getWeekDates: (
-    mode: Mode,
-    currentDate: number,
-    currentMonth: number,
-    currentYear: number
-  ) => DisplayDate[];
-  getToday: () => Date;
-  isValidDate: (date: Date, minDate?: Date, maxDate?: Date) => boolean;
-  setWeekendStatus: (date: Date) => boolean;
-  parseDateToString: (date: Date | null) => string;
-  parseDate: (date: Date) => { day: number; month: number; year: number };
-}
-
-export type Mode = 'su' | 'mo';
+import type { Calendar, DisplayDate, Mode } from '../types/types';
 
 class ClassCalendar implements Calendar {
   changeSundayWeekToMonday(day: number) {
