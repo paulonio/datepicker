@@ -1,4 +1,13 @@
 import styled, { css } from 'styled-components';
+import type { Status } from '../../types/types';
+
+interface WeekDayProps {
+  status: Status;
+  isCurrentMonth: boolean;
+  isToday: boolean;
+  isWeekend: boolean;
+  showWeekend: boolean;
+}
 
 export const Week = styled.div`
   display: flex;
@@ -10,14 +19,6 @@ export const Week = styled.div`
   font-weight: 600;
   line-height: 18px;
 `;
-
-interface WeekDayProps {
-  status: 'selectedDate' | 'selectedFrom' | 'selectedTo' | 'inRange' | '';
-  isCurrentMonth: boolean;
-  isToday: boolean;
-  isWeekend: boolean;
-  showWeekend: boolean;
-}
 
 export const WeekDay = styled.button<WeekDayProps>`
   display: flex;

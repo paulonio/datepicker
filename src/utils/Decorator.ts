@@ -1,4 +1,4 @@
-import type { Calendar, Mode } from './ClassCalendar';
+import type { Calendar, Init, Mode, WeekendStatus } from '../types/types';
 
 class Decorator implements Calendar {
   component: Calendar;
@@ -53,6 +53,14 @@ class Decorator implements Calendar {
 
   parseDate(date: Date) {
     return this.component.parseDate(date);
+  }
+
+  showWeekend(isWeekend: boolean, weekendStatus: WeekendStatus) {
+    return this.component.showWeekend(isWeekend, weekendStatus);
+  }
+
+  getMode(date: Date, selectedDates: Init, selectOneDate: boolean, selectedDate: Date) {
+    return this.component.getMode(date, selectedDates, selectOneDate, selectedDate);
   }
 }
 

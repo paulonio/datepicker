@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
 import { Week, WeekDay } from './styled';
 import calendar from '../../utils/ClassCalendar';
-import type { Action, DatepickerProps, Init, WeekendStatus } from '../Datepicker/Datepicker';
 import { useDisplayDates } from '../../hooks/useDisplayDates';
+import type { DatepickerProps } from '../Datepicker/Datepicker';
+import type { Init, Action } from '../../types/types';
 
 interface DateButtonsProps {
   state: Init;
@@ -14,33 +15,6 @@ interface DateButtonsProps {
   setSelectOneDate: (value: boolean) => void;
   selectDate: (date: Date) => void;
 }
-
-const setWeekendStatus = (isWeekend: boolean, weekendStatus: WeekendStatus) => {
-  if (!isWeekend) {
-    return false;
-  }
-  if (weekendStatus === 'show') {
-    return false;
-  }
-  return true;
-};
-
-const getMode = (date: Date, selectedDates: Init, selectOneDate: boolean, selectedDate: Date) => {
-  if (selectOneDate && selectedDate.getTime() === date.getTime()) {
-    return 'selectedDate';
-  }
-  const { from, to } = selectedDates;
-  if (from && from.getTime() === date.getTime()) {
-    return 'selectedFrom';
-  }
-  if (to && to.getTime() === date.getTime()) {
-    return 'selectedTo';
-  }
-  if (from && to && date > from && date < to) {
-    return 'inRange';
-  }
-  return '';
-};
 
 const DateButtons: FC<DateButtonsProps> = ({
   state,
@@ -72,11 +46,11 @@ const DateButtons: FC<DateButtonsProps> = ({
     <Week>
       {allDays.map(({ currentYear, currentMonth, currentDate, isCurrentMonth }) => {
         const date = new Date(currentYear, currentMonth, currentDate);
-        const status = getMode(date, state, selectOneDate, selectedDate);
+        const status = calendar.getMode(date, state, selectOneDate, selectedDate);
         const isToday = today.getTime() === date.getTime();
         const isWeekend = calendar.setWeekendStatus(date);
         const isDisabled = calendar.isValidDate(date, minDate, maxDate);
-        const showWeekend = setWeekendStatus(isWeekend, weekend);
+        const showWeekend = calendar.showWeekend(isWeekend, weekend);
         return (
           <WeekDay
             key={`${currentYear}/${currentMonth}/${currentDate}`}

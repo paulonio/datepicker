@@ -24,6 +24,8 @@ export interface DisplayDate {
   isCurrentMonth: boolean;
 }
 
+export type Status = 'selectedDate' | 'selectedFrom' | 'selectedTo' | 'inRange' | '';
+
 export interface Calendar {
   changeSundayWeekToMonday: (day: number) => number;
   getAmountDaysInMonth: (month: number, year: number) => number;
@@ -42,4 +44,6 @@ export interface Calendar {
   setWeekendStatus: (date: Date) => boolean;
   parseDateToString: (date: Date | null) => string;
   parseDate: (date: Date) => { day: number; month: number; year: number };
+  showWeekend: (isWeekend: boolean, weekendStatus: WeekendStatus) => boolean;
+  getMode: (date: Date, selectedDates: Init, selectOneDate: boolean, selectedDate: Date) => Status;
 }

@@ -1,6 +1,6 @@
 import { CELLS_AMOUNT } from '../constants/constants';
 import CalendarDecorator from './CalendarDecorator';
-import type { Calendar, DisplayDate, Mode } from '../types/types';
+import type { Calendar, DisplayDate, Init, Mode, WeekendStatus } from '../types/types';
 
 class ClassCalendar implements Calendar {
   changeSundayWeekToMonday(day: number) {
@@ -144,6 +144,33 @@ class ClassCalendar implements Calendar {
     const day = date.getDate();
 
     return { day, month, year };
+  }
+
+  showWeekend(isWeekend: boolean, weekendStatus: WeekendStatus) {
+    if (!isWeekend) {
+      return false;
+    }
+    if (weekendStatus === 'show') {
+      return false;
+    }
+    return true;
+  }
+
+  getMode(date: Date, selectedDates: Init, selectOneDate: boolean, selectedDate: Date) {
+    if (selectOneDate && selectedDate.getTime() === date.getTime()) {
+      return 'selectedDate';
+    }
+    const { from, to } = selectedDates;
+    if (from && from.getTime() === date.getTime()) {
+      return 'selectedFrom';
+    }
+    if (to && to.getTime() === date.getTime()) {
+      return 'selectedTo';
+    }
+    if (from && to && date > from && date < to) {
+      return 'inRange';
+    }
+    return '';
   }
 }
 
