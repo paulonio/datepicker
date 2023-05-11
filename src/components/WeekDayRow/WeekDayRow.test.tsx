@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import WeekDayRow from './WeekDayRow';
+import WeekDayRow from '@components/WeekDayRow/WeekDayRow';
 
 describe('WeekDayRow', () => {
   it('should render WeekDayRow component and starts on monday', () => {

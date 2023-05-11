@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { Week, WeekDay } from './styled';
-import calendar from '../../utils/ClassCalendar';
-import { useDisplayDates } from '../../hooks/useDisplayDates';
-import type { DatepickerProps } from '../Datepicker/Datepicker';
-import type { Init, Action } from '../../types/types';
+import calendar from '@utils/ClassCalendar';
+import { useDisplayDates } from '@hooks/useDisplayDates';
+import type { DatepickerProps } from '@components/Datepicker/Datepicker';
+import type { Init, Action } from '@/types/types';
 
 interface DateButtonsProps {
   state: Init;

@@ -1,9 +1,9 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import { CalendarIcon, CloseIcon, Field, FieldWrapper, Icon, Label, Wrapper } from './styled';
-import calendar from '../../utils/ClassCalendar';
-import type { Action } from '../../types/types';
-import { DATE_REGEX } from '../../constants/constants';
-import type { DatepickerProps } from '../Datepicker/Datepicker';
+import calendar from '@utils/ClassCalendar';
+import type { Action } from '@/types/types';
+import { DATE_REGEX } from '@constants/constants';
+import type { DatepickerProps } from '@components/Datepicker/Datepicker';
 
 interface InputProps {
   label: 'From' | 'To';

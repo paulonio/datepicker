@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import type { Action, Init } from '../types/types';
+import type { Action, Init } from '@/types/types';
 
 export const useDatepickerState = () => {
   const initialValue: Init = {

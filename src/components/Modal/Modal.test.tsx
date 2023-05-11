@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Modal from './Modal';
+import Modal from '@components/Modal/Modal';
 
 describe('Modal', () => {
   const dateMock = new Date(2023, 4, 11);

@@ -1,6 +1,6 @@
-import { CELLS_AMOUNT } from '../constants/constants';
-import CalendarDecorator from './CalendarDecorator';
-import type { Calendar, DisplayDate, Init, Mode, WeekendStatus } from '../types/types';
+import { CELLS_AMOUNT } from '@constants/constants';
+import CalendarDecorator from '@utils/CalendarDecorator';
+import type { Calendar, DisplayDate, Init, Mode, WeekendStatus } from '@/types/types';
 
 class ClassCalendar implements Calendar {
   changeSundayWeekToMonday(day: number) {

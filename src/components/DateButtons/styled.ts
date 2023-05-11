@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import type { Status } from '../../types/types';
+import type { Status } from '@/types/types';
 
 interface WeekDayProps {
   status: Status;

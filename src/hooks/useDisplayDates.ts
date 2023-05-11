@@ -1,5 +1,5 @@
-import calendar from '../utils/ClassCalendar';
-import { Mode, View } from '../types/types';
+import calendar from '@utils/ClassCalendar';
+import type { Mode, View } from '@/types/types';
 
 export const useDisplayDates = (mode: Mode, view: View, date: Date) => {
   const { day, month, year } = calendar.parseDate(date);

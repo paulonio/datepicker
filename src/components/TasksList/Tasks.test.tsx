@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import TasksList from './TasksList';
-import type { Task } from '../Modal/Modal';
+import TasksList from '@components/TasksList/TasksList';
+import type { Task } from '@components/Modal/Modal';
 
 describe('TasksList', () => {
   const tasksData: Task[] = [

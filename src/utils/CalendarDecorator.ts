@@ -1,4 +1,4 @@
-import Decorator from './Decorator';
+import Decorator from '@utils/Decorator';
 
 class CalendarDecorator extends Decorator {
   parseDateToString(date: Date | null): string {

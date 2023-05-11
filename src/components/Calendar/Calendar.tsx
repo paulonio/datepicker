@@ -1,12 +1,12 @@
 import React, { ChangeEvent, forwardRef, useState } from 'react';
-import WeekDayRow from '../WeekDayRow/WeekDayRow';
-import MonthRow from '../MonthRow/MonthRow';
+import WeekDayRow from '@components/WeekDayRow/WeekDayRow';
+import MonthRow from '@components/MonthRow/MonthRow';
 import { CalendarWrapper, Checkbox, ClearButton, Label, Wrapper } from './styled';
-import DateButtons from '../DateButtons/DateButtons';
-import { usePanelDates } from '../../hooks/usePanelDates';
-import Modal from '../Modal/Modal';
-import type { DatepickerProps } from '../Datepicker/Datepicker';
-import type { Action, Init } from '../../types/types';
+import DateButtons from '@components/DateButtons/DateButtons';
+import { usePanelDates } from '@hooks/usePanelDates';
+import Modal from '@components/Modal/Modal';
+import type { DatepickerProps } from '@components/Datepicker/Datepicker';
+import type { Action, Init } from '@/types/types';
 
 export interface CalendarProps {
   config: DatepickerProps;

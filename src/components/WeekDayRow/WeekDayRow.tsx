@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import { MONDAY_STARTS, SUNDAY_STARTS } from '../../constants/constants';
+import { MONDAY_STARTS, SUNDAY_STARTS } from '@constants/constants';
 import { WeekDay, WeekWrapper } from './styled';
-import { Mode } from '../../types/types';
+import { Mode } from '@/types/types';
 
 interface WeekDayRowProps {
   mode: Mode;

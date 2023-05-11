@@ -2,9 +2,9 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import 'jest-styled-components';
-import type { DatepickerProps } from '../Datepicker/Datepicker';
-import type { Init } from '../../types/types';
-import DateButtons from './DateButtons';
+import type { DatepickerProps } from '@components/Datepicker/Datepicker';
+import type { Init } from '@/types/types';
+import DateButtons from '@components/DateButtons/DateButtons';
 
 describe('DateButtons component', () => {
   const config: DatepickerProps = {

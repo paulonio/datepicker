@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import Input from './Input';
-import type { DatepickerProps } from '../Datepicker/Datepicker';
+import Input from '@components/Input/Input';
+import type { DatepickerProps } from '@components/Datepicker/Datepicker';
 
 describe('Input', () => {
   const date = new Date(2023, 4, 7);

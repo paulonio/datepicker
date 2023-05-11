@@ -1,4 +1,4 @@
-import type { View } from '../components/Datepicker/Datepicker';
+import type { View } from '@/types/types';
 
 export const useMonthChangeHandlers = (type: View, date: Date, setDate: (date: Date) => void) => {
   const currentDate = date;

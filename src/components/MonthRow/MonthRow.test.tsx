@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import MonthRow from './MonthRow';
+import MonthRow from '@components/MonthRow/MonthRow';
 
 describe('MonthRow', () => {
   const date = new Date(2023, 4, 11);

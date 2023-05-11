@@ -1,4 +1,4 @@
-import type { DatepickerProps } from '../components/Datepicker/Datepicker';
+import type { DatepickerProps } from '@components/Datepicker/Datepicker';
 
 export const SUNDAY_STARTS: Array<string> = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 

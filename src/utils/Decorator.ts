@@ -1,4 +1,4 @@
-import type { Calendar, Init, Mode, WeekendStatus } from '../types/types';
+import type { Calendar, Init, Mode, WeekendStatus } from '@/types/types';
 
 class Decorator implements Calendar {
   component: Calendar;

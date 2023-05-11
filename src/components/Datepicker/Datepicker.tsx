@@ -1,13 +1,14 @@
 import React, { FC, useRef } from 'react';
+import Global from '@styles/Global';
+import Input from '@components/Input/Input';
+import Calendar from '@components/Calendar/Calendar';
+import { useOutsideClick } from '@hooks/useOutsideClick';
+import { useDatepickerState } from '@hooks/useDatepickerState';
+import type { Mode, View, WeekendStatus } from '@/types/types';
+import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
+import Fallback from '@components/Fallback/Fallback';
 import { DatepickerWrapper } from './styled';
-import Global from '../../styles/Global';
-import Input from '../Input/Input';
-import Calendar from '../Calendar/Calendar';
-import { useOutsideClick } from '../../hooks/useOutsideClick';
-import { useDatepickerState } from '../../hooks/useDatepickerState';
-import type { Mode, View, WeekendStatus } from '../../types/types';
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
-import Fallback from '../Fallback/Fallback';
+
 
 export interface DatepickerProps {
   start: Mode;
@@ -39,8 +40,6 @@ const Datepicker: FC<DatepickerProps> = ({ ...initial }) => {
               config={initial}
               state={state}
               dispatch={dispatch}
-              // data-component="calendar"
-              // data-testid="calendar"
             />
           )}
         </ErrorBoundary>
