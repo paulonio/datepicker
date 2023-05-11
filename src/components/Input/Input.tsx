@@ -3,34 +3,44 @@ import { CalendarIcon, CloseIcon, Field, FieldWrapper, Icon, Label, Wrapper } fr
 import calendar from '../../utils/ClassCalendar';
 import type { Action } from '../../types/types';
 import { DATE_REGEX } from '../../constants/constants';
+import type { DatepickerProps } from '../Datepicker/Datepicker';
 
 interface InputProps {
   label: 'From' | 'To';
   date: Date | null;
+  config: DatepickerProps;
   dispatch: (action: Action) => void;
 }
+
+const parseStringToDate = (dateString: string) => {
+  if (!dateString) {
+    return null;
+  }
+  const [day, month, year] = dateString
+    .trim()
+    .split('/')
+    .map((item) => Number(item));
+
+  const date = new Date(year, month - 1, day);
+  return date;
+};
 
 const updateSelectedDate = (
   inputDate: string,
   label: 'From' | 'To',
   dispatch: (action: Action) => void
 ) => {
-  if (!inputDate) {
-    return;
+  const date = parseStringToDate(inputDate);
+  if (date) {
+    const type = label === 'From' ? 'SET_DATE_FROM' : 'SET_DATE_TO';
+    const action: Action = { type, payload: { date } };
+    dispatch(action);
   }
-
-  const [day, month, year] = inputDate
-    .trim()
-    .split('/')
-    .map((item) => Number(item));
-
-  const type = label === 'From' ? 'SET_DATE_FROM' : 'SET_DATE_TO';
-  const action: Action = { type, payload: { date: new Date(year, month - 1, day) } };
-  dispatch(action);
 };
 
-const Input: FC<InputProps> = ({ label, date, dispatch }) => {
+const Input: FC<InputProps> = ({ label, date, config, dispatch }) => {
   const [inputDate, setInputDate] = useState<string>('');
+  const { minDate, maxDate } = config;
 
   useEffect(() => {
     const dateToUpdate = calendar.parseDateToString(date);
@@ -44,6 +54,12 @@ const Input: FC<InputProps> = ({ label, date, dispatch }) => {
 
   const handleBlur = () => {
     if (!inputDate.match(DATE_REGEX)) {
+      const dateString = calendar.parseDateToString(date);
+      setInputDate(dateString);
+      return;
+    }
+    const dateObject = parseStringToDate(inputDate);
+    if ((dateObject && dateObject <= minDate) || (dateObject && dateObject >= maxDate)) {
       const dateString = calendar.parseDateToString(date);
       setInputDate(dateString);
       return;

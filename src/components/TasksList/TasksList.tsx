@@ -13,10 +13,13 @@ const TasksList: FC<TasksListProps> = ({ tasks, date }) => {
 
   return (
     <Wrapper>
-      <Title>Tasks - {dateString}</Title>
-      {tasks.map(({ id, title }) => (
-        <TaskElement key={id}>{title}</TaskElement>
-      ))}
+      <Title data-testid="title">Tasks - {dateString}</Title>
+      {tasks.length &&
+        tasks.map(({ id, title }) => (
+          <TaskElement key={id} data-testid="task">
+            {title}
+          </TaskElement>
+        ))}
     </Wrapper>
   );
 };

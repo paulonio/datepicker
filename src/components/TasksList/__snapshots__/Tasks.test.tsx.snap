@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TasksList should render Tasks component 1`] = `
+<div>
+  <div
+    class="sc-beqWaB iFODHc"
+  >
+    <h3
+      class="sc-gueYoa ckhcaG"
+      data-testid="title"
+    >
+      Tasks - 
+      11/05/2023
+    </h3>
+    0
+  </div>
+</div>
+`;

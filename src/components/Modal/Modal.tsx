@@ -51,8 +51,10 @@ const Modal: FC<ModalProps> = ({ date, handleCloseModal }) => {
   return (
     <Wrapper>
       <Title>Add task</Title>
-      <Input value={value} onChange={handleChange} placeholder="Type task" />
-      <Button onClick={handleAddTask}>Confirm</Button>
+      <Input value={value} onChange={handleChange} placeholder="Type task" data-testid="input" />
+      <Button onClick={handleAddTask} data-testid="submit">
+        Confirm
+      </Button>
       <TasksList tasks={tasks} date={date} />
     </Wrapper>
   );

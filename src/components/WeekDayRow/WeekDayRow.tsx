@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { MONDAY_STARTS, SUNDAY_STARTS } from '../../constants/constants';
 import { WeekDay, WeekWrapper } from './styled';
-import { Mode } from '../../utils/ClassCalendar';
+import { Mode } from '../../types/types';
 
 interface WeekDayRowProps {
   mode: Mode;
@@ -13,7 +13,9 @@ const WeekDayRow: FC<WeekDayRowProps> = ({ mode }) => {
   return (
     <WeekWrapper>
       {row.map((day) => (
-        <WeekDay key={day}>{day}</WeekDay>
+        <WeekDay key={day} data-testid="week-day">
+          {day}
+        </WeekDay>
       ))}
     </WeekWrapper>
   );

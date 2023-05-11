@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Month, MonthWrapper, NextIcon, PrevIcon, PrevYearIcon, NextYearIcon } from './styled';
 import { useMonthChangeHandlers } from '../../hooks/useMonthChangeHandlers';
-import type { View } from '../Datepicker/Datepicker';
 import { MONTHS } from '../../constants/constants';
+import { View } from '../../types/types';
 
 interface MonthRowProps {
   type: View;
@@ -16,13 +16,13 @@ const MonthRow: FC<MonthRowProps> = ({ type, date, setDate }) => {
 
   return (
     <MonthWrapper>
-      <PrevYearIcon onClick={handlePrevYearClick} />
-      <PrevIcon onClick={handlePrevClick} />
-      <Month>
+      <PrevYearIcon onClick={handlePrevYearClick} data-testid="prev-year" />
+      <PrevIcon onClick={handlePrevClick} data-testid="prev" />
+      <Month data-testid="month-row">
         {MONTHS[date.getMonth()]} {`${date.getFullYear()}`}
       </Month>
-      <NextIcon onClick={handleNextClick} />
-      <NextYearIcon onClick={handleNextYearClick} />
+      <NextIcon onClick={handleNextClick} data-testid="next" />
+      <NextYearIcon onClick={handleNextYearClick} data-testid="next-year" />
     </MonthWrapper>
   );
 };

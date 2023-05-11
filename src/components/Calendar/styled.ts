@@ -6,7 +6,10 @@ export const Wrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const CalendarWrapper = styled.div.attrs({ 'data-component': 'calendar' })`
+export const CalendarWrapper = styled.div.attrs({
+  'data-component': 'calendar',
+  'data-testid': 'calendar',
+})`
   width: 100%;
   padding: 10px 10px 0;
   max-width: 252px;

@@ -61,6 +61,7 @@ const DateButtons: FC<DateButtonsProps> = ({
             isWeekend={isWeekend}
             showWeekend={showWeekend}
             disabled={isDisabled}
+            data-testid="date-button"
           >
             {currentDate}
           </WeekDay>

@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WeekDayRow should render WeekDayRow component and starts on monday 1`] = `
+<div>
+  <div
+    class="sc-beqWaB fleLma"
+  >
+    <div
+      class="sc-gueYoa lbdwlY"
+      data-testid="week-day"
+    >
+      Mo
+    </div>
+    <div
+      class="sc-gueYoa lbdwlY"
+      data-testid="week-day"
+    >
+      Tu
+    </div>
+    <div
+      class="sc-gueYoa lbdwlY"
+      data-testid="week-day"
+    >
+      We
+    </div>
+    <div
+      class="sc-gueYoa lbdwlY"
+      data-testid="week-day"
+    >
+      Th
+    </div>
+    <div
+      class="sc-gueYoa lbdwlY"
+      data-testid="week-day"
+    >
+      Fr
+    </div>
+    <div
+      class="sc-gueYoa lbdwlY"
+      data-testid="week-day"
+    >
+      Sa
+    </div>
+    <div
+      class="sc-gueYoa lbdwlY"
+      data-testid="week-day"
+    >
+      Su
+    </div>
+  </div>
+</div>
+`;

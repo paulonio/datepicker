@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MonthRow should render MonthRow 1`] = `
+<div>
+  <div
+    class="sc-gueYoa gmfVyb"
+  >
+    <img
+      class="sc-eDDNvR gZBFUb"
+      data-testid="prev-year"
+      src="./assets/icons/Prev-year.svg"
+    />
+    <img
+      class="sc-dmqHEX fjpLyB"
+      data-testid="prev"
+      src="./assets/icons/Prev.svg"
+    />
+    <div
+      class="sc-beqWaB hXNyms"
+      data-testid="month-row"
+    >
+      May
+       
+      2023
+    </div>
+    <img
+      class="sc-hLseeU yFOna"
+      data-testid="next"
+      src="./assets/icons/Next.svg"
+    />
+    <img
+      class="sc-jTrPJq gGFieX"
+      data-testid="next-year"
+      src="./assets/icons/Next-year.svg"
+    />
+  </div>
+</div>
+`;

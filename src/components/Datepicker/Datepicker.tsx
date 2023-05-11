@@ -31,15 +31,16 @@ const Datepicker: FC<DatepickerProps> = ({ ...initial }) => {
       <Global />
       <DatepickerWrapper>
         <ErrorBoundary fallback={<Fallback />}>
-          <Input label="From" date={state.from} dispatch={dispatch} />
-          <Input label="To" date={state.to} dispatch={dispatch} />
+          <Input label="From" date={state.from} config={initial} dispatch={dispatch} />
+          <Input label="To" date={state.to} config={initial} dispatch={dispatch} />
           {state.showCalendar && (
             <Calendar
               ref={calendarRef}
               config={initial}
               state={state}
               dispatch={dispatch}
-              data-component="calendar"
+              // data-component="calendar"
+              // data-testid="calendar"
             />
           )}
         </ErrorBoundary>
