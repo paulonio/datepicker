@@ -1,3 +1,5 @@
+import { Task } from '@components/Modal/Modal';
+
 export type View = 'weekly' | 'monthly';
 
 export type WeekendStatus = 'show' | 'hide';
@@ -53,4 +55,5 @@ export interface Calendar {
     dispatch: (action: Action) => void
   ) => void;
   showWeekendTitle: (title: string, weekendStatus: WeekendStatus) => boolean;
+  getTasks: (date: Date) => Task[];
 }

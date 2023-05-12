@@ -31,8 +31,8 @@ const DateButtons: FC<DateButtonsProps> = ({
 }) => {
   const today = calendar.getToday();
   const { currentCalendar } = state;
-  const { start: mode, view, weekend, minDate, maxDate } = config;
-  const allDays = useDisplayDates(mode, view, newDate);
+  const { start, view, weekend, minDate, maxDate } = config;
+  const allDays = useDisplayDates(start, view, newDate);
 
   const handleButtonClick = (date: Date) => {
     if (selectOneDate) {

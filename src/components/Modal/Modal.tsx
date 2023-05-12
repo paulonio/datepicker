@@ -2,6 +2,8 @@ import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import TasksList from '@components/TasksList/TasksList';
 
+import calendar from '@utils/ClassCalendar';
+
 import { Button, Input, Title, Wrapper } from './styled';
 
 interface ModalProps {
@@ -14,17 +16,12 @@ export interface Task {
   title: string;
 }
 
-const getTasks = (date: Date) => {
-  const tasks = JSON.parse(localStorage.getItem(`${date}`) as string);
-  return tasks;
-};
-
 const Modal: FC<ModalProps> = ({ date, handleCloseModal }) => {
   const [value, setValue] = useState<string>('');
   const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
-    const receivedTasks = getTasks(date);
+    const receivedTasks = calendar.getTasks(date);
     if (receivedTasks) {
       setTasks(receivedTasks);
     } else {

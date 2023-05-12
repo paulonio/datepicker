@@ -74,6 +74,10 @@ class Decorator implements Calendar {
   showWeekendTitle(title: string, weekendStatus: WeekendStatus) {
     return this.component.showWeekendTitle(title, weekendStatus);
   }
+
+  getTasks(date: Date) {
+    return this.component.getTasks(date);
+  }
 }
 
 export default Decorator;

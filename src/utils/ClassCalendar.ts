@@ -202,6 +202,11 @@ class ClassCalendar implements Calendar {
 
     return false;
   }
+
+  getTasks(date: Date) {
+    const tasks = JSON.parse(localStorage.getItem(`${date}`) as string);
+    return tasks;
+  }
 }
 
 const instance = new ClassCalendar();

@@ -20,9 +20,9 @@ export interface CalendarProps {
 type Ref = HTMLDivElement;
 
 const Calendar = forwardRef<Ref, CalendarProps>(({ config, state, dispatch }, ref) => {
-  const { currentCalendar: fromTo, from: dateFrom, to: dateTo } = state;
-  const { start: mode, view, weekend } = config;
-  const { newDate, setDate } = usePanelDates(fromTo, dateFrom, dateTo);
+  const { currentCalendar, from, to } = state;
+  const { start, view, weekend } = config;
+  const { newDate, setDate } = usePanelDates(currentCalendar, from, to);
   const [selectOneDate, setSelectOneDate] = useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date(2023, 4, 1));
 
@@ -39,7 +39,7 @@ const Calendar = forwardRef<Ref, CalendarProps>(({ config, state, dispatch }, re
           Select one date
         </Label>
         <MonthRow type={view} date={newDate} setDate={setDate} />
-        <WeekDayRow mode={mode} weekendStatus={weekend} />
+        <WeekDayRow mode={start} weekendStatus={weekend} />
         <DateButtons
           state={state}
           dispatch={dispatch}
