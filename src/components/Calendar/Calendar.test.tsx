@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import type { DatepickerProps } from '@components/Datepicker/Datepicker';
 import Calendar from './Calendar';
@@ -27,5 +27,16 @@ describe('Calendar', () => {
     );
 
     expect(container).toMatchSnapshot();
+  });
+
+  it('should show modal on checkbox true and hide on checkbox false', () => {
+    render(<Calendar config={config} state={stateMock} dispatch={() => {}} />);
+
+    const checkbox: HTMLInputElement = screen.getByTestId('checkbox');
+    expect(checkbox).not.toBeChecked();
+    expect(screen.queryByTestId('modal')).not.toBeInTheDocument();
+    fireEvent.click(checkbox);
+    expect(checkbox).toBeChecked();
+    expect(screen.queryByTestId('modal')).toBeInTheDocument();
   });
 });

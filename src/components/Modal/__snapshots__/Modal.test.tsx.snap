@@ -4,6 +4,7 @@ exports[`Modal should render modal component 1`] = `
 <div>
   <div
     class="sc-hLseeU lbeydx"
+    data-testid="modal"
   >
     <h3
       class="sc-eDDNvR jiTeUx"

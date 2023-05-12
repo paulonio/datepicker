@@ -32,7 +32,7 @@ const Calendar = forwardRef<Ref, CalendarProps>(({ config, state, dispatch }, re
     <Wrapper ref={ref}>
       <CalendarWrapper>
         <Label>
-          <Checkbox onChange={handleModeChange} />
+          <Checkbox onChange={handleModeChange} data-testid="checkbox" />
           Select one date
         </Label>
         <MonthRow type={view} date={newDate} setDate={setDate} />

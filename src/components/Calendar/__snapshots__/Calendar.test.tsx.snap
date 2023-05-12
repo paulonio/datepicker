@@ -15,6 +15,7 @@ exports[`Calendar should render calendar 1`] = `
       >
         <input
           class="sc-ieZDjg"
+          data-testid="checkbox"
           type="checkbox"
         />
         Select one date
