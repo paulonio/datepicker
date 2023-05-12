@@ -7,6 +7,10 @@ import external from 'rollup-plugin-peer-deps-external';
 import packageJson from './package.json' assert { type: 'json' };
 import alias from '@rollup/plugin-alias';
 
+const path = require('path');
+const customResolver = resolve({
+  extensions: ['.mjs', '.js', '.jsx', '.json', '.sass', '.scss', '.tsx', '.ts']
+});
 const rootDir = path.resolve(__dirname);
 
 export default [
@@ -20,11 +24,6 @@ export default [
       },
     ],
     plugins: [
-      external(),
-      resolve(),
-      eslint(),
-      babel({ babelHelpers: 'bundled', exclude: 'node_modules/**' }),
-      typescript({ tsconfig: './tsconfig.json' }),
       alias({
         resolve: ['.js', '.ts', '.jsx', '.tsx'],
         entries: [
@@ -38,6 +37,11 @@ export default [
         ],
         customResolver,
       }),
+      external(),
+      eslint(),
+      babel({ babelHelpers: 'bundled', exclude: 'node_modules/**' }),
+      typescript({ tsconfig: './tsconfig.json' }),
+      resolve(),
       terser(),
     ],
   },

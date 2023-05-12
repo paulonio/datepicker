@@ -182,8 +182,9 @@ exports[`DateButtons component should correctly highlight date from and date to 
   cursor: pointer;
   -webkit-transition: background-color 0.3s,border-radius 0.3s,color 0.3s;
   transition: background-color 0.3s,border-radius 0.3s,color 0.3s;
-  background-color: rgba(47,128,237,0.1);
-  color: #2f80ed;
+  background-color: #2f80ed;
+  color: #ffffff;
+  border-radius: 0px 8px 8px 0px;
   color: red;
 }
 
@@ -216,11 +217,9 @@ exports[`DateButtons component should correctly highlight date from and date to 
   border-radius: 4px;
   background-color: #ffffff;
   cursor: pointer;
+  color: #aaaaaa;
   -webkit-transition: background-color 0.3s,border-radius 0.3s,color 0.3s;
   transition: background-color 0.3s,border-radius 0.3s,color 0.3s;
-  background-color: #2f80ed;
-  color: #ffffff;
-  border-radius: 0px 8px 8px 0px;
 }
 
 .c6:enabled:hover {
@@ -255,6 +254,7 @@ exports[`DateButtons component should correctly highlight date from and date to 
   color: #aaaaaa;
   -webkit-transition: background-color 0.3s,border-radius 0.3s,color 0.3s;
   transition: background-color 0.3s,border-radius 0.3s,color 0.3s;
+  border: solid 1px blue;
 }
 
 .c7:enabled:hover {
@@ -264,41 +264,6 @@ exports[`DateButtons component should correctly highlight date from and date to 
 }
 
 .c7:disabled {
-  cursor: default;
-}
-
-.c8 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  width: 32.85px;
-  height: 32px;
-  border: none;
-  border-radius: 4px;
-  background-color: #ffffff;
-  cursor: pointer;
-  color: #aaaaaa;
-  -webkit-transition: background-color 0.3s,border-radius 0.3s,color 0.3s;
-  transition: background-color 0.3s,border-radius 0.3s,color 0.3s;
-  border: solid 1px blue;
-}
-
-.c8:enabled:hover {
-  background-color: #f1f1f1;
-  border-radius: 8px;
-  color: #333333;
-}
-
-.c8:disabled {
   cursor: default;
 }
 
@@ -367,13 +332,13 @@ exports[`DateButtons component should correctly highlight date from and date to 
       10
     </button>
     <button
-      class="c5"
+      class="c4"
       data-testid="date-button"
     >
       11
     </button>
     <button
-      class="c6"
+      class="c5"
       data-testid="date-button"
     >
       12
@@ -493,67 +458,67 @@ exports[`DateButtons component should correctly highlight date from and date to 
       31
     </button>
     <button
-      class="c7"
+      class="c6"
       data-testid="date-button"
     >
       1
     </button>
     <button
-      class="c7"
+      class="c6"
       data-testid="date-button"
     >
       2
     </button>
     <button
-      class="c8"
+      class="c7"
       data-testid="date-button"
     >
       3
     </button>
     <button
-      class="c8"
+      class="c7"
       data-testid="date-button"
     >
       4
     </button>
     <button
-      class="c7"
+      class="c6"
       data-testid="date-button"
     >
       5
     </button>
     <button
-      class="c7"
+      class="c6"
       data-testid="date-button"
     >
       6
     </button>
     <button
-      class="c7"
+      class="c6"
       data-testid="date-button"
     >
       7
     </button>
     <button
-      class="c7"
+      class="c6"
       data-testid="date-button"
     >
       8
     </button>
     <button
-      class="c7"
+      class="c6"
       data-testid="date-button"
     >
       9
     </button>
     <button
-      class="c8"
+      class="c7"
       data-testid="date-button"
     >
       10
     </button>
     <button
-      class="c8"
+      class="c7"
       data-testid="date-button"
     >
       11
@@ -820,13 +785,13 @@ exports[`DateButtons component should render DateButtons component 1`] = `
       10
     </button>
     <button
-      class="c3"
+      class="c1"
       data-testid="date-button"
     >
       11
     </button>
     <button
-      class="c1"
+      class="c3"
       data-testid="date-button"
     >
       12

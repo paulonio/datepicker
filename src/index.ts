@@ -1,1 +1,3 @@
-export * from '@components';
+import Datepicker from '@components/Datepicker/Datepicker';
+
+console.log(Datepicker);

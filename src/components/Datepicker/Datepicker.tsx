@@ -4,11 +4,10 @@ import Input from '@components/Input/Input';
 import Calendar from '@components/Calendar/Calendar';
 import { useOutsideClick } from '@hooks/useOutsideClick';
 import { useDatepickerState } from '@hooks/useDatepickerState';
-import type { Mode, View, WeekendStatus } from '@/types/types';
 import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
 import Fallback from '@components/Fallback/Fallback';
+import type { Mode, View, WeekendStatus } from '@/types/types';
 import { DatepickerWrapper } from './styled';
-
 
 export interface DatepickerProps {
   start: Mode;
@@ -35,12 +34,7 @@ const Datepicker: FC<DatepickerProps> = ({ ...initial }) => {
           <Input label="From" date={state.from} config={initial} dispatch={dispatch} />
           <Input label="To" date={state.to} config={initial} dispatch={dispatch} />
           {state.showCalendar && (
-            <Calendar
-              ref={calendarRef}
-              config={initial}
-              state={state}
-              dispatch={dispatch}
-            />
+            <Calendar ref={calendarRef} config={initial} state={state} dispatch={dispatch} />
           )}
         </ErrorBoundary>
       </DatepickerWrapper>

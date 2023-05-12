@@ -161,13 +161,13 @@ exports[`Calendar should render calendar 1`] = `
           10
         </button>
         <button
-          class="sc-brKeYL hFOoiS"
+          class="sc-brKeYL gEIlyV"
           data-testid="date-button"
         >
           11
         </button>
         <button
-          class="sc-brKeYL gEIlyV"
+          class="sc-brKeYL hFOoiS"
           data-testid="date-button"
         >
           12
