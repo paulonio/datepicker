@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
-import { Button, Input, Title, Wrapper } from './styled';
 import TasksList from '@components/TasksList/TasksList';
+import { Button, Input, Title, Wrapper } from './styled';
 
 interface ModalProps {
   date: Date;

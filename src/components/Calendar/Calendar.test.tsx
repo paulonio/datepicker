@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Calendar from './Calendar';
 import type { DatepickerProps } from '@components/Datepicker/Datepicker';
+import Calendar from './Calendar';
 import type { Init } from '@/types/types';
 
 describe('Calendar', () => {
