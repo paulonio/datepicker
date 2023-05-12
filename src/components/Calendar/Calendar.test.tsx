@@ -1,6 +1,7 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+
 import type { DatepickerProps } from '@components/Datepicker/Datepicker';
 import Calendar from './Calendar';
 import type { Init } from '@/types/types';

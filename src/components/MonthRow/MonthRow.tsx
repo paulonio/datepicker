@@ -1,8 +1,10 @@
 import React, { FC } from 'react';
+
 import { useMonthChangeHandlers } from '@hooks/useMonthChangeHandlers';
 import { MONTHS } from '@constants/constants';
-import { Month, MonthWrapper, NextIcon, PrevIcon, PrevYearIcon, NextYearIcon } from './styled';
 import type { View } from '@/types/types';
+
+import { Month, MonthWrapper, NextIcon, PrevIcon, PrevYearIcon, NextYearIcon } from './styled';
 
 interface MonthRowProps {
   type: View;

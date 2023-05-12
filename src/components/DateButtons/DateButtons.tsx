@@ -1,8 +1,11 @@
 import React, { FC } from 'react';
+
+import type { DatepickerProps } from '@components/Datepicker/Datepicker';
+
 import calendar from '@utils/ClassCalendar';
 import { useDisplayDates } from '@hooks/useDisplayDates';
-import type { DatepickerProps } from '@components/Datepicker/Datepicker';
 import type { Init, Action } from '@/types/types';
+
 import { Week, WeekDay } from './styled';
 
 interface DateButtonsProps {

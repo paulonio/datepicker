@@ -3,36 +3,36 @@
 exports[`Input should render input 1`] = `
 <div>
   <div
-    class="sc-beqWaB eiKLBH"
+    class="sc-bgqQcB euGjSZ"
   >
     <div
-      class="sc-gueYoa kEZcTP"
+      class="sc-gTRrQi dqPWMM"
     >
       From
     </div>
     <label
-      class="sc-dmqHEX gTVuuB"
+      class="sc-ewnqHT kDjHUh"
     >
       <div
-        class="sc-hLseeU hJBuPB"
+        class="sc-fFGjHI bcaVJn"
       >
         <img
-          class="sc-jTrPJq cfnNIk"
+          class="sc-iVCKna cRYcDH"
           src="./assets/icons/Calendar.svg"
         />
       </div>
       <input
-        class="sc-gLDzan bZWVsH"
+        class="sc-gxYJeL iQdjAM"
         data-testid="input"
         placeholder="Choose Date"
         value="07/05/2023"
       />
       <div
-        class="sc-eDDNvR eeFhds"
+        class="sc-dicizt dATGeW"
         data-testid="close-icon"
       >
         <img
-          class="sc-jTrPJq cfnNIk"
+          class="sc-iVCKna cRYcDH"
           src="./assets/icons/Clear.svg"
         />
       </div>

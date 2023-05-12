@@ -1,6 +1,9 @@
 import React, { FC } from 'react';
-import calendar from '@utils/ClassCalendar';
+
 import type { Task } from '@components/Modal/Modal';
+
+import calendar from '@utils/ClassCalendar';
+
 import { TaskElement, Title, Wrapper } from './styled';
 
 interface TasksListProps {

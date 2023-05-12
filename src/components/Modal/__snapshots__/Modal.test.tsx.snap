@@ -3,31 +3,31 @@
 exports[`Modal should render modal component 1`] = `
 <div>
   <div
-    class="sc-hLseeU lbeydx"
+    class="sc-fFGjHI gllHxj"
     data-testid="modal"
   >
     <h3
-      class="sc-eDDNvR jiTeUx"
+      class="sc-dicizt bieuVL"
     >
       Add task
     </h3>
     <input
-      class="sc-jTrPJq"
+      class="sc-iVCKna"
       data-testid="input"
       placeholder="Type task"
       value=""
     />
     <button
-      class="sc-gLDzan"
+      class="sc-gxYJeL"
       data-testid="submit"
     >
       Confirm
     </button>
     <div
-      class="sc-beqWaB iFODHc"
+      class="sc-bgqQcB eaEnve"
     >
       <h3
-        class="sc-gueYoa ckhcaG"
+        class="sc-gTRrQi gteUIR"
         data-testid="title"
       >
         Tasks - 

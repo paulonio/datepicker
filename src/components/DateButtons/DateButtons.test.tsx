@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import 'jest-styled-components';
+
 import type { DatepickerProps } from '@components/Datepicker/Datepicker';
 import DateButtons from '@components/DateButtons/DateButtons';
 import type { Init } from '@/types/types';

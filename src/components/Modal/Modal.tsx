@@ -1,5 +1,7 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
+
 import TasksList from '@components/TasksList/TasksList';
+
 import { Button, Input, Title, Wrapper } from './styled';
 
 interface ModalProps {

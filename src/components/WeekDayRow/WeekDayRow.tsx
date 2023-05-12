@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
+
 import { MONDAY_STARTS, SUNDAY_STARTS } from '@constants/constants';
 import calendar from '@utils/ClassCalendar';
 import type { Mode, WeekendStatus } from '@/types/types';
+
 import { WeekDay, WeekWrapper } from './styled';
 
 interface WeekDayRowProps {

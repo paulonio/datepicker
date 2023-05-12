@@ -3,46 +3,46 @@
 exports[`WeekDayRow should render WeekDayRow component and starts on monday 1`] = `
 <div>
   <div
-    class="sc-beqWaB fleLma"
+    class="sc-bgqQcB MEEiE"
   >
     <div
-      class="sc-gueYoa fUeWBE"
+      class="sc-gTRrQi kXvLIr"
       data-testid="week-day"
     >
       Mo
     </div>
     <div
-      class="sc-gueYoa fUeWBE"
+      class="sc-gTRrQi kXvLIr"
       data-testid="week-day"
     >
       Tu
     </div>
     <div
-      class="sc-gueYoa fUeWBE"
+      class="sc-gTRrQi kXvLIr"
       data-testid="week-day"
     >
       We
     </div>
     <div
-      class="sc-gueYoa fUeWBE"
+      class="sc-gTRrQi kXvLIr"
       data-testid="week-day"
     >
       Th
     </div>
     <div
-      class="sc-gueYoa fUeWBE"
+      class="sc-gTRrQi kXvLIr"
       data-testid="week-day"
     >
       Fr
     </div>
     <div
-      class="sc-gueYoa fUeWBE"
+      class="sc-gTRrQi kXvLIr"
       data-testid="week-day"
     >
       Sa
     </div>
     <div
-      class="sc-gueYoa fUeWBE"
+      class="sc-gTRrQi kXvLIr"
       data-testid="week-day"
     >
       Su

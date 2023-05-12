@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Message, Wrapper } from './styled';
 
 const Fallback = () => {

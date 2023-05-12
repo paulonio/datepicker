@@ -3,10 +3,10 @@
 exports[`TasksList should render Tasks component 1`] = `
 <div>
   <div
-    class="sc-beqWaB iFODHc"
+    class="sc-bgqQcB eaEnve"
   >
     <h3
-      class="sc-gueYoa ckhcaG"
+      class="sc-gTRrQi gteUIR"
       data-testid="title"
     >
       Tasks - 

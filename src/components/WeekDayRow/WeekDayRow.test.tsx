@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+
 import WeekDayRow from '@components/WeekDayRow/WeekDayRow';
 
 describe('WeekDayRow', () => {

@@ -3,20 +3,20 @@
 exports[`MonthRow should render MonthRow 1`] = `
 <div>
   <div
-    class="sc-gueYoa gmfVyb"
+    class="sc-gTRrQi keXuBg"
   >
     <img
-      class="sc-eDDNvR gZBFUb"
+      class="sc-dicizt ghilUp"
       data-testid="prev-year"
       src="./assets/icons/Prev-year.svg"
     />
     <img
-      class="sc-dmqHEX fjpLyB"
+      class="sc-ewnqHT gzNrMh"
       data-testid="prev"
       src="./assets/icons/Prev.svg"
     />
     <div
-      class="sc-beqWaB hXNyms"
+      class="sc-bgqQcB fnzUFW"
       data-testid="month-row"
     >
       May
@@ -24,12 +24,12 @@ exports[`MonthRow should render MonthRow 1`] = `
       2023
     </div>
     <img
-      class="sc-hLseeU yFOna"
+      class="sc-fFGjHI gHPgDo"
       data-testid="next"
       src="./assets/icons/Next.svg"
     />
     <img
-      class="sc-jTrPJq gGFieX"
+      class="sc-iVCKna dYxFcU"
       data-testid="next-year"
       src="./assets/icons/Next-year.svg"
     />

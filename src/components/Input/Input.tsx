@@ -1,9 +1,12 @@
 import React, { FC, useEffect, useState } from 'react';
+
+import type { DatepickerProps } from '@components/Datepicker/Datepicker';
+
 import calendar from '@utils/ClassCalendar';
 import { useInputHandlers } from '@hooks/useInputHandlers';
-import type { DatepickerProps } from '@components/Datepicker/Datepicker';
-import { CalendarIcon, CloseIcon, Field, FieldWrapper, Icon, Label, Wrapper } from './styled';
 import type { Action } from '@/types/types';
+
+import { CalendarIcon, CloseIcon, Field, FieldWrapper, Icon, Label, Wrapper } from './styled';
 
 interface InputProps {
   label: 'From' | 'To';

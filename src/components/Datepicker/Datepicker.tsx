@@ -1,12 +1,16 @@
 import React, { FC, useRef } from 'react';
-import Global from '@styles/Global';
+
 import Input from '@components/Input/Input';
 import Calendar from '@components/Calendar/Calendar';
+import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
+import MetaLinks from '@components/MetaLinks/MetaLinks';
+import Fallback from '@components/Fallback/Fallback';
+
 import { useOutsideClick } from '@hooks/useOutsideClick';
 import { useDatepickerState } from '@hooks/useDatepickerState';
-import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
-import Fallback from '@components/Fallback/Fallback';
+import Global from '@styles/Global';
 import type { Mode, View, WeekendStatus } from '@/types/types';
+
 import { DatepickerWrapper } from './styled';
 
 export interface DatepickerProps {
@@ -29,6 +33,7 @@ const Datepicker: FC<DatepickerProps> = ({ ...initial }) => {
   return (
     <>
       <Global />
+      <MetaLinks />
       <DatepickerWrapper>
         <ErrorBoundary fallback={<Fallback />}>
           <Input label="From" date={state.from} config={initial} dispatch={dispatch} />
