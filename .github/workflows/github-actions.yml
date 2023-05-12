@@ -1,0 +1,31 @@
+name: Datepicker
+run-name: Datepicker test
+on: 
+  push:
+    branches: [ main, datepicker ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint-test-and-push:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 16.x ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run lint
+        run: yarn lint
+
+      - name: Run tests
+        run: yarn test
