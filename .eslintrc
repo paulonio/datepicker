@@ -23,6 +23,6 @@
     "es6": true
   },
   "parserOptions": {
-    "tsconfigRootDir": "__dirname"
+    "project": "./tsconfig.json"
   }
 }

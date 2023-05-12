@@ -12,7 +12,6 @@ exports[`TasksList should render Tasks component 1`] = `
       Tasks - 
       11/05/2023
     </h3>
-    0
   </div>
 </div>
 `;

@@ -1,11 +1,11 @@
 import React, { ChangeEvent, forwardRef, useState } from 'react';
 import WeekDayRow from '@components/WeekDayRow/WeekDayRow';
 import MonthRow from '@components/MonthRow/MonthRow';
-import { CalendarWrapper, Checkbox, ClearButton, Label, Wrapper } from './styled';
 import DateButtons from '@components/DateButtons/DateButtons';
 import { usePanelDates } from '@hooks/usePanelDates';
 import Modal from '@components/Modal/Modal';
 import type { DatepickerProps } from '@components/Datepicker/Datepicker';
+import { CalendarWrapper, Checkbox, ClearButton, Label, Wrapper } from './styled';
 import type { Action, Init } from '@/types/types';
 
 export interface CalendarProps {
@@ -18,7 +18,7 @@ type Ref = HTMLDivElement;
 
 const Calendar = forwardRef<Ref, CalendarProps>(({ config, state, dispatch }, ref) => {
   const { currentCalendar: fromTo, from: dateFrom, to: dateTo } = state;
-  const { start: mode, view } = config;
+  const { start: mode, view, weekend } = config;
   const { newDate, setDate } = usePanelDates(fromTo, dateFrom, dateTo);
   const [selectOneDate, setSelectOneDate] = useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date(2023, 4, 1));
@@ -36,7 +36,7 @@ const Calendar = forwardRef<Ref, CalendarProps>(({ config, state, dispatch }, re
           Select one date
         </Label>
         <MonthRow type={view} date={newDate} setDate={setDate} />
-        <WeekDayRow mode={mode} />
+        <WeekDayRow mode={mode} weekendStatus={weekend} />
         <DateButtons
           state={state}
           dispatch={dispatch}

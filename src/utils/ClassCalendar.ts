@@ -1,6 +1,6 @@
 import { CELLS_AMOUNT } from '@constants/constants';
 import CalendarDecorator from '@utils/CalendarDecorator';
-import type { Calendar, DisplayDate, Init, Mode, WeekendStatus } from '@/types/types';
+import type { Action, Calendar, DisplayDate, Init, Mode, WeekendStatus } from '@/types/types';
 
 class ClassCalendar implements Calendar {
   changeSundayWeekToMonday(day: number) {
@@ -171,6 +171,36 @@ class ClassCalendar implements Calendar {
       return 'inRange';
     }
     return '';
+  }
+
+  parseStringToDate(dateString: string) {
+    if (!dateString) {
+      return null;
+    }
+    const [day, month, year] = dateString
+      .trim()
+      .split('/')
+      .map((item) => Number(item));
+
+    const date = new Date(year, month - 1, day);
+    return date;
+  }
+
+  updateSelectedDate(inputDate: string, label: 'From' | 'To', dispatch: (action: Action) => void) {
+    const date = this.parseStringToDate(inputDate);
+    if (date) {
+      const type = label === 'From' ? 'SET_DATE_FROM' : 'SET_DATE_TO';
+      const action: Action = { type, payload: { date } };
+      dispatch(action);
+    }
+  }
+
+  showWeekendTitle(title: string, weekendStatus: WeekendStatus) {
+    if (weekendStatus === 'hide' && (title === 'Sa' || title === 'Su')) {
+      return true;
+    }
+
+    return false;
   }
 }
 

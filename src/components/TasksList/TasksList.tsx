@@ -14,7 +14,7 @@ const TasksList: FC<TasksListProps> = ({ tasks, date }) => {
   return (
     <Wrapper>
       <Title data-testid="title">Tasks - {dateString}</Title>
-      {tasks.length &&
+      {tasks.length > 0 &&
         tasks.map(({ id, title }) => (
           <TaskElement key={id} data-testid="task">
             {title}

@@ -46,4 +46,11 @@ export interface Calendar {
   parseDate: (date: Date) => { day: number; month: number; year: number };
   showWeekend: (isWeekend: boolean, weekendStatus: WeekendStatus) => boolean;
   getMode: (date: Date, selectedDates: Init, selectOneDate: boolean, selectedDate: Date) => Status;
+  parseStringToDate: (dateString: string) => Date | null;
+  updateSelectedDate: (
+    inputDate: string,
+    label: 'From' | 'To',
+    dispatch: (action: Action) => void
+  ) => void;
+  showWeekendTitle: (title: string, weekendStatus: WeekendStatus) => boolean;
 }

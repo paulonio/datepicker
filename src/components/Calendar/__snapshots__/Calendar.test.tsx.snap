@@ -3,18 +3,18 @@
 exports[`Calendar should render calendar 1`] = `
 <div>
   <div
-    class="sc-fsQiph bEeuED"
+    class="sc-hAtEyd fvCzsn"
   >
     <div
-      class="sc-qRumB fGjAQa"
+      class="sc-fmSAUk jXhzZk"
       data-component="calendar"
       data-testid="calendar"
     >
       <label
-        class="sc-kFuwaP gVJjtp"
+        class="sc-blLsxD bVvqgW"
       >
         <input
-          class="sc-irTswW"
+          class="sc-ieZDjg"
           type="checkbox"
         />
         Select one date
@@ -55,306 +55,306 @@ exports[`Calendar should render calendar 1`] = `
         class="sc-beqWaB fleLma"
       >
         <div
-          class="sc-gueYoa lbdwlY"
+          class="sc-gueYoa fUeWBE"
           data-testid="week-day"
         >
           Mo
         </div>
         <div
-          class="sc-gueYoa lbdwlY"
+          class="sc-gueYoa fUeWBE"
           data-testid="week-day"
         >
           Tu
         </div>
         <div
-          class="sc-gueYoa lbdwlY"
+          class="sc-gueYoa fUeWBE"
           data-testid="week-day"
         >
           We
         </div>
         <div
-          class="sc-gueYoa lbdwlY"
+          class="sc-gueYoa fUeWBE"
           data-testid="week-day"
         >
           Th
         </div>
         <div
-          class="sc-gueYoa lbdwlY"
+          class="sc-gueYoa fUeWBE"
           data-testid="week-day"
         >
           Fr
         </div>
         <div
-          class="sc-gueYoa lbdwlY"
+          class="sc-gueYoa fUeWBE"
           data-testid="week-day"
         >
           Sa
         </div>
         <div
-          class="sc-gueYoa lbdwlY"
+          class="sc-gueYoa fUeWBE"
           data-testid="week-day"
         >
           Su
         </div>
       </div>
       <div
-        class="sc-fbJfA gBofHz"
+        class="sc-fsQiph fjgByX"
       >
         <button
-          class="sc-brKeYL denNro"
+          class="sc-qRumB hiswWa"
           data-testid="date-button"
         >
           1
         </button>
         <button
-          class="sc-brKeYL hFWkPJ"
+          class="sc-qRumB gwncVz"
           data-testid="date-button"
         >
           2
         </button>
         <button
-          class="sc-brKeYL gEIlyV"
+          class="sc-qRumB kOJDLz"
           data-testid="date-button"
         >
           3
         </button>
         <button
-          class="sc-brKeYL gEIlyV"
+          class="sc-qRumB kOJDLz"
           data-testid="date-button"
         >
           4
         </button>
         <button
-          class="sc-brKeYL gEIlyV"
+          class="sc-qRumB kOJDLz"
           data-testid="date-button"
         >
           5
         </button>
         <button
-          class="sc-brKeYL liHFrH"
+          class="sc-qRumB gaVQPJ"
           data-testid="date-button"
         >
           6
         </button>
         <button
-          class="sc-brKeYL liHFrH"
+          class="sc-qRumB gaVQPJ"
           data-testid="date-button"
         >
           7
         </button>
         <button
-          class="sc-brKeYL gEIlyV"
+          class="sc-qRumB kOJDLz"
           data-testid="date-button"
         >
           8
         </button>
         <button
-          class="sc-brKeYL gEIlyV"
+          class="sc-qRumB kOJDLz"
           data-testid="date-button"
         >
           9
         </button>
         <button
-          class="sc-brKeYL gEIlyV"
+          class="sc-qRumB kOJDLz"
           data-testid="date-button"
         >
           10
         </button>
         <button
-          class="sc-brKeYL gEIlyV"
+          class="sc-qRumB kOJDLz"
           data-testid="date-button"
         >
           11
         </button>
         <button
-          class="sc-brKeYL hFOoiS"
+          class="sc-qRumB eZcKpY"
           data-testid="date-button"
         >
           12
         </button>
         <button
-          class="sc-brKeYL liHFrH"
+          class="sc-qRumB gaVQPJ"
           data-testid="date-button"
         >
           13
         </button>
         <button
-          class="sc-brKeYL liHFrH"
+          class="sc-qRumB gaVQPJ"
           data-testid="date-button"
         >
           14
         </button>
         <button
-          class="sc-brKeYL gEIlyV"
+          class="sc-qRumB kOJDLz"
           data-testid="date-button"
         >
           15
         </button>
         <button
-          class="sc-brKeYL gEIlyV"
+          class="sc-qRumB kOJDLz"
           data-testid="date-button"
         >
           16
         </button>
         <button
-          class="sc-brKeYL gEIlyV"
+          class="sc-qRumB kOJDLz"
           data-testid="date-button"
         >
           17
         </button>
         <button
-          class="sc-brKeYL gEIlyV"
+          class="sc-qRumB kOJDLz"
           data-testid="date-button"
         >
           18
         </button>
         <button
-          class="sc-brKeYL gEIlyV"
+          class="sc-qRumB kOJDLz"
           data-testid="date-button"
         >
           19
         </button>
         <button
-          class="sc-brKeYL liHFrH"
+          class="sc-qRumB gaVQPJ"
           data-testid="date-button"
         >
           20
         </button>
         <button
-          class="sc-brKeYL liHFrH"
+          class="sc-qRumB gaVQPJ"
           data-testid="date-button"
         >
           21
         </button>
         <button
-          class="sc-brKeYL gEIlyV"
+          class="sc-qRumB kOJDLz"
           data-testid="date-button"
         >
           22
         </button>
         <button
-          class="sc-brKeYL gEIlyV"
+          class="sc-qRumB kOJDLz"
           data-testid="date-button"
         >
           23
         </button>
         <button
-          class="sc-brKeYL gEIlyV"
+          class="sc-qRumB kOJDLz"
           data-testid="date-button"
         >
           24
         </button>
         <button
-          class="sc-brKeYL gEIlyV"
+          class="sc-qRumB kOJDLz"
           data-testid="date-button"
         >
           25
         </button>
         <button
-          class="sc-brKeYL gEIlyV"
+          class="sc-qRumB kOJDLz"
           data-testid="date-button"
         >
           26
         </button>
         <button
-          class="sc-brKeYL liHFrH"
+          class="sc-qRumB gaVQPJ"
           data-testid="date-button"
         >
           27
         </button>
         <button
-          class="sc-brKeYL liHFrH"
+          class="sc-qRumB gaVQPJ"
           data-testid="date-button"
         >
           28
         </button>
         <button
-          class="sc-brKeYL gEIlyV"
+          class="sc-qRumB kOJDLz"
           data-testid="date-button"
         >
           29
         </button>
         <button
-          class="sc-brKeYL ibrhJO"
+          class="sc-qRumB ictflA"
           data-testid="date-button"
         >
           30
         </button>
         <button
-          class="sc-brKeYL denNro"
+          class="sc-qRumB hiswWa"
           data-testid="date-button"
         >
           31
         </button>
         <button
-          class="sc-brKeYL kFchYz"
+          class="sc-qRumB fipidh"
           data-testid="date-button"
         >
           1
         </button>
         <button
-          class="sc-brKeYL kFchYz"
+          class="sc-qRumB fipidh"
           data-testid="date-button"
         >
           2
         </button>
         <button
-          class="sc-brKeYL cZUeXx"
+          class="sc-qRumB gaghwX"
           data-testid="date-button"
         >
           3
         </button>
         <button
-          class="sc-brKeYL cZUeXx"
+          class="sc-qRumB gaghwX"
           data-testid="date-button"
         >
           4
         </button>
         <button
-          class="sc-brKeYL kFchYz"
+          class="sc-qRumB fipidh"
           data-testid="date-button"
         >
           5
         </button>
         <button
-          class="sc-brKeYL kFchYz"
+          class="sc-qRumB fipidh"
           data-testid="date-button"
         >
           6
         </button>
         <button
-          class="sc-brKeYL kFchYz"
+          class="sc-qRumB fipidh"
           data-testid="date-button"
         >
           7
         </button>
         <button
-          class="sc-brKeYL kFchYz"
+          class="sc-qRumB fipidh"
           data-testid="date-button"
         >
           8
         </button>
         <button
-          class="sc-brKeYL kFchYz"
+          class="sc-qRumB fipidh"
           data-testid="date-button"
         >
           9
         </button>
         <button
-          class="sc-brKeYL cZUeXx"
+          class="sc-qRumB gaghwX"
           data-testid="date-button"
         >
           10
         </button>
         <button
-          class="sc-brKeYL cZUeXx"
+          class="sc-qRumB gaghwX"
           data-testid="date-button"
         >
           11
         </button>
       </div>
       <button
-        class="sc-csCMJt iKRboP"
+        class="sc-dKfzgJ kjZgqV"
       >
         Clear
       </button>
