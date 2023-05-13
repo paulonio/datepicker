@@ -26,6 +26,8 @@ export const useDatepickerState = () => {
         return { ...state, currentCalendar: action.payload.calendar };
       case 'TOGGLE_CALENDAR':
         return { ...state, showCalendar: action.payload.showCalendar };
+      case 'CLEAR_INPUTS':
+        return { ...state, from: null, to: null };
       default:
         return state;
     }

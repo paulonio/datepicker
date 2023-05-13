@@ -4,7 +4,7 @@ import TasksList from '@components/TasksList/TasksList';
 
 import calendar from '@utils/ClassCalendar';
 
-import { Button, Input, Title, Wrapper } from './styled';
+import { Button, Input, InputWrapper, Title, Wrapper } from './styled';
 
 interface ModalProps {
   date: Date;
@@ -50,10 +50,12 @@ const Modal: FC<ModalProps> = ({ date, handleCloseModal }) => {
   return (
     <Wrapper data-testid="modal">
       <Title>Add task</Title>
-      <Input value={value} onChange={handleChange} placeholder="Type task" data-testid="input" />
-      <Button onClick={handleAddTask} data-testid="submit">
-        Confirm
-      </Button>
+      <InputWrapper>
+        <Input value={value} onChange={handleChange} placeholder="Type task" data-testid="input" />
+        <Button onClick={handleAddTask} data-testid="submit">
+          Confirm
+        </Button>
+      </InputWrapper>
       <TasksList tasks={tasks} date={date} />
     </Wrapper>
   );

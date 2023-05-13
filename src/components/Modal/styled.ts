@@ -15,6 +15,19 @@ export const Title = styled.h3`
   line-height: 19px;
 `;
 
-export const Input = styled.input``;
+export const InputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
 
-export const Button = styled.button``;
+export const Input = styled.input`
+  max-width: 140px;
+`;
+
+export const Button = styled.button`
+  max-width: 100px;
+  &:hover {
+    cursor: pointer;
+  }
+`;

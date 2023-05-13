@@ -31,6 +31,11 @@ const Calendar = forwardRef<Ref, CalendarProps>(({ config, state, dispatch }, re
     setSelectOneDate(isChecked);
   };
 
+  const handleClearInputs = () => {
+    const action: Action = { type: 'CLEAR_INPUTS' };
+    dispatch(action);
+  };
+
   return (
     <Wrapper ref={ref}>
       <CalendarWrapper>
@@ -50,7 +55,7 @@ const Calendar = forwardRef<Ref, CalendarProps>(({ config, state, dispatch }, re
           setSelectOneDate={setSelectOneDate}
           selectDate={setSelectedDate}
         />
-        <ClearButton>Clear</ClearButton>
+        <ClearButton onClick={handleClearInputs}>Clear</ClearButton>
       </CalendarWrapper>
       {selectOneDate && <Modal date={selectedDate} handleCloseModal={setSelectOneDate} />}
     </Wrapper>

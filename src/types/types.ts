@@ -17,7 +17,8 @@ export type Action =
   | { type: 'SET_DATE_FROM'; payload: { date: Date | null } }
   | { type: 'SET_DATE_TO'; payload: { date: Date | null } }
   | { type: 'SET_CURRENT_CALENDAR'; payload: { calendar: 'From' | 'To' } }
-  | { type: 'TOGGLE_CALENDAR'; payload: { showCalendar: boolean } };
+  | { type: 'TOGGLE_CALENDAR'; payload: { showCalendar: boolean } }
+  | { type: 'CLEAR_INPUTS' };
 
 export interface DisplayDate {
   currentYear: number;

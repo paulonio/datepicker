@@ -11,18 +11,22 @@ exports[`Modal should render modal component 1`] = `
     >
       Add task
     </h3>
-    <input
-      class="sc-iVCKna"
-      data-testid="input"
-      placeholder="Type task"
-      value=""
-    />
-    <button
-      class="sc-gxYJeL"
-      data-testid="submit"
+    <div
+      class="sc-iVCKna kYeVvR"
     >
-      Confirm
-    </button>
+      <input
+        class="sc-gxYJeL hyoWFD"
+        data-testid="input"
+        placeholder="Type task"
+        value=""
+      />
+      <button
+        class="sc-kPTPQs gXqdmt"
+        data-testid="submit"
+      >
+        Confirm
+      </button>
+    </div>
     <div
       class="sc-bgqQcB eaEnve"
     >
