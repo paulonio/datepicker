@@ -1,8 +1,14 @@
 {
   "name": "datepicker",
   "version": "1.0.0",
-  "repository": "https://github.com/paulonio/datepicker.git",
-  "author": "Paul <paul.dashkevich@yandex.ru>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulonio/datepicker.git"
+  },
+  "author": {
+    "name": "Paul",
+    "email": "paul.dashkevich@yandex.ru"
+  },
   "license": "MIT",
   "type": "module",
   "module": "dist/index.js",
@@ -16,7 +22,8 @@
     "test": "jest",
     "prettier": "prettier --write src/**/*.tsx",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_5f52c6e7d6380c7"
   },
   "husky": {
     "hooks": {
@@ -87,5 +94,11 @@
   "dependencies": {
     "@types/node": "^18.15.13",
     "react-helmet": "^6.1.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/paulonio/datepicker/issues"
+  },
+  "readme": "ERROR: No README data found!",
+  "homepage": "https://github.com/paulonio/datepicker#readme",
+  "_id": "datepicker@1.0.0"
 }
