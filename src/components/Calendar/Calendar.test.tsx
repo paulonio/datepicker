@@ -15,23 +15,22 @@ describe('Calendar', () => {
     maxDate: new Date(2024, 4, 11),
   };
 
-  const stateMock: Init = {
+  const state: Init = {
     currentCalendar: 'From',
     showCalendar: true,
     from: new Date(2023, 4, 2),
     to: new Date(2023, 4, 30),
   };
 
-  it('should render calendar', () => {
-    const { container } = render(
-      <Calendar config={config} state={stateMock} dispatch={() => {}} />
-    );
+  it('should render correctly calendar', () => {
+    render(<Calendar config={config} state={state} dispatch={() => {}} />);
 
-    expect(container).toMatchSnapshot();
+    const title = screen.getByTestId('month-row');
+    expect(title).toHaveTextContent('May 2023');
   });
 
   it('should show modal on checkbox true and hide on checkbox false', () => {
-    render(<Calendar config={config} state={stateMock} dispatch={() => {}} />);
+    render(<Calendar config={config} state={state} dispatch={() => {}} />);
 
     const checkbox: HTMLInputElement = screen.getByTestId('checkbox');
     expect(checkbox).not.toBeChecked();

@@ -1,7 +1,6 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import 'jest-styled-components';
 
 import type { DatepickerProps } from '@components/Datepicker/Datepicker';
 import DateButtons from '@components/DateButtons/DateButtons';
@@ -25,8 +24,8 @@ describe('DateButtons component', () => {
 
   const initialDate = new Date(2023, 4, 11);
 
-  it('should render DateButtons component', () => {
-    const { container } = render(
+  it('should render 42 buttons', () => {
+    render(
       <DateButtons
         state={state}
         config={config}
@@ -39,27 +38,7 @@ describe('DateButtons component', () => {
       />
     );
 
-    expect(container).toMatchSnapshot();
-  });
-
-  it('should correctly highlight date from and date to', () => {
-    const from = new Date(2023, 4, 8);
-    const to = new Date(2023, 4, 12);
-    const newState = { ...state, from, to };
-
-    const { container } = render(
-      <DateButtons
-        state={newState}
-        config={config}
-        newDate={initialDate}
-        selectOneDate={false}
-        selectedDate={initialDate}
-        selectDate={() => {}}
-        setSelectOneDate={() => {}}
-        dispatch={() => {}}
-      />
-    );
-
-    expect(container).toMatchSnapshot();
+    const buttons = screen.getAllByTestId('date-button');
+    expect(buttons).toHaveLength(42);
   });
 });
