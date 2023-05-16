@@ -8,7 +8,7 @@ import type { Action } from '@/types/types';
 
 export const useInputHandlers = (
   inputDate: string,
-  label: 'From' | 'To',
+  label: 'From' | 'To' | 'Date',
   date: Date | null,
   config: DatepickerProps,
   setInputDate: (inputDate: string) => void,
@@ -44,10 +44,17 @@ export const useInputHandlers = (
 
   const resetInput = () => {
     setInputDate('');
-    const action: Action = {
-      type: label === 'From' ? 'SET_DATE_FROM' : 'SET_DATE_TO',
-      payload: { date: null },
-    };
+    let type: 'SET_DATE' | 'SET_DATE_FROM' | 'SET_DATE_TO';
+
+    if (label === 'Date') {
+      type = 'SET_DATE';
+    } else if (label === 'From') {
+      type = 'SET_DATE_FROM';
+    } else {
+      type = 'SET_DATE_TO';
+    }
+
+    const action: Action = { type, payload: { date: null } };
     dispatch(action);
   };
 

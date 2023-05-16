@@ -1,11 +1,21 @@
 import { useState, useEffect } from 'react';
 
 export const usePanelDates = (
-  currentCalendar: 'From' | 'To',
+  currentCalendar: 'From' | 'To' | 'Date',
   dateFrom: Date | null,
-  dateTo: Date | null
+  dateTo: Date | null,
+  oneDate: Date | null
 ) => {
-  const currentDate = currentCalendar === 'From' ? dateFrom : dateTo;
+  let currentDate: Date | null;
+
+  if (currentCalendar === 'Date') {
+    currentDate = oneDate;
+  } else if (currentCalendar === 'From') {
+    currentDate = dateFrom;
+  } else {
+    currentDate = dateTo;
+  }
+
   const [date, setDate] = useState<Date | null>(() => currentDate);
 
   useEffect(() => {

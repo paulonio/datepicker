@@ -3,29 +3,29 @@
 exports[`Datepicker should render datepicker component 1`] = `
 <div>
   <div
-    class="sc-brSOsn gZseZR"
+    class="sc-ejWHKt fBrLTR"
   >
     <div
-      class="sc-bgqQcB euGjSZ"
+      class="sc-cJPUEC fDNtvP"
     >
       <div
-        class="sc-gTRrQi dqPWMM"
+        class="sc-jeCNp jzRKyh"
       >
         From
       </div>
       <label
-        class="sc-ewnqHT kDjHUh"
+        class="sc-eywOmQ iwDjtA"
       >
         <div
-          class="sc-fFGjHI bcaVJn"
+          class="sc-eAzDjm jzhVsq"
         >
           <img
-            class="sc-iVCKna cRYcDH"
+            class="sc-gUMnWI jFVMuc"
             src="./assets/icons/Calendar.svg"
           />
         </div>
         <input
-          class="sc-gxYJeL iQdjAM"
+          class="sc-hUOJWJ cdgnww"
           data-testid="input"
           placeholder="Choose Date"
           value=""
@@ -33,26 +33,26 @@ exports[`Datepicker should render datepicker component 1`] = `
       </label>
     </div>
     <div
-      class="sc-bgqQcB euGjSZ"
+      class="sc-cJPUEC fDNtvP"
     >
       <div
-        class="sc-gTRrQi dqPWMM"
+        class="sc-jeCNp jzRKyh"
       >
         To
       </div>
       <label
-        class="sc-ewnqHT kDjHUh"
+        class="sc-eywOmQ iwDjtA"
       >
         <div
-          class="sc-fFGjHI bcaVJn"
+          class="sc-eAzDjm jzhVsq"
         >
           <img
-            class="sc-iVCKna cRYcDH"
+            class="sc-gUMnWI jFVMuc"
             src="./assets/icons/Calendar.svg"
           />
         </div>
         <input
-          class="sc-gxYJeL iQdjAM"
+          class="sc-hUOJWJ cdgnww"
           data-testid="input"
           placeholder="Choose Date"
           value=""

@@ -59,15 +59,19 @@ class Decorator implements Calendar {
     return this.component.showWeekend(isWeekend, weekendStatus);
   }
 
-  getMode(date: Date, selectedDates: Init, selectOneDate: boolean, selectedDate: Date) {
-    return this.component.getMode(date, selectedDates, selectOneDate, selectedDate);
+  getMode(date: Date, selectedDates: Init, currentCalendar: 'From' | 'To' | 'Date') {
+    return this.component.getMode(date, selectedDates, currentCalendar);
   }
 
   parseStringToDate(dateString: string) {
     return this.component.parseStringToDate(dateString);
   }
 
-  updateSelectedDate(inputDate: string, label: 'From' | 'To', dispatch: (action: Action) => void) {
+  updateSelectedDate(
+    inputDate: string,
+    label: 'From' | 'To' | 'Date',
+    dispatch: (action: Action) => void
+  ) {
     return this.component.updateSelectedDate(inputDate, label, dispatch);
   }
 
@@ -75,7 +79,7 @@ class Decorator implements Calendar {
     return this.component.showWeekendTitle(title, weekendStatus);
   }
 
-  getTasks(date: Date) {
+  getTasks(date: Date | null) {
     return this.component.getTasks(date);
   }
 }

@@ -9,14 +9,16 @@ export type Mode = 'su' | 'mo';
 export interface Init {
   from: Date | null;
   to: Date | null;
-  currentCalendar: 'From' | 'To';
+  date: Date | null;
+  currentCalendar: 'From' | 'To' | 'Date';
   showCalendar: boolean;
 }
 
 export type Action =
   | { type: 'SET_DATE_FROM'; payload: { date: Date | null } }
   | { type: 'SET_DATE_TO'; payload: { date: Date | null } }
-  | { type: 'SET_CURRENT_CALENDAR'; payload: { calendar: 'From' | 'To' } }
+  | { type: 'SET_DATE'; payload: { date: Date | null } }
+  | { type: 'SET_CURRENT_CALENDAR'; payload: { calendar: 'From' | 'To' | 'Date' } }
   | { type: 'TOGGLE_CALENDAR'; payload: { showCalendar: boolean } }
   | { type: 'CLEAR_INPUTS' };
 
@@ -48,13 +50,17 @@ export interface Calendar {
   parseDateToString: (date: Date | null) => string;
   parseDate: (date: Date) => { day: number; month: number; year: number };
   showWeekend: (isWeekend: boolean, weekendStatus: WeekendStatus) => boolean;
-  getMode: (date: Date, selectedDates: Init, selectOneDate: boolean, selectedDate: Date) => Status;
+  getMode: (
+    currentDate: Date,
+    selectedDates: Init,
+    currentCalendar: 'From' | 'To' | 'Date'
+  ) => Status;
   parseStringToDate: (dateString: string) => Date | null;
   updateSelectedDate: (
     inputDate: string,
-    label: 'From' | 'To',
+    label: 'From' | 'To' | 'Date',
     dispatch: (action: Action) => void
   ) => void;
   showWeekendTitle: (title: string, weekendStatus: WeekendStatus) => boolean;
-  getTasks: (date: Date) => Task[];
+  getTasks: (date: Date | null) => Task[];
 }

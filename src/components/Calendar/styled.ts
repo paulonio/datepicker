@@ -1,9 +1,19 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+interface WrapperProps {
+  currentCalendar: 'From' | 'To' | 'Date';
+}
+
+export const Wrapper = styled.div<WrapperProps>`
   width: 100%;
+  max-width: 252px;
+  background-color: #ffffff;
   display: flex;
   justify-content: space-between;
+  position: absolute;
+  top: ${({ currentCalendar }) =>
+    currentCalendar === 'From' || currentCalendar === 'Date' ? '180px' : '260px'};
+  left: 100px;
 `;
 
 export const CalendarWrapper = styled.div.attrs({
@@ -12,7 +22,6 @@ export const CalendarWrapper = styled.div.attrs({
 })`
   width: 100%;
   padding: 10px 10px 0;
-  max-width: 252px;
   border: solid 1px #e1e1e1;
   border-radius: 8px;
 `;
@@ -26,16 +35,6 @@ export const WeekWrapper = styled.div`
   font-weight: 700;
   line-height: 19px;
 `;
-
-export const Label = styled.label`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  font-size: 13px;
-`;
-
-export const Checkbox = styled.input.attrs({ type: 'checkbox' })``;
 
 export const ClearButton = styled.button`
   width: 100%;

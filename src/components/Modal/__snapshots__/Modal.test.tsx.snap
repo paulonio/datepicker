@@ -3,7 +3,7 @@
 exports[`Modal should render modal component 1`] = `
 <div>
   <div
-    class="sc-fFGjHI gllHxj"
+    class="sc-fFGjHI ljYnnD"
     data-testid="modal"
   >
     <h3
@@ -34,8 +34,7 @@ exports[`Modal should render modal component 1`] = `
         class="sc-gTRrQi gteUIR"
         data-testid="title"
       >
-        Tasks - 
-        11/05/2023
+        Tasks
       </h3>
     </div>
   </div>

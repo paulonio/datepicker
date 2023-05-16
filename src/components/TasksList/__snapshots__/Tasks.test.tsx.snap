@@ -9,8 +9,7 @@ exports[`TasksList should render Tasks component 1`] = `
       class="sc-gTRrQi gteUIR"
       data-testid="title"
     >
-      Tasks - 
-      11/05/2023
+      Tasks
     </h3>
   </div>
 </div>

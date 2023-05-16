@@ -28,6 +28,7 @@ export const init: DatepickerProps = {
   start: 'mo',
   view: 'monthly',
   weekend: 'show',
-  minDate: new Date(2021, 3, 2),
-  maxDate: new Date(2025, 4, 25),
+  mode: 'date',
+  minDate: new Date(1975, 0, 1),
+  maxDate: new Date(2038, 11, 25),
 };

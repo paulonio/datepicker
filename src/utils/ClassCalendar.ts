@@ -156,18 +156,18 @@ class ClassCalendar implements Calendar {
     return true;
   }
 
-  getMode(date: Date, selectedDates: Init, selectOneDate: boolean, selectedDate: Date) {
-    if (selectOneDate && selectedDate.getTime() === date.getTime()) {
+  getMode(currentDate: Date, selectedDates: Init, currentCalendar: 'From' | 'To' | 'Date') {
+    const { from, to, date } = selectedDates;
+    if (currentCalendar === 'Date' && date && date.getTime() === currentDate.getTime()) {
       return 'selectedDate';
     }
-    const { from, to } = selectedDates;
-    if (from && from.getTime() === date.getTime()) {
+    if (from && from.getTime() === currentDate.getTime()) {
       return 'selectedFrom';
     }
-    if (to && to.getTime() === date.getTime()) {
+    if (to && to.getTime() === currentDate.getTime()) {
       return 'selectedTo';
     }
-    if (from && to && date > from && date < to) {
+    if (from && to && currentDate > from && currentDate < to) {
       return 'inRange';
     }
     return '';
@@ -186,13 +186,27 @@ class ClassCalendar implements Calendar {
     return date;
   }
 
-  updateSelectedDate(inputDate: string, label: 'From' | 'To', dispatch: (action: Action) => void) {
+  updateSelectedDate(
+    inputDate: string,
+    label: 'From' | 'To' | 'Date',
+    dispatch: (action: Action) => void
+  ) {
     const date = this.parseStringToDate(inputDate);
-    if (date) {
-      const type = label === 'From' ? 'SET_DATE_FROM' : 'SET_DATE_TO';
-      const action: Action = { type, payload: { date } };
-      dispatch(action);
+    let type: 'SET_DATE' | 'SET_DATE_FROM' | 'SET_DATE_TO';
+    if (!date) {
+      return;
     }
+
+    if (label === 'Date') {
+      type = 'SET_DATE';
+    } else if (label === 'From') {
+      type = 'SET_DATE_FROM';
+    } else {
+      type = 'SET_DATE_TO';
+    }
+
+    const action: Action = { type, payload: { date } };
+    dispatch(action);
   }
 
   showWeekendTitle(title: string, weekendStatus: WeekendStatus) {
@@ -203,7 +217,7 @@ class ClassCalendar implements Calendar {
     return false;
   }
 
-  getTasks(date: Date) {
+  getTasks(date: Date | null) {
     const tasks = JSON.parse(localStorage.getItem(`${date}`) as string);
     return tasks;
   }

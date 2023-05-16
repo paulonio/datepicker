@@ -3,6 +3,7 @@ import type { Status } from '@/types/types';
 
 interface WeekDayProps {
   status: Status;
+  currentCalendar: 'From' | 'To' | 'Date';
   isCurrentMonth: boolean;
   isToday: boolean;
   isWeekend: boolean;
@@ -27,7 +28,6 @@ export const WeekDay = styled.button<WeekDayProps>`
   width: 32.85px;
   height: 32px;
   border: none;
-  border-radius: 4px;
   background-color: #ffffff;
   cursor: pointer;
   color: ${({ isCurrentMonth }) => !isCurrentMonth && '#aaaaaa'};
@@ -40,34 +40,46 @@ export const WeekDay = styled.button<WeekDayProps>`
   ${(props) => {
     switch (props.status) {
       case 'selectedDate':
-        return css`
-          background-color: #2f80ed;
-          color: #ffffff;
-          border-radius: 8px 8px 8px 8px;
-        `;
+        if (props.currentCalendar === 'Date') {
+          return css`
+            background-color: #2f80ed;
+            color: #ffffff;
+            border-radius: 8px 8px 8px 8px;
+          `;
+        }
+        return css``;
       case 'selectedFrom':
-        return css`
-          background-color: rgba(47, 128, 237, 0.6);
-          color: #ffffff;
-          border-radius: 8px 0px 0px 8px;
-        `;
+        if (props.currentCalendar !== 'Date') {
+          return css`
+            background-color: rgba(47, 128, 237, 0.6);
+            color: #ffffff;
+            border-radius: 8px 0px 0px 8px;
+          `;
+        }
+        return css``;
       case 'selectedTo':
-        return css`
-          background-color: #2f80ed;
-          color: #ffffff;
-          border-radius: 0px 8px 8px 0px;
-        `;
+        if (props.currentCalendar !== 'Date') {
+          return css`
+            background-color: #2f80ed;
+            color: #ffffff;
+            border-radius: 0px 8px 8px 0px;
+          `;
+        }
+        return css``;
       case 'inRange':
-        return css`
-          background-color: rgba(47, 128, 237, 0.1);
-          color: #2f80ed;
-        `;
+        if (props.currentCalendar !== 'Date') {
+          return css`
+            background-color: rgba(47, 128, 237, 0.1);
+            color: #2f80ed;
+          `;
+        }
+        return css``;
       default:
         return css``;
     }
   }}
-  border: ${({ isWeekend }) => isWeekend && 'solid 1px blue'};
-  color: ${({ isToday }) => isToday && 'red'};
+  color: ${({ isWeekend }) => isWeekend && '#d00000'};
+  color: ${({ isToday }) => isToday && '#f48c06'};
   &:disabled {
     cursor: default;
   }

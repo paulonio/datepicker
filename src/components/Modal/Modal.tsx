@@ -7,8 +7,7 @@ import calendar from '@utils/ClassCalendar';
 import { Button, Input, InputWrapper, Title, Wrapper } from './styled';
 
 interface ModalProps {
-  date: Date;
-  handleCloseModal: (value: boolean) => void;
+  date: Date | null;
 }
 
 export interface Task {
@@ -16,7 +15,7 @@ export interface Task {
   title: string;
 }
 
-const Modal: FC<ModalProps> = ({ date, handleCloseModal }) => {
+const Modal: FC<ModalProps> = ({ date }) => {
   const [value, setValue] = useState<string>('');
   const [tasks, setTasks] = useState<Task[]>([]);
 
@@ -36,15 +35,17 @@ const Modal: FC<ModalProps> = ({ date, handleCloseModal }) => {
 
   const handleAddTask = () => {
     if (!localStorage.getItem(`${date}`)) {
-      localStorage.setItem(`${date}`, JSON.stringify([{ id: '0', title: value }]));
+      const data = [{ id: '0', title: value }];
+      localStorage.setItem(`${date}`, JSON.stringify(data));
+      setTasks(data);
     } else {
       const prevValues: Array<Task> = JSON.parse(localStorage.getItem(`${date}`) as string);
       const newTask: Task = { id: `${prevValues.length}`, title: value };
       const data = [...prevValues, newTask];
       localStorage.setItem(`${date}`, JSON.stringify(data));
+      setTasks(data);
     }
     setValue('');
-    handleCloseModal(false);
   };
 
   return (
@@ -56,7 +57,7 @@ const Modal: FC<ModalProps> = ({ date, handleCloseModal }) => {
           Confirm
         </Button>
       </InputWrapper>
-      <TasksList tasks={tasks} date={date} />
+      <TasksList tasks={tasks} />
     </Wrapper>
   );
 };

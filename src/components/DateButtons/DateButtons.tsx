@@ -13,43 +13,34 @@ interface DateButtonsProps {
   dispatch: (action: Action) => void;
   config: DatepickerProps;
   newDate: Date;
-  selectOneDate: boolean;
-  selectedDate: Date;
-  setSelectOneDate: (value: boolean) => void;
-  selectDate: (date: Date) => void;
 }
 
-const DateButtons: FC<DateButtonsProps> = ({
-  state,
-  dispatch,
-  config,
-  newDate,
-  selectOneDate,
-  selectedDate,
-  selectDate,
-  setSelectOneDate,
-}) => {
+const DateButtons: FC<DateButtonsProps> = ({ state, dispatch, config, newDate }) => {
   const today = calendar.getToday();
   const { currentCalendar } = state;
   const { start, view, weekend, minDate, maxDate } = config;
   const allDays = useDisplayDates(start, view, newDate);
 
   const handleButtonClick = (date: Date) => {
-    if (selectOneDate) {
-      selectDate(date);
-      setSelectOneDate(true);
+    let type: 'SET_DATE' | 'SET_DATE_FROM' | 'SET_DATE_TO';
+
+    if (currentCalendar === 'Date') {
+      type = 'SET_DATE';
+    } else if (currentCalendar === 'From') {
+      type = 'SET_DATE_FROM';
     } else {
-      const type = currentCalendar === 'From' ? 'SET_DATE_FROM' : 'SET_DATE_TO';
-      dispatch({ type, payload: { date } });
-      dispatch({ type: 'TOGGLE_CALENDAR', payload: { showCalendar: false } });
+      type = 'SET_DATE_TO';
     }
+
+    dispatch({ type, payload: { date } });
+    dispatch({ type: 'TOGGLE_CALENDAR', payload: { showCalendar: false } });
   };
 
   return (
     <Week>
       {allDays.map(({ currentYear, currentMonth, currentDate, isCurrentMonth }) => {
         const date = new Date(currentYear, currentMonth, currentDate);
-        const status = calendar.getMode(date, state, selectOneDate, selectedDate);
+        const status = calendar.getMode(date, state, currentCalendar);
         const isToday = today.getTime() === date.getTime();
         const isWeekend = calendar.setWeekendStatus(date);
         const isDisabled = calendar.isValidDate(date, minDate, maxDate);
@@ -59,6 +50,7 @@ const DateButtons: FC<DateButtonsProps> = ({
             key={`${currentYear}/${currentMonth}/${currentDate}`}
             onClick={() => handleButtonClick(date)}
             status={status}
+            currentCalendar={currentCalendar}
             isCurrentMonth={isCurrentMonth}
             isToday={isToday}
             isWeekend={isWeekend}

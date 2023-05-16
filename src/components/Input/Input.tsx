@@ -9,7 +9,7 @@ import type { Action } from '@/types/types';
 import { CalendarIcon, CloseIcon, Field, FieldWrapper, Icon, Label, Wrapper } from './styled';
 
 interface InputProps {
-  label: 'From' | 'To';
+  label: 'From' | 'To' | 'Date';
   date: Date | null;
   config: DatepickerProps;
   dispatch: (action: Action) => void;

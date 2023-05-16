@@ -11,30 +11,22 @@ describe('TasksList', () => {
     { id: '2', title: 'Learn redux' },
   ];
   const emptyTasksData: Task[] = [];
-  const date = new Date(2023, 4, 11);
 
   it('should render Tasks component', () => {
-    const { container } = render(<TasksList tasks={emptyTasksData} date={date} />);
+    const { container } = render(<TasksList tasks={emptyTasksData} />);
 
     expect(container).toMatchSnapshot();
   });
 
-  it('should display correct title', () => {
-    render(<TasksList tasks={emptyTasksData} date={date} />);
-
-    const title = screen.getByTestId('title');
-    expect(title).toHaveTextContent('Tasks - 11/05/2023');
-  });
-
   it('should not display tasks on empty data', () => {
-    render(<TasksList tasks={emptyTasksData} date={date} />);
+    render(<TasksList tasks={emptyTasksData} />);
 
     const task = screen.queryAllByTestId('task');
     expect(task).toHaveLength(0);
   });
 
   it('should display tasks on correct data', () => {
-    render(<TasksList tasks={tasksData} date={date} />);
+    render(<TasksList tasks={tasksData} />);
 
     const tasks = screen.getAllByTestId('task');
     expect(tasks).toHaveLength(2);
