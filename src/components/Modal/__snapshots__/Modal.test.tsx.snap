@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal should render modal component 1`] = `
+<div>
+  <div
+    class="sc-fFGjHI ljYnnD"
+    data-testid="modal"
+  >
+    <h3
+      class="sc-dicizt bieuVL"
+    >
+      Add task
+    </h3>
+    <div
+      class="sc-iVCKna kYeVvR"
+    >
+      <input
+        class="sc-gxYJeL hyoWFD"
+        data-testid="input"
+        placeholder="Type task"
+        value=""
+      />
+      <button
+        class="sc-kPTPQs gXqdmt"
+        data-testid="submit"
+      >
+        Confirm
+      </button>
+    </div>
+    <div
+      class="sc-bgqQcB eaEnve"
+    >
+      <h3
+        class="sc-gTRrQi gteUIR"
+        data-testid="title"
+      >
+        Tasks
+      </h3>
+    </div>
+  </div>
+</div>
+`;

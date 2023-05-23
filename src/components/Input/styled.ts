@@ -4,57 +4,51 @@ export const Wrapper = styled.div`
   width: 250px;
 `;
 
-export const Label = styled.label`
+export const Label = styled.div`
+  margin-bottom: 8px;
   font-size: 15px;
   line-height: 20px;
   font-weight: 600;
   color: #333333;
 `;
 
-export const Row = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+export const FieldWrapper = styled.label`
+  position: relative;
+  margin-bottom: 8px;
+  display: block;
+  border: solid 1px #dddddd;
+  border-radius: 8px;
 `;
 
-export const CalendarIcon = styled.img.attrs({ src: './assets/icons/Calendar.svg' })`
-  margin-right: -40px;
-  z-index: 1000;
+export const LeftIconWrapper = styled.div`
+  position: absolute;
   width: 16px;
   height: 16px;
+  top: 13px;
+  left: 15px;
+  cursor: pointer;
 `;
 
-export const InputIcon = styled.div`
-  position: relative;
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 15px;
-    margin: auto 0;
-    width: 16px;
-    height: 16px;
-    background: url('./assets/icons/Calendar.svg') no-repeat;
-    background-size: cover;
-  }
+export const RightIconWrapper = styled.div`
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 14px;
+  right: 15px;
+  cursor: pointer;
 `;
 
-export const Field = styled.input.attrs({ type: 'text', placeholder: 'Choose Date' })`
-  width: 100%;
-  margin-top: 8px;
-  padding: 15px 11px 15px 39px;
-  /* padding-left: 20px; */
+export const Field = styled.input`
+  width: calc(100% - 78px);
+  border: none;
+  border-radius: 8px;
+  padding: 11px 39px 11px 39px;
   font-size: 15px;
   line-height: 20px;
   font-weight: 400;
   background-color: #ffffff;
   color: #333333;
-  border: solid 1px #dddddd;
-  border-radius: 8px;
-  user-select: none;
-  &::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
+  &:focus {
+    outline: none;
   }
 `;
