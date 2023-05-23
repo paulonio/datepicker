@@ -33,6 +33,7 @@ export default [
           {find: '@styles', replacement: path.resolve(rootDir, 'src/styles')},
           {find: '@types', replacement: path.resolve(rootDir, 'src/types')},
           {find: '@utils', replacement: path.resolve(rootDir, 'src/utils')},
+          {find: '@icons', replacement: path.resolve(rootDir, 'src/icons')},
 
         ],
         customResolver,

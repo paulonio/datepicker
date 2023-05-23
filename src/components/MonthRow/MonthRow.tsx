@@ -3,10 +3,10 @@ import React, { FC } from 'react';
 import { useMonthChangeHandlers } from '@hooks/useMonthChangeHandlers';
 import { MONTHS } from '@constants/constants';
 
-import PrevYearIcon from '@components/PrevYearIcon/PrevYearIcon';
-import PrevIcon from '@components/PrevIcon/PrevIcon';
-import NextIcon from '@components/NextIcon/NextIcon';
-import NextYearIcon from '@components/NextYearIcon/NextYearIcon';
+import PrevYearIcon from '@icons/PrevYearIcon';
+import PrevIcon from '@icons/PrevIcon';
+import NextIcon from '@icons/NextIcon';
+import NextYearIcon from '@icons/NextYearIcon';
 import type { View } from '@/types/types';
 
 import { IconWrapper, Month, MonthWrapper } from './styled';

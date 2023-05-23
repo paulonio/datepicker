@@ -4,8 +4,8 @@ import type { DatepickerProps } from '@components/Datepicker/Datepicker';
 
 import calendar from '@utils/ClassCalendar';
 import { useInputHandlers } from '@hooks/useInputHandlers';
-import CalendarIcon from '@components/CalendarIcon/CalendarIcon';
-import CloseIcon from '@components/CloseIcon/CloseIcon';
+import CalendarIcon from '@icons/CalendarIcon';
+import CloseIcon from '@icons/CloseIcon';
 import type { Action } from '@/types/types';
 
 import { RightIconWrapper, Field, FieldWrapper, Label, LeftIconWrapper, Wrapper } from './styled';
