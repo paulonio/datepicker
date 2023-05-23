@@ -14,29 +14,14 @@ export const MonthWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const PrevIcon = styled.img.attrs({ src: './assets/icons/Prev.svg' })`
-  display: block;
-  width: 16px;
-  height: 16px;
+export const IconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
 `;
 
-export const NextIcon = styled.img.attrs({ src: './assets/icons/Next.svg' })`
-  display: block;
-  width: 16px;
-  height: 16px;
-  cursor: pointer;
-`;
-
-export const PrevYearIcon = styled.img.attrs({ src: './assets/icons/Prev-year.svg' })`
-  display: block;
-  width: 10px;
-  height: 10px;
-  cursor: pointer;
-`;
-
-export const NextYearIcon = styled.img.attrs({ src: './assets/icons/Next-year.svg' })`
-  display: block;
+export const YearIconWrapper = styled.div`
   width: 10px;
   height: 10px;
   cursor: pointer;

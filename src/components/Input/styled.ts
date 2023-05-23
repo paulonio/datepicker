@@ -20,7 +20,7 @@ export const FieldWrapper = styled.label`
   border-radius: 8px;
 `;
 
-export const CalendarIcon = styled.div`
+export const LeftIconWrapper = styled.div`
   position: absolute;
   width: 16px;
   height: 16px;
@@ -29,17 +29,13 @@ export const CalendarIcon = styled.div`
   cursor: pointer;
 `;
 
-export const CloseIcon = styled.div`
+export const RightIconWrapper = styled.div`
   position: absolute;
   width: 16px;
   height: 16px;
   top: 14px;
   right: 15px;
   cursor: pointer;
-`;
-
-export const Icon = styled.img`
-  display: block;
 `;
 
 export const Field = styled.input`

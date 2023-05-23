@@ -24,12 +24,18 @@ const DateButtons: FC<DateButtonsProps> = ({ state, dispatch, config, newDate })
   const handleButtonClick = (date: Date) => {
     let type: 'SET_DATE' | 'SET_DATE_FROM' | 'SET_DATE_TO';
 
-    if (currentCalendar === 'Date') {
-      type = 'SET_DATE';
-    } else if (currentCalendar === 'From') {
-      type = 'SET_DATE_FROM';
-    } else {
-      type = 'SET_DATE_TO';
+    switch (currentCalendar) {
+      case 'Date':
+        type = 'SET_DATE';
+        break;
+      case 'From':
+        type = 'SET_DATE_FROM';
+        break;
+      case 'To':
+        type = 'SET_DATE_TO';
+        break;
+      default:
+        return;
     }
 
     dispatch({ type, payload: { date } });

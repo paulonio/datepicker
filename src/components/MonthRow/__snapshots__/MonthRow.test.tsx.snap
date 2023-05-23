@@ -5,16 +5,43 @@ exports[`MonthRow should render MonthRow 1`] = `
   <div
     class="sc-gTRrQi keXuBg"
   >
-    <img
-      class="sc-dicizt ghilUp"
-      data-testid="prev-year"
-      src="./assets/icons/Prev-year.svg"
-    />
-    <img
-      class="sc-ewnqHT gzNrMh"
-      data-testid="prev"
-      src="./assets/icons/Prev.svg"
-    />
+    <div
+      class="sc-ewnqHT iHhGPq"
+    >
+      <svg
+        data-testid="prev-year"
+        fill="currentColor"
+        focusable="false"
+        height="10"
+        role="img"
+        viewBox="0 0 9 15"
+        width="10"
+      >
+        <path
+          d="M0 7.2L7.2 14.4L8.32 13.2L2.4 7.2L8.32 1.2L7.2 0L0 7.2Z"
+        />
+      </svg>
+    </div>
+    <div
+      class="sc-ewnqHT iHhGPq"
+    >
+      <svg
+        data-testid="prev"
+        fill="currentColor"
+        focusable="false"
+        height="16"
+        role="img"
+        viewBox="0 0 16 16"
+        width="16"
+      >
+        <path
+          d="M11.7266 12.5L12.6666 11.56L9.61329 8.5L12.6666 5.44L11.7266 4.5L7.72663 8.5L11.7266 12.5Z"
+        />
+        <path
+          d="M7.33332 12.5L8.27332 11.56L5.21998 8.5L8.27331 5.44L7.33331 4.5L3.33332 8.5L7.33332 12.5Z"
+        />
+      </svg>
+    </div>
     <div
       class="sc-bgqQcB fnzUFW"
       data-testid="month-row"
@@ -23,16 +50,43 @@ exports[`MonthRow should render MonthRow 1`] = `
        
       2023
     </div>
-    <img
-      class="sc-fFGjHI gHPgDo"
-      data-testid="next"
-      src="./assets/icons/Next.svg"
-    />
-    <img
-      class="sc-iVCKna dYxFcU"
-      data-testid="next-year"
-      src="./assets/icons/Next-year.svg"
-    />
+    <div
+      class="sc-ewnqHT iHhGPq"
+    >
+      <svg
+        data-testid="next"
+        fill="currentColor"
+        focusable="false"
+        height="16"
+        role="img"
+        viewBox="0 0 16 16"
+        width="16"
+      >
+        <path
+          d="M4.27337 4.5L3.33337 5.44L6.38671 8.5L3.33337 11.56L4.27337 12.5L8.27337 8.5L4.27337 4.5Z"
+        />
+        <path
+          d="M8.66668 4.5L7.72668 5.44L10.78 8.5L7.72668 11.56L8.66668 12.5L12.6667 8.5L8.66668 4.5Z"
+        />
+      </svg>
+    </div>
+    <div
+      class="sc-ewnqHT iHhGPq"
+    >
+      <svg
+        data-testid="next-year"
+        fill="currentColor"
+        focusable="false"
+        height="10"
+        role="img"
+        viewBox="0 0 9 15"
+        width="10"
+      >
+        <path
+          d="M1.12 0L0 1.2L5.92 7.2L0 13.2L1.12 14.4L8.32 7.2L1.12 0Z"
+        />
+      </svg>
+    </div>
   </div>
 </div>
 `;

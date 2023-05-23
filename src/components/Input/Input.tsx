@@ -4,9 +4,11 @@ import type { DatepickerProps } from '@components/Datepicker/Datepicker';
 
 import calendar from '@utils/ClassCalendar';
 import { useInputHandlers } from '@hooks/useInputHandlers';
+import CalendarIcon from '@components/CalendarIcon/CalendarIcon';
+import CloseIcon from '@components/CloseIcon/CloseIcon';
 import type { Action } from '@/types/types';
 
-import { CalendarIcon, CloseIcon, Field, FieldWrapper, Icon, Label, Wrapper } from './styled';
+import { RightIconWrapper, Field, FieldWrapper, Label, LeftIconWrapper, Wrapper } from './styled';
 
 interface InputProps {
   label: 'From' | 'To' | 'Date';
@@ -36,9 +38,9 @@ const Input: FC<InputProps> = ({ label, date, config, dispatch }) => {
     <Wrapper>
       <Label>{label}</Label>
       <FieldWrapper>
-        <CalendarIcon>
-          <Icon src="./assets/icons/Calendar.svg" />
-        </CalendarIcon>
+        <LeftIconWrapper>
+          <CalendarIcon />
+        </LeftIconWrapper>
         <Field
           value={inputDate}
           onChange={handleChange}
@@ -48,9 +50,9 @@ const Input: FC<InputProps> = ({ label, date, config, dispatch }) => {
           data-testid="input"
         />
         {inputDate && (
-          <CloseIcon onClick={resetInput} data-testid="close-icon">
-            <Icon src="./assets/icons/Clear.svg" />
-          </CloseIcon>
+          <RightIconWrapper onClick={resetInput} data-testid="close-icon">
+            <CloseIcon />
+          </RightIconWrapper>
         )}
       </FieldWrapper>
     </Wrapper>
